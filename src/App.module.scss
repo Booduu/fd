@@ -1,0 +1,32 @@
+@import './assets/sass/breakpoints.scss';;
+
+.App {
+    display: grid;
+    grid-template-columns: 160px 1fr 160px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "menu content";
+}
+.menu {
+    grid-area: menu;
+    min-height: 100vh;
+}
+.content {
+    width: 100%;
+    height: inherit;
+    grid-area: content;
+    min-height: 100vh;
+}
+
+@media (max-width: $break-large) {
+    .App {
+        grid-template-columns: 160px 1fr 0px  ;
+    
+    }
+}
+
+@media (max-width: $break-medium) {
+    .App {
+        grid-template-columns: 0px 1fr 0px ;
+    } 
+}

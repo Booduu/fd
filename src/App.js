@@ -1,25 +1,107 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import './assets/sass/_style.scss';
+// import './App.css'
+import style from './App.module.scss'
+import { 
+  Header,
+  Burger,
+  Logo,
+} from './components/utils';
+import { 
+  tt, 
+  logout,
+  getVideo,
+  getIsMobile,
+} from './store/actions';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { AdminLives, AdminDiscography, AdminShop, AdminVue, Signin, Signup } from './components/admin';
+import { 
+  BookingContact, 
+  Discography,
+  Shows,
+  Shop,
+  Home,
+  LandingPage,
+} from './components/public';
+import { connect } from 'react-redux';
 
-function App() {
+const App = ({
+  tt,
+  logout,
+  getIsMobile,
+  isMobile,
+}) => {
+  const [isHome, setIsHome] = useState(false)
+  const [history, setHistory] = useState(window.location.pathname);
+
+  useEffect(() => {
+    setHistory(window.location.pathname);
+    tt();
+  }, []);
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleWindowSizeChange = () => {
+          setWidth(window.innerWidth);
+      }
+
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+
+  useEffect(() => {
+      if(width > 768) {
+          getIsMobile(false);
+      } else {
+          getIsMobile(true);
+      }
+  }, [width]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={style.App}>
+      <Logo />
+      <Burger />
+      {/* background video || img : */}
+      <LandingPage isHome={isHome}/>
+      <Router>
+        <div className={style.menu}>
+          <Header />
+        </div>
+        <div className={style.content}>
+          <Switch>
+              <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
+              <Route path="/discography" component={Discography} />
+              <Route path="/shows" component={Shows} />
+              <Route path="/shop" component={Shop} />
+              <Route path="/BookingContact" component={BookingContact} />
+              <Route path="/admin/vue" component={AdminVue} />
+              <Route path="/admin/lives" component={AdminLives}/>
+              <Route path="/admin/discography" component={AdminDiscography}/>
+              <Route path="/admin/shop" component={AdminShop}/>
+              <Route path="/admin/signin" component={Signin}/>
+              <Route path="/admin/signup" component={Signup}/>
+              <Redirect to='/home' />
+          </Switch>
+        </div>
+      </Router>
+     
     </div>
-  );
+  )
 }
 
-export default App;
+export default connect(state => ({
+  isMobile: state.landingReducer.isMobile,
+}), { 
+  tt, 
+  logout,
+  getVideo,
+  getIsMobile,
+ })(App);

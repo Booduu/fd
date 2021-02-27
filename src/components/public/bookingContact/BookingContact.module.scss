@@ -1,0 +1,177 @@
+@import '../../../assets/sass/breakpoints.scss';
+@import '../../../assets/sass/_variables.scss';
+
+.container {
+    padding-top: $padding-top-container;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    .flex_container {
+        max-width: 1000px;
+        width: 100%;
+        display: grid;
+        grid-template-areas: "logo"
+                             "social";
+        grid-template-columns: 1fr;
+        // grid-template-rows: calc(100vh - 150px) 100px;
+        grid-template-rows:  1fr 100px;
+       
+        .logos_container {
+            background-color: rgba(0, 0, 0, 0.726);
+            grid-area: logo;
+            display: flex;
+            align-items: center;
+            .logo_container {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                flex: 1 1 0;
+                height: 600px;
+                .img_container {
+                    width: 100%;
+                    height: 50%;
+                    display: flex;
+                    justify-content: flex-end;
+                    .logo1 {
+                        width: 50%;
+                        max-width: 280px;
+                    }
+                    .logo2 {
+                        width: 70%;
+                        max-width: 450px;
+
+                    }
+                }
+                
+                
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin: 20px ;
+                    span { 
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .social_container {
+            grid-area: social;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .link {
+                flex: 1 1 0;
+                display: flex;
+                align-items: center;
+                span {
+                    display: unset;
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $break-medium) { 
+    .container {
+        align-items: flex-end;
+        .flex_container {
+            height: 100vh;
+            .logos_container {
+                flex-direction: column;
+                .logo_container {
+                    justify-content: center ;
+                    width: 90%;
+                    .img_container { 
+                        height: auto;
+
+                        .logo2 {
+                            width: 50%;
+    
+                        }
+                    }
+                }
+            }
+
+            .social_container {
+                grid-area: social;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .link {
+                    flex: unset;
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }  
+}
+
+
+// @media (max-width: $break-medium) {
+
+//     .container {
+//         width: 100%;
+//         height: 100vh;
+//         display: flex;
+//         // justify-content: center;
+//         // align-items: flex-end;
+//         .flex_container {
+//             padding-top: 50px;
+//             width: 100%;
+//             background-color: rgba(0, 0, 0, 0.726);
+//             display: grid;
+//             grid-template-areas: "logo"
+//                                  "social";
+//             grid-template-columns: 1fr;
+//             grid-template-rows: calc(100vh - 150px) 100px;
+    
+//             .logos_container {
+//                 grid-area: logo;
+//                 .logo_container {
+//                     display: flex;
+//                     flex-direction: column;
+//                     justify-content: center;
+//                     align-items: center;
+//                     height: calc(50vh - 50px);
+    
+//                     .logo1 {
+//                         width: 50%;
+//                     }
+//                     .logo2 {
+//                         width: 70%;
+//                     }
+                    
+//                     div {
+//                         display: flex;
+//                         flex-direction: column;
+//                         align-items: center;
+//                         margin: 20px;
+//                         span { 
+//                             font-size: 12px;
+//                         }
+//                     }
+//                 }
+//             }
+//             .social_container {
+//                 grid-area: social;
+//                 display: flex;
+//                 justify-content: space-around;
+//                 align-items: center;
+//                 .link {
+//                     span {
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+

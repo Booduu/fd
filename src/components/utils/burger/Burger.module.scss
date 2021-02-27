@@ -1,0 +1,81 @@
+@import '../../../assets/sass/breakpoints.scss';
+@import '../../../assets/sass/variables';
+
+.menuBurger {
+    display: none;
+}
+
+@keyframes openFirstBurger {
+    0% {
+
+    }
+    
+    100% {
+
+
+    }
+}
+
+
+@media (max-width: $break-medium) {
+    .menuBurger{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 65px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        // transform: translateX(-100px);
+        overflow: hidden;
+        z-index: 1000;
+        &:hover {
+            cursor: pointer;
+        }
+    
+        .firstBurger {
+            transform: translateX(-200%);
+        }
+    
+        .midBurger {
+            opacity: 0;
+        }
+    
+        .thirdBurger {
+            transform: translateX(200%);
+        }
+    
+        .burgerClose {
+            position: absolute;
+            top: 48%;
+            width: 50%; 
+        }
+    
+        .burgerCloseLeft {
+            transform: translateX(-150px) rotate(45deg) translateY(-70px);
+        }
+    
+        .burgerCloseRight {
+            transform: translateX(150px) rotate(-45deg) translateY(-70px);
+        }
+    
+        .burgerOpenLeft {
+            transform: translateX(0px) rotate(45deg) translateY(0px);
+        }
+    
+        .burgerOpenRight {
+            transform: translateX(0px) rotate(-45deg) translateY(0px);
+        }
+    
+         > div {
+            transition: .3s;
+            width: 100%;
+            height: 4px;
+            border-radius: 6px;
+            background-color: rgb(255, 255, 255);
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import "../../../assets/sass/breakpoints.scss";
+
+
+.logo {
+    position: fixed;
+    width: 150px;
+    margin: 20px;
+    z-index: 500;
+}
+
+@media (max-width: $break-medium) {
+    .logo {
+        right: 0;
+        width: 150px;
+        margin: 20px;
+    }
+}

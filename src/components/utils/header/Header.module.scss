@@ -1,0 +1,61 @@
+@import "../../../assets/sass/breakpoints.scss";
+@import '../../../assets/sass/variables';
+
+.container {
+    @extend .flexMenuDisplay;
+    width: max-content;
+    position: fixed;
+    top: 200px;
+    width: 160px;
+    .menuPublic, .menuAdmin {
+        @extend .flexMenuDisplay;
+
+        > * {
+            margin: 5px 5px 5px 0px;
+            text-decoration: none;
+            font-size: $font-size-shop;
+            padding: 0px 0px 0px 15px;
+            color: $color-text;
+            text-transform: uppercase;
+            // filter: blur(.8px) ;
+
+            &:hover {
+                filter: blur(0px) ;
+                background-color: rgba(255, 255, 255, 0.883);
+                color: black;
+                // filter: blur(.8px) ;
+            }
+        }
+
+        .active {
+            background-color: rgba(255, 255, 255, 0.883);
+            color: black;
+        }
+    }
+}
+
+
+.flexMenuDisplay {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: $break-medium) {
+    .container {
+        top: 0;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        transform: translateX(-100%);
+        background-color: black;
+        .menuPublic {
+            margin-top: 20vh;
+        }
+        .menuPublic, .menuAdmin {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+@import "../../../assets/sass/breakpoints.scss";
+@import '../../../assets/sass/_variables.scss';
+
+.container {
+    padding-top: $padding-top-container;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .flex_container {
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        .poster {
+            background-color: rgba(0, 0, 0, 0.664);
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: $break-xl) {
+    .container {
+        .flex_container {
+            grid-template-columns: 1fr 1fr 1fr ;
+            .poster {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: $break-large) {
+    .container {
+        .flex_container {
+            grid-template-columns: 1fr 1fr ;
+            .poster {
+
+            }
+        }
+    }
+}
+@media (max-width: $break-medium) {
+    .container {
+        .flex_container {
+            grid-template-columns: 1fr 1fr ;
+        }
+    }
+}
+
+@media (max-width: $break-small) {
+    .container {
+        .flex_container {
+            grid-template-columns: 100% ;
+        }
+    }
+}
