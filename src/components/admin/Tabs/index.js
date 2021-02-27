@@ -129,9 +129,9 @@ const ScrollableTabsButtonAuto = ({
 }
 
 export default connect(state => ({
-  lives: state.livesReducer.lives,
-  albums: state.discographyReducer.albums,
-  products: state.shopReducer.products,
+  lives: state.apiDataReducer.lives,
+  albums: state.apiDataReducer.albums,
+  products: state.apiDataReducer.products,
 }), {
   getLives,
   deleteLiveItem,
