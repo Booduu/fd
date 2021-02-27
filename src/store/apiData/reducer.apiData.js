@@ -10,20 +10,46 @@ const initialState = {
 const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.CREATE_LIVE:
+        case actions.CREATE_ALBUM:
+        case actions.CREATE_PRODUCT:
+        case actions.DELETE_LIVE:
+        case actions.DELETE_ALBUM:
+        case actions.DELETE_PRODUCT:
+        case actions.EDIT_LIVE:
+        case actions.EDIT_ALBUM:
+        case actions.EDIT_PRODUCT:
+        case actions.GET_LIVES:
+        case actions.GET_ALBUMS:
+        case actions.GET_PRODUCTS:
             return {
                 ...state,
                 loader: true,
             }
+
+        case actions.CREATE_LIVE_FAIL:
+        case actions.CREATE_ALBUM_FAIL:
+        case actions.CREATE_PRODUCT_FAIL:
+        case actions.DELETE_LIVE_FAIL:
+        case actions.DELETE_ALBUM_FAIL:
+        case actions.DELETE_PRODUCT_FAIL:
+        case actions.EDIT_LIVE_FAIL:
+        case actions.EDIT_ALBUM_FAIL:
+        case actions.EDIT_PRODUCT_FAIL: 
+        case actions.GET_LIVES_FAIL:
+        case actions.GET_ALBUMS_FAIL:
+        case actions.GET_PRODUCTS_FAIL:
+            return {
+                ...state,
+                loader: false,
+            }
+
+        /* LIVES */
         case actions.CREATE_LIVE_SUCCESS:
             const upadtedLivesList = [...state.lives];
             return {
                 ...state,
-                lives: upadtedLivesList.concat(action.result),
-            }
-        case actions.CREATE_LIVE_FAIL:
-            return {
-                ...state,
                 loader: false,
+                lives: upadtedLivesList.concat(action.result),
             }
 
         case actions.EDIT_LIVE_SUCCESS: 
@@ -32,43 +58,45 @@ const apiDataReducer = (state = initialState, action) => {
             newListLives[index] = action.live;
             return {
                 ...state,
+                loader: false,
                 lives: newListLives,
             };
 
-        case actions.DELETE_LIVES:
-            return state
-
-        case actions.DELETE_LIVES_SUCCESS:
+        case actions.DELETE_LIVE_SUCCESS:
             const livesAfterDeleteOne = [...state.lives.filter(l => l._id !== action.live._id)]
             return {
                 ...state,
+                loader: false,
                 lives: livesAfterDeleteOne,
             }
-        case actions.DELETE_LIVES_FAIL:
-            return state
             
         case actions.GET_LIVES_SUCCESS:
             const livesList = [...action.result];
             return {
                 ...state,
+                loader: false,
                 lives: livesList,
             };
 
+        /* ALBUMS */
         case actions.CREATE_ALBUM_SUCCESS:
             const newAlbumList = [...state.albums].concat(action.result);
             return {
                 ...state,
+                loader: false,
                 albums: newAlbumList
             };   
-        case actions.GET_LIST_ALBUM_SUCCESS:
+        case actions.GET_ALBUMS_SUCCESS:
             return {
                 ...state,
+                loader: false,
                 albums:  [...action.result]
             };
         case actions.DELETE_ALBUM_SUCCESS:
             const albumsAfterDeleteOne = [...state.albums].filter(a => a._id !== action.album._id);
             return {
                 ...state,
+                loader: false,
                 albums: albumsAfterDeleteOne,
             };
         case actions.EDIT_ALBUM_SUCCESS:
@@ -77,28 +105,25 @@ const apiDataReducer = (state = initialState, action) => {
             newList[indexAlbum] = action.result;
             return {
                 ...state,
+                loader: false,
                 albums: newList,
             };
-        case actions.EDIT_ALBUM_COVER:
-            return state;
         
+        /* PRODUCTS */
         case actions.CREATE_PRODUCT_SUCCESS:
             const newProductsList = [...state.products].concat(action.result);
             return {
                 ...state,
+                loader: false,
                 products: newProductsList,
             };
         
-        case actions.GET_LIST_PRODUCT_SUCCESS:
-            console.log('eeeeee', action.result)
+        case actions.GET_PRODUCTS_SUCCESS:
             return {
                 ...state,
+                loader: false,
                 products: action.result,
             };
-
-        case actions.GET_ONE_PRODUCT_SUCCESS:
-            console.log('GET_ONE_PRODUCT_SUCCESS')
-            return state;
 
         case actions.EDIT_PRODUCT_SUCCESS:
             const listProducts = [ ...state.products];
@@ -106,6 +131,7 @@ const apiDataReducer = (state = initialState, action) => {
             listProducts[indexProduct] = action.result
             return {
                 ...state,
+                loader: false,
                 products: listProducts,
             };
         
@@ -113,6 +139,7 @@ const apiDataReducer = (state = initialState, action) => {
             const listAfterDeleteOneProduct = [ ...state.products ].filter(p => p._id !== action.data._id);
             return {
                 ...state,
+                loader: false,
                 products: listAfterDeleteOneProduct,
             }
     

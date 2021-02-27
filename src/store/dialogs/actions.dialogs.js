@@ -2,7 +2,6 @@ export const OPEN_DIALOG = 'OPEN_DIALOG';
 export const CLOSE_DIALOG = 'CLOSE_DIALOG';
 
 export const openDialog = (name, data) => {
-    console.log('dialogopen', name, data)
     return {
         type: OPEN_DIALOG,
         name,
@@ -10,7 +9,7 @@ export const openDialog = (name, data) => {
     }
 }
 
-export const closeDialog = (data) => {
+export const closeDialog = () => {
     return {
         type: CLOSE_DIALOG,
     }

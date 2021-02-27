@@ -34,7 +34,6 @@ const authentificationReducer = (state = initialState, action) => {
             break;
          
         case actions.SIGN_IN_SUCCESS:
-            console.log('SIGN_IN_SUCCESS', action.result);
             localStorage.setItem('jwtToken', action.result.token );
             const new0uth = {
                 isLoggedIn: true,

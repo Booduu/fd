@@ -11,7 +11,6 @@ import {
     createAlbum,
     editAlbum,
     closeDialog,
-    editAlbumCover,
 } from '../../../store/actions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddIcon from '@material-ui/icons/Add';
@@ -201,5 +200,4 @@ export default connect(null, {
     createAlbum,
     editAlbum,
     closeDialog,
-    editAlbumCover,
 })(Discography);

@@ -2,9 +2,9 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const CREATE_PRODUCT_SUCCESS = 'CREATE_PRODUCT_SUCCESS';
 export const CREATE_PRODUCT_FAIL = 'CREATE_PRODUCT_FAIL';
 
-export const GET_LIST_PRODUCT = 'GET_LIST_PRODUCT';
-export const GET_LIST_PRODUCT_SUCCESS = 'GET_LIST_PRODUCT_SUCCESS';
-export const GET_LIST_PRODUCT_FAIL = 'GET_LIST_PRODUCT_FAIL';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
+export const GET_PRODUCTS_FAIL = 'GET_PRODUCTS_FAIL';
 
 export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
 export const GET_ONE_PRODUCT_SUCCESS = 'GET_ONE_PRODUCT_SUCCESS';
@@ -30,7 +30,7 @@ export const createProduct = (data) => {
 export const getListProducts = () => {
     console.log('getListProducts');
     return {
-        types: [GET_LIST_PRODUCT, GET_LIST_PRODUCT_SUCCESS, GET_LIST_PRODUCT_FAIL],
+        types: [GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL],
         promise: client => client.get('/product/productlist')
     }
 }

@@ -128,7 +128,7 @@ const AdminLives = ({
 }
  
 export default connect(state => ({
-    lives: state.livesReducer.lives,
+    lives: state.apiDataReducer.lives,
 }), {
     createLive,
     getLives,
