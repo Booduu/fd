@@ -14,7 +14,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import moment from 'moment';
-// import { getListProducts } from '../../../../store/actions';
 
 moment().format();
 

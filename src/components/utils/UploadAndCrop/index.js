@@ -1,43 +1,33 @@
-import React, {useCallback} from 'react'
+import React, { useState, useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { connect } from 'react-redux'
-import { createCover } from '../../../store/actions';
 import style from './AdminDiscography.module.scss';
+import Cropper from './Cropper';
+import ReactCrop from 'react-image-crop';
+import '../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
 
 const UploadAndCrop = React.memo(({
     onChange,
     setFile,
     imgState,
 }) => {
-    console.log('upload')
+    const [objectUrl, setObjectUrl] = useState(null)
+    const [base64, setBase64] = useState(null)
+   
+
     const onDropAccepted = useCallback(acceptedFiles => {
-        // const objectUrl = URL.createObjectURL(acceptedFiles[0]);
-        // console.log(objectUrl);
-        // onChange(objectUrl);
+        //for the crop resize
+        const url = URL.createObjectURL(acceptedFiles[0]);
+        setObjectUrl(url);
 
-            const reader = new FileReader();
-            reader.readAsDataURL(acceptedFiles[0]);
-            reader.onloadend = () => {
-                onChange(reader.result);
-                // createCover(acceptedFiles[0])
-            };
-
-            // const formData = new FormData();
-            // formData.append('cover', acceptedFiles[0]);
-            // console.log('formdata', formData)
-            setFile(acceptedFiles[0])
-        // if (cropResize == true) {
-        //     // setImageUrl(objectUrl);
-        // }
-
-        // if (cropResize == false) {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(acceptedFiles[0]);
-        //     reader.onloadend = () => {
-        //         onChange(reader.result);
-        //     };
-        // }
-      }, [])
+        handleClickOpen();
+        const reader = new FileReader();
+        reader.readAsDataURL(acceptedFiles[0]);
+        reader.onloadend = () => {
+            onChange(reader.result);
+        };
+        setFile(acceptedFiles[0])
+    }, [])
 
     const onDropRejected = rejectedFiles => {
       console.log('reject', rejectedFiles)
@@ -50,17 +40,38 @@ const UploadAndCrop = React.memo(({
         maxSize: 6000000,
         accept: 'image/jpeg, image/png',
     })
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
     return ( 
+        <>
             <div {...getRootProps()}>
             <input {...getInputProps()} type="file" name="cover" />
-            {/* {
+            {
                 isDragActive ?
                 <p>Drop the files here ...</p> :
                 <p>Drag 'n' drop some files here, or click to select files</p>
-            } */}
+            }
                 {imgState ? <img className={style.image_preview} src={imgState}/> : <p className={style.image_preview}  >Drop the files here ...</p>}
-
+            
         </div>
+        <Cropper 
+            objectUrl={objectUrl} 
+            setBase64={setBase64}
+            setFile={setFile}
+            open={open}
+            handleClose={handleClose}
+            onChange={onChange}
+        />
+    </>
      );
 });
  

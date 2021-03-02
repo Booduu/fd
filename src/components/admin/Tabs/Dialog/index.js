@@ -12,7 +12,6 @@ import { closeDialog } from '../../../../store/actions';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
       '& .MuiDialog-paper': {
@@ -51,14 +50,14 @@ const Dialogs = React.memo(({
               {name === 'disco' &&  <AdminDiscography editingData={editingData}/>}
               {name === 'shop' &&  <AdminShop editingData={editingData}/>}
           </DialogContent>
-          <DialogActions>
+          {/* <DialogActions>
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
             <Button onClick={handleClose} color="primary">
               save
             </Button>
-          </DialogActions>
+          </DialogActions> */}
         </Dialog>
     </div>
   );

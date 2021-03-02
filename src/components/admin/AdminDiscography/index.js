@@ -41,9 +41,13 @@ const Discography = ({
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
-    const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/albums/${editingData.cover}` : '');
+    const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/albums/${editingData.cover}` : null);
     const [file, setFile] = useState({});
-    
+
+    useEffect(() => {
+        console.log('file', file, file.name)
+
+    }, [file])
     const [state, setState] = useState({
         title: editingData != null ? editingData.title : '',
         label: editingData != null ? editingData.label : '',
@@ -74,8 +78,8 @@ const Discography = ({
         formData.append('releaseDate', dataToSend.releaseDate);
 
         if (editingData != null) {
-            const isFile = file.path ? file : editingData.cover;
-
+            const isFile = file.name ? file : editingData.cover;
+            console.log('isFile', isFile)
             formData.append('cover', isFile);
             formData.append('_id', editingData._id);
 
@@ -110,12 +114,14 @@ const Discography = ({
 
     return ( 
         <Grid container spacing={1} justify="center" >
-            <Grid container item xs={6} spacing={1}>
+            <Grid container item xs={12} spacing={1}>
                 <Grid item xs={12}>
                     <UploadAndCrop 
                         imgState={imgState} 
                         onChange={setImgState} 
                         setFile={setFile}
+                        file={file}
+                        title={state.title}
                     />
                 </Grid> 
             </Grid>
@@ -186,7 +192,7 @@ const Discography = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
+                // disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
 
             >
                 {buttonValue}
