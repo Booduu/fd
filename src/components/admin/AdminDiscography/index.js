@@ -121,7 +121,6 @@ const Discography = ({
                         onChange={setImgState} 
                         setFile={setFile}
                         file={file}
-                        title={state.title}
                     />
                 </Grid> 
             </Grid>

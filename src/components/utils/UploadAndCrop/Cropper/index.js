@@ -27,18 +27,15 @@ const Cropper = ({
     });
 
     const onCropComplete = (newCrop) => {
-        console.log('handleComplete', newCrop)
         makeClientCrop(newCrop);
     }
  
     const onImageLoaded = (image) => {
-        console.log('handleImageLoaded', image)
         setImageRef(image)
         return false;
     }
 
     const handleChange = (crop) => {
-        console.log('dddd', crop)
         setCrop(crop)
     }
 
@@ -49,9 +46,7 @@ const Cropper = ({
           crop,
           'newFile.jpeg'
         );
-        // this.setState({ croppedImageUrl });
           setFile(croppedImageUrl);
-          console.log('croppedImageUrl', croppedImageUrl);
       }
     }
 
@@ -110,9 +105,6 @@ const Cropper = ({
           <Button onClick={handleClose} color="primary">
             OK
           </Button>
-          {/* <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button> */}
         </DialogActions>
       </Dialog>
     );

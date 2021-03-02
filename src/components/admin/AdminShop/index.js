@@ -59,7 +59,7 @@ const Shop = ({
         formData.append('link', state.link)
 
         if (editingData != null) {
-            const isFile = file.path ? file : editingData.cover;
+            const isFile = file.name ? file : editingData.cover;
             formData.append('cover', isFile)
             formData.append('_id', editingData._id);
             editProduct(formData).then(() => closeDialog());
@@ -68,7 +68,7 @@ const Shop = ({
             createProduct(formData).then(() => closeDialog());
         }
     }
-    console.log('sop')
+
     return (
         <Grid container spacing={1} justify="center" >
             <Grid container item xs={6} spacing={1}>
@@ -77,6 +77,7 @@ const Shop = ({
                         imgState={imgState} 
                         onChange={setImgState} 
                         setFile={setFile}
+                        file={file}
                     />
                 </Grid> 
             </Grid>
