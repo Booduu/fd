@@ -114,7 +114,7 @@ const Discography = ({
 
     return ( 
         <Grid container spacing={1} justify="center" >
-            <Grid container item xs={12} spacing={1}>
+            <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
                     <UploadAndCrop 
                         imgState={imgState} 
@@ -124,7 +124,7 @@ const Discography = ({
                     />
                 </Grid> 
             </Grid>
-            <Grid container item xs={6}  spacing={1}>
+            <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
                     <TextField
                         name="title"
@@ -191,7 +191,7 @@ const Discography = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                // disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
+                disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
 
             >
                 {buttonValue}

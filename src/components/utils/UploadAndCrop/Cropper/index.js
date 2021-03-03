@@ -1,21 +1,29 @@
 import React, { useState, useEffect }  from 'react';
 import ReactCrop from 'react-image-crop';
 import '../../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
-
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    backgroundColor: "black",
+  },
+}));
+
 const Cropper = ({
     objectUrl,
     setFile,
-    setBase64,
+    // setBase64,
     open,
     handleClose,
     onChange,
 }) => {
+  const classes = useStyles();
     const [imageRef, setImageRef] = useState(null)
     const [crop, setCrop] = useState({ 
         aspect: 1 / 1,
@@ -26,12 +34,14 @@ const Cropper = ({
         unit: 'px',
     });
 
+
     const onCropComplete = (newCrop) => {
-        makeClientCrop(newCrop);
+        makeClientCrop(imageRef, newCrop);
     }
  
     const onImageLoaded = (image) => {
-        setImageRef(image)
+        setImageRef(image);
+        makeClientCrop(image, crop);
         return false;
     }
 
@@ -39,10 +49,10 @@ const Cropper = ({
         setCrop(crop)
     }
 
-    const makeClientCrop= async (crop) => {
-      if (imageRef && crop.width && crop.height) {
+    const makeClientCrop = async (image, crop) => {
+      if (image && crop.width && crop.height) {
         const croppedImageUrl = await getCroppedImg(
-          imageRef,
+          image,
           crop,
           'newFile.jpeg'
         );
@@ -72,8 +82,8 @@ const Cropper = ({
         );
       
         // As Base64 string
-        const base64Image = canvas.toDataURL('image/jpeg');
-        setBase64(base64Image)
+        // const base64Image = canvas.toDataURL('image/jpeg');
+        // setBase64(base64Image)
        
         return new Promise((resolve, reject) => {
           canvas.toBlob(blob => {
@@ -89,7 +99,16 @@ const Cropper = ({
     }
 
     return (
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        aria-labelledby="form-dialog-title"
+        PaperProps ={{
+          classes: {
+           root: classes.paper
+          }
+        }}
+      >
         <DialogTitle id="form-dialog-title">Crop</DialogTitle>
         <DialogContent>
             <ReactCrop 

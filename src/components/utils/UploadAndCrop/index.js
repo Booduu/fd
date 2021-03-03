@@ -12,7 +12,7 @@ const UploadAndCrop = React.memo(({
     imgState,
 }) => {
     const [objectUrl, setObjectUrl] = useState(null)
-    const [base64, setBase64] = useState(null)
+    // const [base64, setBase64] = useState(null)
    
 
     const onDropAccepted = useCallback(acceptedFiles => {
@@ -56,16 +56,22 @@ const UploadAndCrop = React.memo(({
             <div {...getRootProps()}>
             <input {...getInputProps()} type="file" name="cover" />
             {
-                isDragActive ?
-                <p>Drop the files here ...</p> :
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                <div className={style.image_container}>
+                    {imgState && <img className={style.image_preview} src={imgState}/> }
+                    {isDragActive && 
+                        <div className={style.onDragMessage}>
+                            <div>
+                                Drop the files here ...
+                            </div>
+                        </div>
+                    }
+                </div>   
             }
-                {imgState ? <img className={style.image_preview} src={imgState}/> : <p className={style.image_preview}  >Drop the files here ...</p>}
             
         </div>
         <Cropper 
             objectUrl={objectUrl} 
-            setBase64={setBase64}
+            // setBase64={setBase64}
             setFile={setFile}
             open={open}
             handleClose={handleClose}

@@ -81,7 +81,7 @@ const Shop = ({
                     />
                 </Grid> 
             </Grid>
-            <Grid container item xs={6}  spacing={1}>
+            <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
                     <TextField
                         name="type"
