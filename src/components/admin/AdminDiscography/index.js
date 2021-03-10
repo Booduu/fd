@@ -52,6 +52,7 @@ const Discography = ({
         title: editingData != null ? editingData.title : '',
         label: editingData != null ? editingData.label : '',
         tracklist: '',
+        soundcloudLink: editingData != null ? editingData.soundcloudLink : '',
         releaseDate: editingData != null ? editingData.releaseDate : new Date(),
     });
     const [wait, setWait] = useState(true);
@@ -76,6 +77,8 @@ const Discography = ({
         formData.append('label', dataToSend.label);
         formData.append('tracklist', tracklist);
         formData.append('releaseDate', dataToSend.releaseDate);
+        formData.append('soundcloudLink', dataToSend.soundcloudLink);
+
 
         if (editingData != null) {
             const isFile = file.name ? file : editingData.cover;
@@ -171,6 +174,14 @@ const Discography = ({
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
+                        <TextField
+                            name="soundcloudLink"
+                            label="Lien soundcloud"
+                            value={state.soundcloudLink}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                <Grid item xs={12}>
                     <DatePicker 
                         label="Release"
                         onChange={(data) => {
@@ -191,7 +202,7 @@ const Discography = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
+                // disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
 
             >
                 {buttonValue}

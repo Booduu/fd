@@ -117,7 +117,7 @@ const Shop = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={(file.path === null || imgState === '') || state.name === '' || state.type === '' || state.link === ''}
+                // disabled={(file.path === null || imgState === '') || state.name === '' || state.type === '' || state.link === ''}
             >
                 {buttonValue}
             </Button>
