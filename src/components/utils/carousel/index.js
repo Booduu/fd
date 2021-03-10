@@ -3,11 +3,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import pochette from '../../../assets/design/pochettes/Cover-Full-Dub-Rewind.jpg'
-
+import style from './Carousel.module.scss';
 
 const Carousel = () => {
   const settings = {
-    className: "center",
+    // className: "center",
     infinite: true,
     // centerPadding: "60px",
     slidesToShow: 2,
@@ -24,55 +24,67 @@ const Carousel = () => {
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           <div style={{ padding: '5px' }}>
             <img 
               src={pochette} 
-              style={{
-                width: '100%',
-                padding: '1px',
-              }}
+              // style={{
+              //   width: '100%',
+              //   padding: '1px',
+              //   maxHeight: '20vh',
+              // }}
+              className={style.image_carousel}
             />
           </div>
           

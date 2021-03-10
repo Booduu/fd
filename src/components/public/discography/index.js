@@ -147,11 +147,14 @@ const Discography = ({
           <div className={style.player_container}>
               <div className={style.player_wrapper}>
                 <ReactPlayer
+                  controls={false}
                   url="https://soundcloud.com/full-dub-1/sets/rewind"
                   width='100%'
-                  height='60vh' 
-                  borderRadius= '0px'
+                  height= '60vh'
                   className={style.player}
+                  style={{
+                  
+                 }}
                 />
               </div>
           </div>
