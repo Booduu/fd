@@ -2,10 +2,13 @@ import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import pochette from '../../../assets/design/pochettes/Cover-Full-Dub-Rewind.jpg'
+// import pochette from '../../../assets/design/pochettes/Cover-Full-Dub-Rewind.jpg'
 import style from './Carousel.module.scss';
 
-const Carousel = () => {
+const Carousel = ({
+  albums,
+  handleAlbum,
+}) => {
   const settings = {
     // className: "center",
     infinite: true,
@@ -18,77 +21,23 @@ const Carousel = () => {
       );
     }
   };
-    return (
+
+     return (
       <div style={{ width: '100%', maxWidth: '70vw', margin: '0px'}}>
         <Slider {...settings}>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          <div style={{ padding: '5px' }}>
-            <img 
-              src={pochette} 
-              // style={{
-              //   width: '100%',
-              //   padding: '1px',
-              //   maxHeight: '20vh',
-              // }}
-              className={style.image_carousel}
-            />
-          </div>
-          
-         
+          {albums.map((album, index) => (
+            <div 
+              style={{ padding: '5px' }}
+              index={album._id}
+              onClick={() => handleAlbum(album)}
+            >
+              <img 
+                src={`http://localhost:3030/uploads/albums/${album.cover}`}
+                className={style.image_carousel}
+                alt={`album ${album.title}`}
+              />
+            </div>
+          ))}     
         </Slider>
       </div>
     )

@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/actions';
 
 function Copyright() {

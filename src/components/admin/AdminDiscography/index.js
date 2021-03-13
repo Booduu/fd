@@ -44,18 +44,17 @@ const Discography = ({
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/albums/${editingData.cover}` : null);
     const [file, setFile] = useState({});
 
-    useEffect(() => {
-        console.log('file', file, file.name)
 
-    }, [file])
     const [state, setState] = useState({
         title: editingData != null ? editingData.title : '',
         label: editingData != null ? editingData.label : '',
         tracklist: '',
         soundcloudLink: editingData != null ? editingData.soundcloudLink : '',
+        buyLink: editingData != null ? editingData.buyLink : '',
+        downloadLink: editingData != null ? editingData.downloadLink : '',
         releaseDate: editingData != null ? editingData.releaseDate : new Date(),
     });
-    const [wait, setWait] = useState(true);
+    // const [wait, setWait] = useState(true);
     const [tracklist, setTracklist] = useState(editingData != null ? editingData.tracklist : []);
 
     const handleChange = (e) => {
@@ -64,9 +63,9 @@ const Discography = ({
                 ...state,
                 [name]: e.currentTarget.value,
             });
-            if (name !== 'tracklist') {
-                setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
-            }
+            // if (name !== 'tracklist') {
+            //     setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
+            // }
     };
 
     const saveData = () => {
@@ -78,7 +77,8 @@ const Discography = ({
         formData.append('tracklist', tracklist);
         formData.append('releaseDate', dataToSend.releaseDate);
         formData.append('soundcloudLink', dataToSend.soundcloudLink);
-
+        formData.append('buyLink', dataToSend.buyLink);
+        formData.append('downloadLink', dataToSend.downloadLink);
 
         if (editingData != null) {
             const isFile = file.name ? file : editingData.cover;
@@ -106,7 +106,7 @@ const Discography = ({
             ...state,
             tracklist: '',
         });
-        setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
+        // setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
     }, [tracklist])
 
     const deleteTrack = (index) => {
@@ -161,26 +161,40 @@ const Discography = ({
                     <Grid item xs={12}>
                         <List className={classes.root} subheader={<li />}>
                             {tracklist.map((track, index) => (
-                                // <li key={`section-${track}`} className={classes.listSection}>
                                 <ul className={classes.ul}>
-                                <ListItem key={`item-${track}-${index}`} classes={classes.listItem}>
-                                    <DeleteForeverOutlinedIcon  onClick={() => deleteTrack(index)} />
-                                    <ListSubheader >{track}</ListSubheader>
-                                </ListItem>
+                                    <ListItem key={`item-${track}-${index}`} classes={classes.listItem}>
+                                        <DeleteForeverOutlinedIcon  onClick={() => deleteTrack(index)} />
+                                        <ListSubheader >{track}</ListSubheader>
+                                    </ListItem>
                                 </ul>
-                                // </li>
                             ))}
                         </List>
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                        <TextField
-                            name="soundcloudLink"
-                            label="Lien soundcloud"
-                            value={state.soundcloudLink}
-                            onChange={handleChange}
-                        />
-                    </Grid>
+                    <TextField
+                        name="soundcloudLink"
+                        label="Lien soundcloud"
+                        value={state.soundcloudLink}
+                        onChange={handleChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        name="buyLink"
+                        label="buy link"
+                        value={state.buyLink}
+                        onChange={handleChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        name="downloadLink"
+                        label="download link"
+                        value={state.downloadLink}
+                        onChange={handleChange}
+                    />
+                </Grid>
                 <Grid item xs={12}>
                     <DatePicker 
                         label="Release"

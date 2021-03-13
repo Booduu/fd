@@ -7,7 +7,7 @@ const Logo = ({
     name,
 }) => {
     const display = name === 'fulldub' ? fd_logo : name === 'afterwork' ? aftw_logo : fd_logo; 
-    return <img className={style.logo} src={display} />;
+    return <img alt="logo" className={style.logo} src={display} />;
 }
  
 export default Logo;

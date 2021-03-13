@@ -15,7 +15,11 @@ const LandingPage = ({
                 />
             </video>
         ) : (
-            <img className={style.image} src='https://images.pexels.com/photos/952437/pexels-photo-952437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'/>
+            <img 
+                className={style.image} 
+                src='https://images.pexels.com/photos/952437/pexels-photo-952437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                alt="arriere plan de la page"
+            />
         )}
         </>
        

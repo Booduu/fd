@@ -77,7 +77,6 @@ export const tt = () => {
                 dispatch(requestProtectedSuccess(user))
             },
             error => dispatch(requestProtectedError(error))
-            )
-            
+            )   
     }
 }

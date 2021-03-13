@@ -14,6 +14,7 @@ import {
   getIsMobile,
   getAlbums, 
   getLives,
+  getListProducts,
 } from './store/actions';
 // import { 
 //   deleteLiveItem, 
@@ -47,16 +48,20 @@ const App = ({
   isMobile,
   getAlbums,
   getLives,
+  getListProducts,
 }) => {
   const [isHome, setIsHome] = useState(false)
-  const [history, setHistory] = useState(window.location.pathname);
+  // const [history, setHistory] = useState(window.location.pathname);
 
   useEffect(() => {
-    setHistory(window.location.pathname);
+    // setHistory(window.location.pathname);
     tt();
+    getListProducts();
     getAlbums();
     getLives();
-  }, []);
+
+    console.log('appppp')
+  });
 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -120,4 +125,5 @@ export default connect(state => ({
   getIsMobile,
   getAlbums,
   getLives,
+  getListProducts,
  })(App);

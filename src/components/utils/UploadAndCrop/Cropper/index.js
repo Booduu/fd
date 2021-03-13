@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import ReactCrop from 'react-image-crop';
 import '../../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
 import { makeStyles } from '@material-ui/core/styles';

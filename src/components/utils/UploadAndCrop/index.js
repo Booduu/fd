@@ -1,9 +1,9 @@
-import React, { useState, useCallback} from 'react'
+import React, { useState } from 'react'
 import {useDropzone} from 'react-dropzone'
 import { connect } from 'react-redux'
 import style from './AdminDiscography.module.scss';
 import Cropper from './Cropper';
-import ReactCrop from 'react-image-crop';
+// import ReactCrop from 'react-image-crop';
 import '../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
 
 const UploadAndCrop = React.memo(({
@@ -15,7 +15,21 @@ const UploadAndCrop = React.memo(({
     // const [base64, setBase64] = useState(null)
    
 
-    const onDropAccepted = useCallback(acceptedFiles => {
+    // const onDropAccepted = useCallback(acceptedFiles => {
+    //     //for the crop resize
+    //     const url = URL.createObjectURL(acceptedFiles[0]);
+    //     setObjectUrl(url);
+
+    //     handleClickOpen();
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(acceptedFiles[0]);
+    //     reader.onloadend = () => {
+    //         onChange(reader.result);
+    //     };
+    //     setFile(acceptedFiles[0])
+    // }, [])
+
+    const onDropAccepted = acceptedFiles => {
         //for the crop resize
         const url = URL.createObjectURL(acceptedFiles[0]);
         setObjectUrl(url);
@@ -27,7 +41,7 @@ const UploadAndCrop = React.memo(({
             onChange(reader.result);
         };
         setFile(acceptedFiles[0])
-    }, [])
+    };
 
     const onDropRejected = rejectedFiles => {
       console.log('reject', rejectedFiles)
@@ -57,7 +71,7 @@ const UploadAndCrop = React.memo(({
             <input {...getInputProps()} type="file" name="cover" />
             {
                 <div className={style.image_container}>
-                    {imgState && <img className={style.image_preview} src={imgState}/> }
+                    {imgState && <img alt="album à uploader" className={style.image_preview} src={imgState}/> }
                     {isDragActive && 
                         <div className={style.onDragMessage}>
                             <div>

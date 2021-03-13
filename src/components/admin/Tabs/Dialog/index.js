@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
+// import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
+// import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import { AdminLives, AdminDiscography, AdminShop } from '../../index';
 import { connect } from 'react-redux';
 import { closeDialog } from '../../../../store/actions';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-      '& .MuiDialog-paper': {
-          backgroundColor: 'black',
-      },
-  },
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//       '& .MuiDialog-paper': {
+//           backgroundColor: 'black',
+//       },
+//   },
+// }));
 
-}));
 const Dialogs = React.memo(({
     name,
     setOpenDialog,

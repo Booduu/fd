@@ -70,7 +70,6 @@ const authentificationReducer = (state = initialState, action) => {
                     id: action.user._id,
                     username: action.user.username,
                     email: action.user.local.email,
-                    email: action.user.local.email,
                 }
             }
             return {

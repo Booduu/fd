@@ -3,12 +3,6 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    /* grid-template-rows: minmax(14rem, 1fr); */
-    /* grid-template-rows:  span 1; */
-    /* grid-row: span 1; */
-    /* grid-auto-rows: 1fr; */
-    /* grid-gap: 16px; */
     grid-auto-flow: dense;
   }
   
@@ -19,6 +13,26 @@
   .card--expanded {
     grid-column: span 6;
     grid-row: span 2;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .card--expanded {
+      grid-column: span 3;
+      grid-row: span 1;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .card--expanded {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
   }
 
   .card {

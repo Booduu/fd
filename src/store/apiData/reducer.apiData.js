@@ -21,6 +21,7 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.GET_LIVES:
         case actions.GET_ALBUMS:
         case actions.GET_PRODUCTS:
+            console.log('CREATE_LIVE')
             return {
                 ...state,
                 loader: true,
@@ -38,6 +39,10 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.GET_LIVES_FAIL:
         case actions.GET_ALBUMS_FAIL:
         case actions.GET_PRODUCTS_FAIL:
+            // console.log('CREATE_LIVE_FaIL', action.error.response.text)
+            console.log('CREATE_LIVE_FaIL', action)
+
+
             return {
                 ...state,
                 loader: false,
@@ -45,6 +50,7 @@ const apiDataReducer = (state = initialState, action) => {
 
         /* LIVES */
         case actions.CREATE_LIVE_SUCCESS:
+            console.log('CREATE_LIVE_SUCEESS')
             const upadtedLivesList = [...state.lives];
             return {
                 ...state,

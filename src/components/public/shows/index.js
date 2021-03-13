@@ -17,7 +17,7 @@ const Shows = ({
     const myLives = useCallback(() => {
         return (
             lives.map((live, index) => (
-                <div className={style.date_line}>
+                <div key={live._id} className={style.date_line}>
                     <span>{moment(live.date).format("DD-MM-YYYY")}</span>
                     / 
                     <span>{`${live.city} - ${live.place}`}</span>
