@@ -3,7 +3,7 @@
 @import "../../../assets/sass/_variables.scss";
 
 .container {
-    padding-top: 50px;
+    padding-top: $padding-top-container;
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -83,27 +83,28 @@
 @media (max-width: $break-large) {
     .container {
         .flex_container {
-            grid-template-columns: 1fr 1fr ;
+            padding-right: 15px;
         }
     }
 }
+
+// @media (max-width: $break-medium) {
+//     .container {
+//         .flex_container {
+//             grid-template-columns: 1fr 1fr ;
+//         }
+//     }
+// }
 
 @media (max-width: $break-medium) {
     .container {
         .flex_container {
+            padding: 0 10px;
             grid-template-columns: 1fr 1fr ;
-        }
-    }
-}
-
-@media (max-width: $break-small) {
-    .container {
-        .flex_container {
-            grid-template-columns: 100% ;
-            gap: 10px;
+            gap: 15px;
             .item_container {
                 width: 100%;
-                margin-bottom: 20px;
+                // margin-bottom: 20px;
                 img {
 
                 }

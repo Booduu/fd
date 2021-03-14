@@ -11,21 +11,24 @@
     .menuPublic, .menuAdmin {
         @extend .flexMenuDisplay;
 
-        > * {
-            margin: 5px 5px 5px 0px;
-            text-decoration: none;
-            font-size: $font-size-shop;
-            padding: 0px 0px 0px 15px;
-            color: $color-text;
-            text-transform: uppercase;
-            // filter: blur(.8px) ;
-
-            &:hover {
-                filter: blur(0px) ;
-                background-color: rgba(255, 255, 255, 0.883);
-                color: black;
+        div {
+            padding: 0px;
+            margin-bottom: 7px;
+            a {
+                margin: 5px 0px 5px 0px;
+                text-decoration: none;
+                font-size: $font-size-shop;
+                padding: 5px 5px 5px 5px;
+                color: $color-text;
+                text-transform: uppercase;
                 // filter: blur(.8px) ;
-            }
+                &:hover {
+                    filter: blur(0px) ;
+                    background-color: rgba(255, 255, 255, 0.883);
+                    color: black;
+                    // filter: blur(.8px) ;
+                }
+            } 
         }
 
         .active {

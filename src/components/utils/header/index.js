@@ -30,14 +30,17 @@ const Header = ({
 
                 <div className={style.menuPublic}>
                         {menuListPublic.map((link, index) => (
-                            <NavLink 
-                                key={index + link.name}
-                                to={link.to}
-                                activeClassName={style.active}
-                                onClick={() => toggleMenu(false)}
-                            >
-                                {link.name}
-                            </NavLink>
+                            <div>
+                                <NavLink 
+                                    key={index + link.name}
+                                    to={link.to}
+                                    activeClassName={style.active}
+                                    onClick={() => toggleMenu(false)}
+                                >
+                                    {link.name}
+                                </NavLink>
+                            </div>
+                            
                         ))}
                     </div>
 
