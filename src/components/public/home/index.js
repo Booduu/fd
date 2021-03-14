@@ -15,7 +15,7 @@ const Home = ({
         }
     }, []);
 
-    console.log('album', albums, albums[0].title)
+
     
     return ( 
     

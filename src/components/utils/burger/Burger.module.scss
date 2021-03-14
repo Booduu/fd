@@ -5,23 +5,12 @@
     display: none;
 }
 
-@keyframes openFirstBurger {
-    0% {
-
-    }
-    
-    100% {
-
-
-    }
-}
-
 
 @media (max-width: $break-medium) {
     .menuBurger{
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
         width: 80px;
         height: 65px;
         padding: 20px;

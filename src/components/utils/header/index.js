@@ -18,7 +18,7 @@ const Header = ({
     const [displayMenuBar, setDisplayMenuBar] = useState(isOpen ? 'translate(0%)' : 'translate(-100%)');
 
     useEffect(() => {
-        setDisplayMenuBar(isOpen ? 'translate(0%)' : '');
+        setDisplayMenuBar(isOpen ? 'translate(150%)' : '');
     }, [isOpen]);
 
     return ( 

@@ -87,12 +87,6 @@ const Shop = ({
             </Grid>
             <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
-                    {/* <TextField
-                        name="type"
-                        label="Type"
-                        value={state.type}
-                        onChange={handleChange}
-                    /> */}
                     <Select
                         name="type"
                         labelId="demo-simple-select-label"

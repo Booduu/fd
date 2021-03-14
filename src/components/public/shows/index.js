@@ -18,12 +18,12 @@ const Shows = ({
         return (
             lives.map((live, index) => (
                 <div key={live._id} className={style.date_line}>
-                    <span>{moment(live.date).format("DD-MM-YYYY")}</span>
-                    / 
+                    <span>{moment(live.date).format("MMM D, YYYY")}</span>
+
                     <span>{`${live.city} - ${live.place}`}</span>
-                    / 
+
                     <span> La bass qui tue festival </span>
-                    / 
+
                     <span className={style.ticket_link}> Ticket</span>
                </div>
             ))

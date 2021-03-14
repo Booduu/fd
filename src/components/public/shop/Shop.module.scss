@@ -52,14 +52,14 @@
                     text-decoration: none;
                     text-align: end;
                     line-height: auto;
-                    color: chocolate;
+                    color: $color-hover;
                     font-weight: 600;
                     font-size: $font-size-shop;
                     padding: 6px;
                     transition: .2s;
 
                     &:hover {
-                        background-color: chocolate;
+                        background-color: $color-hover;
                         color: rgba(0, 0, 0, 0.671);
                         transition: .2s;
 

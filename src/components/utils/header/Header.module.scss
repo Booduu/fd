@@ -44,19 +44,26 @@
 @media (max-width: $break-medium) {
     .container {
         top: 0;
-        width: 100%;
+        width: 40%;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-end;
         height: 100vh;
-        transform: translateX(-100%);
-        background-color: black;
+        transform: translateX(250%);
+        background-color: rgba(0, 0, 0, 0.712);
         .menuPublic {
-            margin-top: 20vh;
+            margin-top: 10vh;
+
         }
         .menuPublic, .menuAdmin {
-            width: 60%;
+            width: 80%;
             display: flex;
             justify-content: center;
+
+            > * {
+                text-align: end;
+                margin-right: unset;
+                padding: 3px 7px 3px 15px;
+            }
         }
     }
 }

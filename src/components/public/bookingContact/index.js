@@ -11,82 +11,95 @@ import aftw_logo from '../../../assets/design/logo/logo_aftrwrk.svg';
 const BookingContact = () => {
     return ( 
         <div className={style.container}>
-            <div className={style.flex_container}>
-                <div className={style.logos_container}>
-                    <div className={[style.logo_container, style.aft_logo].join(' ')}>
-                        <div className={style.img_container}>
-                            <img alt="afterwork contact" className={style.logo1} src={aftw_logo}/>
-                        </div>
-                        <div>
-                            <span>mathias dornin</span>
-                            <span>0033 608 673 980</span>
-                            <span>matt@aftrwrkprod.fr</span>
-                        </div> 
+        <div className={style.flex_container}>
+            <div className={style.logos_container}>
+                <div className={[style.logo_container, style.aft_logo].join(' ')}>
+                    <div className={style.img_container}>
+                        <a href="https://aftrwrkprod.fr/" target="blank"className={style.logo1}>
+                            <img alt="afterwork contact"  src={aftw_logo}/>
+                        </a>
                     </div>
-                    <div className={[style.logo_container, style.fd_logo].join(' ')}>
-                        <div className={style.img_container}>
-                            <img alt="fulldub contact" className={style.logo2} src={fd_logo}/>
-                        </div>
-                        <div>
-                            <span>FABIEN ROMAIN</span>
-                            <span>0033 678 109 383</span>
-                            <span>full.dub.mail@gmail.com</span>
-                        </div> 
-                    </div>
+                    <div>
+                        <span>mathias dornin</span>
+                        <span>0033 608 673 980</span>
+                        <span><a href="mailto:matt@aftrwrkprod.fr">matt@aftrwrkprod.fr</a></span>
+                    </div> 
                 </div>
-                <div className={style.social_container}>
-                    <div className={style.link}>
-                        <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
-                        <span>facebook</span>
+                <div className={[style.logo_container, style.fd_logo].join(' ')}>
+                    <div className={style.img_container}>
+                        <img alt="fulldub contact" className={style.logo2} src={fd_logo}/>
                     </div>
-                    <div className={style.link}>
-                        <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
-                        <span>instagram</span>
-                    </div>
-                    <div className={style.link}>
-                        <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
-                        <span>soundcloud</span>
-                    </div>
-                    <div className={style.link}>
-                        <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
-                        <span>youtube</span>
-                    </div>
+                    <div>
+                        <span>FABIEN ROMAIN</span>
+                        <span>0033 678 109 383</span>
+                        <span><a href="mailto:full.dub.mail@gmail.com">full.dub.mail@gmail.com</a></span>
+                    </div> 
                 </div>
             </div>
-     </div>
-        // <div className={style.container}>
-        //     <div className={style.flex_container}>
-        //         <div className={style.logo_container}>
-        //             <div>
-        //                 <img className={style.logo} src={fd_logo}/>
-        //                 {/* <Logo name="afterwork"/> */}
-        //             </div>
-        //             <div>
-        //                 <img className={style.logo} src={aftw_logo}/>
-        //                 {/* <Logo name="fulldub"/> */}
-        //             </div>
-        //         </div>
-        //         <div className={style.socials_link}>
-        //             <div>
-        //                 <img src={fb}/>
-        //                 <span>facebook</span>
-        //             </div>
-        //             <div>
-        //                 <img src={lin}/>
-        //                 <span>instagram</span>
-        //             </div>
-        //             <div>
-        //                 <img src={sc}/>
-        //                 <span>soundcloud</span>
-        //             </div>
-        //             <div>
-        //                 <img src={yt}/>
-        //                 <span>youtube</span>
-        //             </div>
-        //         </div>
-                
-        //     </div>
-        //  </div>
+            <div className={style.social_container}>
+                <div className={style.link}>
+                    <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
+                    <span>facebook</span>
+                </div>
+                <div className={style.link}>
+                    <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
+                    <span>instagram</span>
+                </div>
+                <div className={style.link}>
+                    <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
+                    <span>soundcloud</span>
+                </div>
+                <div className={style.link}>
+                    <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
+                    <span>youtube</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    //     <div className={style.container}>
+    //         <div className={style.flex_container}>
+    //             <div className={style.logos_container}>
+    //                 <div className={[style.logo_container, style.aft_logo].join(' ')}>
+    //                     <div className={style.img_container}>
+    //                         <img alt="afterwork contact" className={style.logo1} src={aftw_logo}/>
+    //                     </div>
+    //                     <div>
+    //                         <span>mathias dornin</span>
+    //                         <span>0033 608 673 980</span>
+    //                         <span>matt@aftrwrkprod.fr</span>
+    //                     </div> 
+    //                 </div>
+    //                 <div className={[style.logo_container, style.fd_logo].join(' ')}>
+    //                     <div className={style.img_container}>
+    //                         <img alt="fulldub contact" className={style.logo2} src={fd_logo}/>
+    //                     </div>
+    //                     <div>
+    //                         <span>FABIEN ROMAIN</span>
+    //                         <span>0033 678 109 383</span>
+    //                         <span>full.dub.mail@gmail.com</span>
+    //                     </div> 
+    //                 </div>
+    //             </div>
+    //             <div className={style.social_container}>
+    //                 <div className={style.link}>
+    //                     <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
+    //                     <span>facebook</span>
+    //                 </div>
+    //                 <div className={style.link}>
+    //                     <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
+    //                     <span>instagram</span>
+    //                 </div>
+    //                 <div className={style.link}>
+    //                     <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
+    //                     <span>soundcloud</span>
+    //                 </div>
+    //                 <div className={style.link}>
+    //                     <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
+    //                     <span>youtube</span>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //  </div>
      );
 }
  
