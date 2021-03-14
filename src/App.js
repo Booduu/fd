@@ -59,9 +59,7 @@ const App = ({
     getListProducts();
     getAlbums();
     getLives();
-
-    console.log('appppp')
-  });
+  }, []);
 
   const [width, setWidth] = useState(window.innerWidth);
 

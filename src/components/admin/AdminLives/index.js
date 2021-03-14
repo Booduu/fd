@@ -48,12 +48,12 @@ const AdminLives = ({
         });
     };
 
-    useEffect(() => {
-        setState({
-            ...state,
-            wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
-        });
-    }, [state]);
+    // useEffect(() => {
+    //     setState({
+    //         ...state,
+    //         wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
+    //     });
+    // }, [state]);
 
     const saveData = () => {
         const dataToSend = { ...state };
@@ -119,7 +119,7 @@ const AdminLives = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={state.wait}
+                // disabled={state.wait}
             >
                 {buttonValue}
             </Button>

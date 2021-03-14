@@ -16,7 +16,7 @@ export default class ApiClient {
 
                 console.log('method', method, path);
                 let request = superagent[method]('http://localhost:3030' + path)
-                    // .set('auth-token', `Bearer ${localStorage.getItem('jwtToken')}`);
+
                 if (params) {
                     request.query(params);
                     console.log('params')
@@ -34,6 +34,7 @@ export default class ApiClient {
                 }
 
                 request.end((err, res) => {
+                    console.log('eeeeeeeeeeeemmmmmmm', err)
                     if (err || [200, 201].indexOf(res.status) === -1) {
                         reject(err)
                     } else {

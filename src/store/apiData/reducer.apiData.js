@@ -40,7 +40,8 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.GET_ALBUMS_FAIL:
         case actions.GET_PRODUCTS_FAIL:
             // console.log('CREATE_LIVE_FaIL', action.error.response.text)
-            console.log('CREATE_LIVE_FaIL', action)
+            // console.log('CREATE_LIVE_FaIL', action)
+            console.log('FAAAAILL', action.error.response.error)
 
 
             return {
@@ -93,10 +94,13 @@ const apiDataReducer = (state = initialState, action) => {
                 albums: newAlbumList
             };   
         case actions.GET_ALBUMS_SUCCESS:
+            const livesSorted = action.result.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
             return {
                 ...state,
                 loader: false,
-                albums:  [...action.result]
+                albums:  [...livesSorted]
             };
         case actions.DELETE_ALBUM_SUCCESS:
             const albumsAfterDeleteOne = [...state.albums].filter(a => a._id !== action.album._id);
