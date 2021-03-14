@@ -1,4 +1,30 @@
-.image_preview {
+
+
+.image_container {
     width: 200px;
+    height: 200px;
+    background-color: aquamarine;
+    position: relative;
+
+    .image_preview {
+        width: 200px;
+        height: auto;
+    }
+
+    .onDragMessage {
+        position: absolute;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.466);
+        color: ivory;
+        width: inherit;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.cropper {
+    width: 600px;
     height: auto;
 }

@@ -6,7 +6,7 @@ import sc from '../../../assets/design/picto/sc.svg';
 import yt from '../../../assets/design/picto/yt.svg';
 import fd_logo from '../../../assets/design/logo/fd_logo.svg';
 import aftw_logo from '../../../assets/design/logo/logo_aftrwrk.svg';
-import { Logo } from '../../utils/index';
+// import { Logo } from '../../utils/index';
 
 const BookingContact = () => {
     return ( 
@@ -15,7 +15,7 @@ const BookingContact = () => {
                 <div className={style.logos_container}>
                     <div className={[style.logo_container, style.aft_logo].join(' ')}>
                         <div className={style.img_container}>
-                            <img className={style.logo1} src={aftw_logo}/>
+                            <img alt="afterwork contact" className={style.logo1} src={aftw_logo}/>
                         </div>
                         <div>
                             <span>mathias dornin</span>
@@ -25,7 +25,7 @@ const BookingContact = () => {
                     </div>
                     <div className={[style.logo_container, style.fd_logo].join(' ')}>
                         <div className={style.img_container}>
-                            <img className={style.logo2} src={fd_logo}/>
+                            <img alt="fulldub contact" className={style.logo2} src={fd_logo}/>
                         </div>
                         <div>
                             <span>FABIEN ROMAIN</span>
@@ -36,19 +36,19 @@ const BookingContact = () => {
                 </div>
                 <div className={style.social_container}>
                     <div className={style.link}>
-                        <img src={fb} style={{ width: '30px' }}/>
+                        <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
                         <span>facebook</span>
                     </div>
                     <div className={style.link}>
-                        <img src={lin} style={{ width: '30px' }}/>
+                        <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
                         <span>instagram</span>
                     </div>
                     <div className={style.link}>
-                        <img src={sc} style={{ width: '30px' }}/>
+                        <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
                         <span>soundcloud</span>
                     </div>
                     <div className={style.link}>
-                        <img src={yt} style={{ width: '30px' }}/>
+                        <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
                         <span>youtube</span>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import Dialogs from '../Dialog';
@@ -14,7 +14,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import moment from 'moment';
-// import { getListProducts } from '../../../../store/actions';
 
 moment().format();
 
@@ -44,7 +43,7 @@ const Rows = React.memo(({
 
   useEffect(() => {
     const newColumns = { ...data[0]}
-    setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v')));
+    setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink')));
   }, [data]);
    
   const showsTable = (tab) => {

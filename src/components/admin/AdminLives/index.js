@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { DatePicker } from '../../utils';
 import { 
     Grid,
@@ -36,6 +36,7 @@ const AdminLives = ({
         name: editingData != null ? editingData.name : '',
         ticketLink: editingData != null ? editingData.ticketLink : '',
         wait: true,
+        // wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
     });
 
     const handleChange = (e) => {
@@ -47,12 +48,12 @@ const AdminLives = ({
         });
     };
 
-    useEffect(() => {
-        setState({
-            ...state,
-            wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
-        });
-    }, []);
+    // useEffect(() => {
+    //     setState({
+    //         ...state,
+    //         wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
+    //     });
+    // }, [state]);
 
     const saveData = () => {
         const dataToSend = { ...state };
@@ -118,7 +119,7 @@ const AdminLives = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={state.wait}
+                // disabled={state.wait}
             >
                 {buttonValue}
             </Button>
@@ -128,7 +129,7 @@ const AdminLives = ({
 }
  
 export default connect(state => ({
-    lives: state.livesReducer.lives,
+    lives: state.apiDataReducer.lives,
 }), {
     createLive,
     getLives,

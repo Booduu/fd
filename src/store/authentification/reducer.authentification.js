@@ -34,7 +34,6 @@ const authentificationReducer = (state = initialState, action) => {
             break;
          
         case actions.SIGN_IN_SUCCESS:
-            console.log('SIGN_IN_SUCCESS', action.result);
             localStorage.setItem('jwtToken', action.result.token );
             const new0uth = {
                 isLoggedIn: true,
@@ -70,7 +69,6 @@ const authentificationReducer = (state = initialState, action) => {
                 user: {
                     id: action.user._id,
                     username: action.user.username,
-                    email: action.user.local.email,
                     email: action.user.local.email,
                 }
             }

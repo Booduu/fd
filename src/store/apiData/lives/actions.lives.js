@@ -6,9 +6,9 @@ export const GET_LIVES = 'GET_LIVE';
 export const GET_LIVES_SUCCESS = 'GET_LIVE_SUCCESS';
 export const GET_LIVES_FAIL = 'GET_LIVE_FAIL';
 
-export const DELETE_LIVES = 'DELETE_LIVES';
-export const DELETE_LIVES_SUCCESS = 'DELETE_LIVES_SUCCESS';
-export const DELETE_LIVES_FAIL = 'DELETE_LIVES_FAIL';
+export const DELETE_LIVE = 'DELETE_LIVE';
+export const DELETE_LIVE_SUCCESS = 'DELETE_LIVE_SUCCESS';
+export const DELETE_LIVE_FAIL = 'DELETE_LIVE_FAIL';
 
 export const EDIT_LIVE = 'EDIT_LIVE';
 export const EDIT_LIVE_SUCCESS = 'EDIT_LIVE_SUCCESS';
@@ -25,7 +25,7 @@ export const createLive = (date) => {
 
 export const deleteLiveItem = (live) => {
     return {
-        types: [DELETE_LIVES, DELETE_LIVES_SUCCESS, DELETE_LIVES_FAIL],
+        types: [DELETE_LIVE, DELETE_LIVE_SUCCESS, DELETE_LIVE_FAIL],
         promise: client => client.del(`/live/livedelete/${live._id}`),
         live,
     }

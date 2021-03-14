@@ -8,7 +8,6 @@ const initialState = {
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.OPEN_DIALOG:
-            console.log('OPEN_DIALOG', action.name, action.data)
             return {
                 ...state,
                 dialogIsOpen: true,

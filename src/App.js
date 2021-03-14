@@ -12,7 +12,18 @@ import {
   logout,
   getVideo,
   getIsMobile,
+  getAlbums, 
+  getLives,
+  getListProducts,
 } from './store/actions';
+// import { 
+//   deleteLiveItem, 
+//   deleteAlbum, 
+//   getListProducts, 
+//   deleteProduct,
+//   getLives, 
+  
+// } from '../../../store/actions';
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,13 +46,19 @@ const App = ({
   logout,
   getIsMobile,
   isMobile,
+  getAlbums,
+  getLives,
+  getListProducts,
 }) => {
   const [isHome, setIsHome] = useState(false)
-  const [history, setHistory] = useState(window.location.pathname);
+  // const [history, setHistory] = useState(window.location.pathname);
 
   useEffect(() => {
-    setHistory(window.location.pathname);
+    // setHistory(window.location.pathname);
     tt();
+    getListProducts();
+    getAlbums();
+    getLives();
   }, []);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -104,4 +121,7 @@ export default connect(state => ({
   logout,
   getVideo,
   getIsMobile,
+  getAlbums,
+  getLives,
+  getListProducts,
  })(App);

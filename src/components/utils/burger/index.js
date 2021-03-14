@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { toggleMenu } from '../../../store/actions';
 import style from './Burger.module.scss';
@@ -7,12 +7,12 @@ const Burger = ({
     toggleMenu,
     isOpenMenu,
 }) => {
-    const [toggleBurger, setToggleBurger] = useState(false)
-    useEffect(() => {
-        console.log(toggleBurger);
-    }, [toggleBurger])
+    // const [toggleBurger, setToggleBurger] = useState(false)
+    // useEffect(() => {
+    //     console.log(toggleBurger);
+    // }, [toggleBurger])
 
-    const isOpen = toggleBurger ? style.firstBurger : '';
+    // const isOpen = toggleBurger ? style.firstBurger : '';
 
     return ( 
         <div 
@@ -24,7 +24,7 @@ const Burger = ({
             <div className={[style.burger, isOpenMenu ? style.thirdBurger : ''].join(' ')}></div>
 
             <div className={[style.burger, style.burgerClose, isOpenMenu ? style.burgerOpenLeft : style.burgerCloseLeft].join(' ')}></div>
-            <div className={[style.burger, style.burgerClose, , isOpenMenu ? style.burgerOpenRight : style.burgerCloseRight].join(' ')}></div>
+            <div className={[style.burger, style.burgerClose, isOpenMenu ? style.burgerOpenRight : style.burgerCloseRight].join(' ')}></div>
         </div> 
     );
 }

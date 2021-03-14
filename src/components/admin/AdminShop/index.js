@@ -1,9 +1,11 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { UploadAndCrop } from '../../utils';
 import { 
     Grid,
     TextField,
-    Button
+    Button,
+    Select,
+    MenuItem,
 } from '@material-ui/core';
 import { 
     createProduct, 
@@ -59,7 +61,7 @@ const Shop = ({
         formData.append('link', state.link)
 
         if (editingData != null) {
-            const isFile = file.path ? file : editingData.cover;
+            const isFile = file.name ? file : editingData.cover;
             formData.append('cover', isFile)
             formData.append('_id', editingData._id);
             editProduct(formData).then(() => closeDialog());
@@ -68,7 +70,9 @@ const Shop = ({
             createProduct(formData).then(() => closeDialog());
         }
     }
-    console.log('sop')
+
+    console.log('state', state)
+
     return (
         <Grid container spacing={1} justify="center" >
             <Grid container item xs={6} spacing={1}>
@@ -77,17 +81,31 @@ const Shop = ({
                         imgState={imgState} 
                         onChange={setImgState} 
                         setFile={setFile}
+                        file={file}
                     />
                 </Grid> 
             </Grid>
-            <Grid container item xs={6}  spacing={1}>
+            <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
-                    <TextField
+                    {/* <TextField
                         name="type"
                         label="Type"
                         value={state.type}
                         onChange={handleChange}
-                    />
+                    /> */}
+                    <Select
+                        name="type"
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        placeholder="Type de produit"
+                        value={state.type}
+                        onChange={handleChange}
+                        fullWidth
+                    > 
+                        <MenuItem value="Vinyl">Vinyl</MenuItem>
+                        <MenuItem value="Numérique - Wave">Numérique - Wave</MenuItem>
+                        <MenuItem value="Goodies">Goodies</MenuItem>
+                    </Select>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
@@ -95,6 +113,7 @@ const Shop = ({
                         label="Name"
                         value={state.name}
                         onChange={handleChange}
+                        fullWidth
                     />
                 </Grid>
                 <Grid container item xs={12}>
@@ -104,6 +123,7 @@ const Shop = ({
                             label="Link"
                             value={state.link}
                             onChange={handleChange}
+                            fullWidth
                         />
                     </Grid>
                 </Grid>
@@ -116,7 +136,7 @@ const Shop = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                disabled={(file.path === null || imgState === '') || state.name === '' || state.type === '' || state.link === ''}
+                // disabled={(file.path === null || imgState === '') || state.name === '' || state.type === '' || state.link === ''}
             >
                 {buttonValue}
             </Button>
