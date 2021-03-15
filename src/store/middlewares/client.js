@@ -21,6 +21,7 @@ export default function client(client) {
                     ...rest, result, type: SUCCESS,
                 }),
                 error => next({ ...rest, error, type: FAILURE }),
+
             ).catch((error) => {
                 console.log('HERE ERROR', error);
                 next({ ...rest, error, type: FAILURE });

@@ -47,14 +47,22 @@ const Header = ({
                 {auth.isLoggedIn ? (
                     <div className={style.menuAdmin}>
                         {menuListAdmin.map((link, index) => (
-                            <NavLink  
-                                key={index + link.name} 
-                                to={link.to}
-                            >
-                                {link.name}
-                            </NavLink>
+                            <div>
+                                <NavLink  
+                                    key={index + link.name} 
+                                    to={link.to}
+                                    onClick={() => toggleMenu(false)}
+                                >
+                                    {link.name}
+                                </NavLink>
+                            </div>
                         ))}
-                        <NavLink to="/home" onClick={() => logout()}>logout</NavLink>
+                        <div>
+                            <NavLink to="/home" onClick={() => {
+                                logout();
+                                toggleMenu(false); 
+                            }}>logout</NavLink>
+                        </div>
                     </div>
                 ) : null}
             </div>

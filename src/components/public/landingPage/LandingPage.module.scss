@@ -1,3 +1,6 @@
+@import "../../../assets/sass/breakpoints.scss";
+@import '../../../assets/sass/_variables.scss';
+
 .video_player, .image {
     position: fixed;
     z-index: -1;
@@ -47,4 +50,8 @@
     100% {
         opacity: 1;
     }
+}
+
+@media (max-width: $break-small) {
+   
 }

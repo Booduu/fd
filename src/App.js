@@ -13,17 +13,10 @@ import {
   getVideo,
   getIsMobile,
   getAlbums, 
-  getLives,
+  // getLives,
   getListProducts,
+  getLives,
 } from './store/actions';
-// import { 
-//   deleteLiveItem, 
-//   deleteAlbum, 
-//   getListProducts, 
-//   deleteProduct,
-//   getLives, 
-  
-// } from '../../../store/actions';
 import {
   BrowserRouter as Router,
   Switch,
@@ -47,8 +40,9 @@ const App = ({
   getIsMobile,
   isMobile,
   getAlbums,
-  getLives,
+  // getLives,
   getListProducts,
+  getLives,
 }) => {
   const [isHome, setIsHome] = useState(false)
   // const [history, setHistory] = useState(window.location.pathname);
@@ -58,6 +52,7 @@ const App = ({
     tt();
     getListProducts();
     getAlbums();
+    // getLives();
     getLives();
   }, []);
 
@@ -122,6 +117,7 @@ export default connect(state => ({
   getVideo,
   getIsMobile,
   getAlbums,
+  // getLives,
   getLives,
   getListProducts,
  })(App);

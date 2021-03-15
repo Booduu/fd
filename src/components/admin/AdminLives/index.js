@@ -9,9 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { 
     createLive,
-    getLives,
-    editLiveItem,
+    // getLives,
+    // editLiveItem,
     closeDialog,
+    editLive,
 } from '../../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
 const AdminLives = ({
     createLive,
     editingData,
-    editLiveItem,
+    // editLiveItem,
     closeDialog,
+    editLive,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
@@ -60,7 +62,9 @@ const AdminLives = ({
         delete dataToSend.wait;
         if (editingData != null) {
             dataToSend._id = editingData._id;
-            editLiveItem(dataToSend).then(() => closeDialog());
+            // editLiveItem(dataToSend).then(() => closeDialog());
+            editLive(dataToSend).then(() => closeDialog());
+
         } else {
             createLive(dataToSend).then(() => closeDialog());
         }       
@@ -132,7 +136,8 @@ export default connect(state => ({
     lives: state.apiDataReducer.lives,
 }), {
     createLive,
-    getLives,
-    editLiveItem,
+    // getLives,
+    // editLiveItem,
+    editLive,
     closeDialog,
 })(AdminLives);

@@ -9,16 +9,16 @@ const initialState = {
 
 const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.CREATE_LIVE:
+        // case actions.CREATE_LIVE:
         case actions.CREATE_ALBUM:
         case actions.CREATE_PRODUCT:
-        case actions.DELETE_LIVE:
+        // case actions.DELETE_LIVE:
         case actions.DELETE_ALBUM:
         case actions.DELETE_PRODUCT:
-        case actions.EDIT_LIVE:
+        // case actions.EDIT_LIVE:
         case actions.EDIT_ALBUM:
         case actions.EDIT_PRODUCT:
-        case actions.GET_LIVES:
+        // case actions.GET_LIVES:
         case actions.GET_ALBUMS:
         case actions.GET_PRODUCTS:
             console.log('CREATE_LIVE')
@@ -27,21 +27,22 @@ const apiDataReducer = (state = initialState, action) => {
                 loader: true,
             }
 
-        case actions.CREATE_LIVE_FAIL:
+
+        // case actions.CREATE_LIVE_FAIL:
         case actions.CREATE_ALBUM_FAIL:
         case actions.CREATE_PRODUCT_FAIL:
-        case actions.DELETE_LIVE_FAIL:
+        // case actions.DELETE_LIVE_FAIL:
         case actions.DELETE_ALBUM_FAIL:
         case actions.DELETE_PRODUCT_FAIL:
-        case actions.EDIT_LIVE_FAIL:
+        // case actions.EDIT_LIVE_FAIL:
         case actions.EDIT_ALBUM_FAIL:
         case actions.EDIT_PRODUCT_FAIL: 
-        case actions.GET_LIVES_FAIL:
+        // case actions.GET_LIVES_FAIL:
         case actions.GET_ALBUMS_FAIL:
         case actions.GET_PRODUCTS_FAIL:
             // console.log('CREATE_LIVE_FaIL', action.error.response.text)
             // console.log('CREATE_LIVE_FaIL', action)
-            console.log('FAAAAILL', action.error.response.error)
+            console.log('FAAAAILL', action.error)
 
 
             return {
@@ -50,40 +51,40 @@ const apiDataReducer = (state = initialState, action) => {
             }
 
         /* LIVES */
-        case actions.CREATE_LIVE_SUCCESS:
-            console.log('CREATE_LIVE_SUCEESS')
-            const upadtedLivesList = [...state.lives];
-            return {
-                ...state,
-                loader: false,
-                lives: upadtedLivesList.concat(action.result),
-            }
+        // case actions.CREATE_LIVE_SUCCESS:
+        //     console.log('CREATE_LIVE_SUCEESS')
+        //     const upadtedLivesList = [...state.lives];
+        //     return {
+        //         ...state,
+        //         loader: false,
+        //         lives: upadtedLivesList.concat(action.result),
+        //     }
 
-        case actions.EDIT_LIVE_SUCCESS: 
-            const newListLives = [...state.lives];
-            const index = newListLives.findIndex(l => l._id === action.live._id);
-            newListLives[index] = action.live;
-            return {
-                ...state,
-                loader: false,
-                lives: newListLives,
-            };
+        // case actions.EDIT_LIVE_SUCCESS: 
+            // const newListLives = [...state.lives];
+            // const index = newListLives.findIndex(l => l._id === action.live._id);
+            // newListLives[index] = action.live;
+            // return {
+            //     ...state,
+            //     loader: false,
+            //     lives: newListLives,
+            // };
 
-        case actions.DELETE_LIVE_SUCCESS:
-            const livesAfterDeleteOne = [...state.lives.filter(l => l._id !== action.live._id)]
-            return {
-                ...state,
-                loader: false,
-                lives: livesAfterDeleteOne,
-            }
+        // case actions.DELETE_LIVE_SUCCESS:
+        //     const livesAfterDeleteOne = [...state.lives.filter(l => l._id !== action.live._id)]
+        //     return {
+        //         ...state,
+        //         loader: false,
+        //         lives: livesAfterDeleteOne,
+        //     }
             
-        case actions.GET_LIVES_SUCCESS:
-            const livesList = [...action.result];
-            return {
-                ...state,
-                loader: false,
-                lives: livesList,
-            };
+        // case actions.GET_LIVES_SUCCESS:
+        //     const livesList = [...action.result];
+        //     return {
+        //         ...state,
+        //         loader: false,
+        //         lives: livesList,
+        //     };
 
         /* ALBUMS */
         case actions.CREATE_ALBUM_SUCCESS:
@@ -152,7 +153,66 @@ const apiDataReducer = (state = initialState, action) => {
                 loader: false,
                 products: listAfterDeleteOneProduct,
             }
-    
+
+        //  NEW  //
+        
+        case actions.REQUEST_CREATE_LIVE_SUCCESS:
+            const upadtedLivesLists = [...state.lives];
+            return {
+                ...state,
+                loader: false,
+                lives: upadtedLivesLists.concat(action.date),
+            }
+
+        case actions.REQUEST_DELETE_LIVE_SUCCESS:
+            const livesAfterDeleteOnes = [...state.lives.filter(l => l._id !== action.live._id)]
+            return {
+                ...state,
+                loader: false,
+                lives: livesAfterDeleteOnes,
+            }
+
+        case actions.REQUEST_EDIT_LIVE_SUCCESS: 
+            const newListLives = [...state.lives];
+            const index = newListLives.findIndex(l => l._id === action.live._id);
+            newListLives[index] = action.live;
+            return {
+                ...state,
+                loader: false,
+                lives: newListLives,
+            };
+
+        case actions.REQUEST_GET_LIVES_SUCCESS:
+            const livesList = [...action.lives];
+            return {
+                ...state,
+                loader: false,
+                lives: livesList,
+            };
+
+        case actions.REQUEST_GET_LIVES:
+        case actions.REQUEST_CREATE_LIVE:
+        case actions.REQUEST_DELETE_LIVE:
+        case actions.REQUEST_EDIT_LIVE:
+
+            return {
+                ...state,
+                loader: true,
+            }
+
+        case actions.REQUEST_GET_LIVES_FAIL:
+        case actions.REQUEST_CREATE_LIVE_FAIL:
+        case actions.REQUEST_DELETE_LIVE_FAIL:
+        case actions.REQUEST_EDIT_LIVE_FAIL:
+        
+            console.log('DONE', action.error.response.data);
+
+            return {
+                ...state,
+                loader: false,
+            }
+
+        
         default: return state;
     }
 }

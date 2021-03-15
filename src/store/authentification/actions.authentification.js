@@ -1,5 +1,5 @@
+import apiFulldub from '../../conf/api.fulldub';
 import * as axios from 'axios';
-
 
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -64,10 +64,11 @@ export const requestProtectedError = (error) => {
     }
 }
 
+
 export const tt = () => {
     return dispatch => {
         dispatch(requestProtected());
-        return axios.get('http://localhost:3030/protected', {
+        return apiFulldub.get('/protected', {
             headers: {
             'auth-token': `${localStorage.getItem('jwtToken')}`
             }})
@@ -80,3 +81,20 @@ export const tt = () => {
             )   
     }
 }
+
+// export const tt = () => {
+//     return dispatch => {
+//         dispatch(requestProtected());
+//         return axios.get('http://localhost:3030/protected', {
+//             headers: {
+//             'auth-token': `${localStorage.getItem('jwtToken')}`
+//             }})
+//             .then( response => response.data)
+//             .then(data => {
+//                 const user = {...data}
+//                 dispatch(requestProtectedSuccess(user))
+//             },
+//             error => dispatch(requestProtectedError(error))
+//             )   
+//     }
+// }

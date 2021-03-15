@@ -7,12 +7,6 @@ const Burger = ({
     toggleMenu,
     isOpenMenu,
 }) => {
-    // const [toggleBurger, setToggleBurger] = useState(false)
-    // useEffect(() => {
-    //     console.log(toggleBurger);
-    // }, [toggleBurger])
-
-    // const isOpen = toggleBurger ? style.firstBurger : '';
 
     return ( 
         <div 

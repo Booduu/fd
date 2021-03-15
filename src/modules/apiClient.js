@@ -34,9 +34,9 @@ export default class ApiClient {
                 }
 
                 request.end((err, res) => {
-                    console.log('eeeeeeeeeeeemmmmmmm', err)
                     if (err || [200, 201].indexOf(res.status) === -1) {
-                        reject(err)
+                        console.log('eee', err, res)
+                        reject(res.body)
                     } else {
                         resolve(res.body);
                     }

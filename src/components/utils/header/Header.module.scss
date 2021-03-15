@@ -21,12 +21,10 @@
                 padding: 5px 5px 5px 5px;
                 color: $color-text;
                 text-transform: uppercase;
-                // filter: blur(.8px) ;
                 &:hover {
-                    filter: blur(0px) ;
+                    filter: blur(0px);
                     background-color: rgba(255, 255, 255, 0.883);
                     color: black;
-                    // filter: blur(.8px) ;
                 }
             } 
         }
@@ -63,9 +61,11 @@
             justify-content: center;
 
             > * {
-                text-align: end;
-                margin-right: unset;
-                padding: 3px 7px 3px 15px;
+                // a {
+                    text-align: end;
+                    margin-right: unset;
+                    padding: 3px 7px 3px 15px;
+                // } 
             }
         }
     }

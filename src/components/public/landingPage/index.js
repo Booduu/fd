@@ -49,28 +49,3 @@ const LandingPage = ({
  
 export default LandingPage;
  
-// const LandingPage = ({
-//     isHome,
-// }) => {
-//     return ( 
-//         <>
-//         {isHome ? (
-//             <video className={style.video} autoPlay loop muted>
-//                 <source 
-//                     src={video} 
-//                     type='video/mp4' 
-//                 />
-//             </video>
-//         ) : (
-//             <img 
-//                 className={style.image} 
-//                 src='https://images.pexels.com/photos/952437/pexels-photo-952437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-//                 alt="arriere plan de la page"
-//             />
-//         )}
-//         </>
-       
-//      );
-// }
- 
-// export default LandingPage;

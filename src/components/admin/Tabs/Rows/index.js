@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import moment from 'moment';
 
+
 moment().format();
 
 const useStyles = makeStyles((theme) => ({
@@ -32,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Rows = React.memo(({
   data,
-  deleteLiveItem,
   deleteAlbumItem,
   deleteProductItem,
   name,
   openDialog,
+  deleteLive,
 }) => {
   const classes = useStyles();
   const [myColumnsName, setMyColumnsName] = useState([]);
@@ -60,7 +61,7 @@ const Rows = React.memo(({
           <EditIcon onClick={() => openDialog(tab, row)} />
         </TableCell>
         <TableCell align="left"> 
-          <DeleteForeverOutlinedIcon onClick={() => deleteLiveItem(row)} />
+          <DeleteForeverOutlinedIcon onClick={() => deleteLive(row)} />
         </TableCell>
       </TableRow>
     ))

@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Rows from './Rows';
 import { connect } from 'react-redux';
 import { 
-  deleteLiveItem, 
+  deleteLive, 
   deleteAlbum, 
   deleteProduct,
 } from '../../../store/actions';
@@ -95,7 +95,7 @@ const ScrollableTabsButtonAuto = ({
         <TabPanel value={value} index={0}>
           <Rows 
             data={lives} 
-            deleteLiveItem={deleteLiveItem}
+            deleteLive={deleteLive}
             name="shows"
           />
         </TabPanel>
@@ -123,7 +123,7 @@ export default connect(state => ({
   albums: state.apiDataReducer.albums,
   products: state.apiDataReducer.products,
 }), {
-  deleteLiveItem,
+  deleteLive,
   deleteAlbum,
   deleteProduct,
 })(ScrollableTabsButtonAuto);

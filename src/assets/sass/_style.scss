@@ -12,6 +12,7 @@ body {
     color: $color-text;
     font-family: $font-family;
     font-weight: $font-weight;
+    overflow-x: hidden;
 }
 
 a {
