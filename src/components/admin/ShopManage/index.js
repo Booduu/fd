@@ -18,7 +18,7 @@ import {
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
-import Dialogs from '../Tabs/Dialog';
+import Dialogs from '../../utils/Dialog';
 
 moment().format();
 

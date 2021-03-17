@@ -63,7 +63,7 @@ const AdminLives = ({
         if (editingData != null) {
             dataToSend._id = editingData._id;
             // editLiveItem(dataToSend).then(() => closeDialog());
-            editLive(dataToSend).then(() => closeDialog());
+            editLive(dataToSend);
 
         } else {
             createLive(dataToSend);

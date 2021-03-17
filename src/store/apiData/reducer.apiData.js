@@ -1,5 +1,5 @@
 import * as actions from './actions.apiData';
-
+import { closeDialog } from '../dialogs/actions.dialogs';
 const initialState = {
     lives: [],
     albums: [],
