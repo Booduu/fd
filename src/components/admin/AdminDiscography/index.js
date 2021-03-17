@@ -92,6 +92,7 @@ const Discography = ({
         if (editingData == null) {
             formData.append('cover', file);
             createAlbum(formData).then(() => closeDialog());
+
         }
     };
 
@@ -227,7 +228,7 @@ const Discography = ({
 }
  
 export default connect(null, {
-    createAlbum,
     editAlbum,
     closeDialog,
+    createAlbum,
 })(Discography);

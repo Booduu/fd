@@ -66,7 +66,7 @@ const AdminLives = ({
             editLive(dataToSend).then(() => closeDialog());
 
         } else {
-            createLive(dataToSend).then(() => closeDialog());
+            createLive(dataToSend);
         }       
     };
 

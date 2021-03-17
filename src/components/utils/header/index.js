@@ -30,7 +30,7 @@ const Header = ({
 
                 <div className={style.menuPublic}>
                         {menuListPublic.map((link, index) => (
-                            <div>
+                            <div key={link + index}>
                                 <NavLink 
                                     key={index + link.name}
                                     to={link.to}
@@ -47,7 +47,7 @@ const Header = ({
                 {auth.isLoggedIn ? (
                     <div className={style.menuAdmin}>
                         {menuListAdmin.map((link, index) => (
-                            <div>
+                            <div key={link + index}>
                                 <NavLink  
                                     key={index + link.name} 
                                     to={link.to}

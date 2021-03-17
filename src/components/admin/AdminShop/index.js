@@ -9,8 +9,8 @@ import {
 } from '@material-ui/core';
 import { 
     createProduct, 
-    editProduct,
     closeDialog,
+    editProduct,
 } from '../../../store/actions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles'
@@ -34,6 +34,7 @@ const Shop = ({
     editProduct,
     createProduct,
     closeDialog,
+    editProducts,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
@@ -68,6 +69,7 @@ const Shop = ({
         } else {
             formData.append('cover', file)
             createProduct(formData).then(() => closeDialog());
+
         }
     }
 
@@ -130,7 +132,7 @@ const Shop = ({
                 size="large"
                 className={classes.button}
                 onClick={saveData}
-                // disabled={(file.path === null || imgState === '') || state.name === '' || state.type === '' || state.link === ''}
+                disabled={Object.keys(file).length === 0 || state.name === '' || state.type === '' || state.link === ''}
             >
                 {buttonValue}
             </Button>

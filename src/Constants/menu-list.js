@@ -22,8 +22,17 @@ export const menuListPublic = [
 ];
 
 export const menuListAdmin = [
+
     {
-        to: '/admin/vue',
-        name: 'Admin-vue',
+        to: '/admin/lives',
+        name: 'Manage-live',
+    },
+    {
+        to: '/admin/shop',
+        name: 'Manage-shop',
+    },
+    {
+        to: '/admin/disco',
+        name: 'Manage-disco',
     },
 ];

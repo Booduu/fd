@@ -36,7 +36,7 @@ export default class ApiClient {
                 request.end((err, res) => {
                     if (err || [200, 201].indexOf(res.status) === -1) {
                         console.log('eee', err, res)
-                        reject(res.body)
+                        reject(err)
                     } else {
                         resolve(res.body);
                     }

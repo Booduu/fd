@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './assets/sass/_style.scss';
-// import './App.css'
 import style from './App.module.scss'
 import { 
   Header,
@@ -13,9 +12,8 @@ import {
   getVideo,
   getIsMobile,
   getAlbums, 
-  // getLives,
-  getListProducts,
   getLives,
+  getProducts,
 } from './store/actions';
 import {
   BrowserRouter as Router,
@@ -23,7 +21,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { AdminLives, AdminDiscography, AdminShop, AdminVue, Signin, Signup } from './components/admin';
+import { LiveManage, ShopManage, DiscoManage, AdminDiscography, AdminShop, Signin, Signup } from './components/admin';
 import { 
   BookingContact, 
   Discography,
@@ -40,9 +38,9 @@ const App = ({
   getIsMobile,
   isMobile,
   getAlbums,
-  // getLives,
-  getListProducts,
   getLives,
+  auth,
+  getProducts,
 }) => {
   const [isHome, setIsHome] = useState(false)
   // const [history, setHistory] = useState(window.location.pathname);
@@ -50,10 +48,9 @@ const App = ({
   useEffect(() => {
     // setHistory(window.location.pathname);
     tt();
-    getListProducts();
     getAlbums();
-    // getLives();
     getLives();
+    getProducts();
   }, []);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -76,7 +73,7 @@ const App = ({
           getIsMobile(true);
       }
   }, [width]);
-
+console.log('isLoggedIn', auth.isLoggedIn)
   return (
     <div className={style.App}>
       <Logo />
@@ -94,12 +91,14 @@ const App = ({
               <Route path="/shows" component={Shows} />
               <Route path="/shop" component={Shop} />
               <Route path="/BookingContact" component={BookingContact} />
-              <Route path="/admin/vue" component={AdminVue} />
-              <Route path="/admin/lives" component={AdminLives}/>
-              <Route path="/admin/discography" component={AdminDiscography}/>
-              <Route path="/admin/shop" component={AdminShop}/>
               <Route path="/admin/signin" component={Signin}/>
-              <Route path="/admin/signup" component={Signup}/>
+              {/* <Route path="/admin/vue" render={() => auth.isLoggedIn ? <AdminVue /> : <Redirect to='/home' />} /> */}
+             
+             <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
+             <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
+             <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
+              {/* <Route path="/admin/signin" component={Signin}/>
+              <Route path="/admin/signup" component={Signup}/> */}
               <Redirect to='/home' />
           </Switch>
         </div>
@@ -111,13 +110,13 @@ const App = ({
 
 export default connect(state => ({
   isMobile: state.landingReducer.isMobile,
+  auth: state.authentificationReducer.auth
 }), { 
   tt, 
   logout,
   getVideo,
   getIsMobile,
   getAlbums,
-  // getLives,
   getLives,
-  getListProducts,
+  getProducts,
  })(App);
