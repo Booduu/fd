@@ -10,6 +10,7 @@ export const openDialog = (name, data) => {
 }
 
 export const closeDialog = () => {
+    console.log('eeeeeeeeeee')
     return {
         type: CLOSE_DIALOG,
     }

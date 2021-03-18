@@ -1,11 +1,9 @@
 
 
 .image_container {
-    width: 200px;
+    width: 100%;
     height: 200px;
-    background-color: aquamarine;
     position: relative;
-
     .image_preview {
         width: 200px;
         height: auto;
@@ -14,8 +12,7 @@
     .onDragMessage {
         position: absolute;
         top: 0;
-        background-color: rgba(0, 0, 0, 0.466);
-        color: ivory;
+        color: rgb(98, 98, 98);
         width: inherit;
         height: inherit;
         display: flex;
@@ -28,3 +25,4 @@
     width: 600px;
     height: auto;
 }
+

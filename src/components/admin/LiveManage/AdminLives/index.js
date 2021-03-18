@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { DatePicker } from '../../utils';
+import React, { useState } from 'react';
+import { DatePicker } from '../../../utils';
 import { 
     Grid,
     TextField,
@@ -9,11 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { 
     createLive,
-    // getLives,
-    // editLiveItem,
     closeDialog,
     editLive,
-} from '../../../store/actions';
+} from '../../../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -24,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
 const AdminLives = ({
     createLive,
     editingData,
-    // editLiveItem,
     closeDialog,
     editLive,
+    errors,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
@@ -62,7 +60,6 @@ const AdminLives = ({
         delete dataToSend.wait;
         if (editingData != null) {
             dataToSend._id = editingData._id;
-            // editLiveItem(dataToSend).then(() => closeDialog());
             editLive(dataToSend);
 
         } else {
@@ -72,7 +69,8 @@ const AdminLives = ({
 
     return ( 
         <Grid container spacing={1} justify="center">
-            <Grid item xs={12}>
+            <Grid item xs={6} container spacing={1} justify="center">
+            <Grid item xs={12} container justify="flex-end">
                 <DatePicker 
                     label="la grosse date que voilà"
                     onChange={(data) => {
@@ -90,6 +88,9 @@ const AdminLives = ({
                     label="Ville"
                     value={state.city}
                     onChange={handleChange}
+                    error={errors != null && errors?.city?.message}
+                    helperText={errors?.city?.message ? errors.city.message : ''}
+                    fullWidth
                 />
             </Grid>
             <Grid item xs={12}>
@@ -98,6 +99,9 @@ const AdminLives = ({
                     label="Salle / Lieux"
                     value={state.place}
                     onChange={handleChange}
+                    error={errors != null && errors?.place?.message}
+                    helperText={errors?.place?.message ? errors.place.message : ''}
+                    fullWidth
                 />
             </Grid>
             <Grid item xs={12}>
@@ -106,6 +110,9 @@ const AdminLives = ({
                     label="Nom"
                     value={state.name}
                     onChange={handleChange}
+                    error={errors != null && errors?.name?.message}
+                    helperText={errors?.name?.message ? errors.name.message : ''}
+                    fullWidth
                 />
             </Grid>
             <Grid item xs={12}>
@@ -114,19 +121,24 @@ const AdminLives = ({
                     label="ticket link"
                     value={state.ticketLink}
                     onChange={handleChange}
+                    error={errors != null && errors?.ticketLink?.message}
+                    helperText={errors?.ticketLink?.message ? errors.ticketLink.message : ''}
+                    fullWidth
                 />
             </Grid>
-            <Grid item xs={12}>
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                onClick={saveData}
-                // disabled={state.wait}
-            >
-                {buttonValue}
-            </Button>
+            <Grid item xs={12} container justify="center">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    onClick={saveData}
+                    // disabled={state.wait}
+                    fullWidth
+                >
+                    {buttonValue}
+                </Button>
+            </Grid>
             </Grid>
         </Grid>
     );
@@ -134,6 +146,7 @@ const AdminLives = ({
  
 export default connect(state => ({
     lives: state.apiDataReducer.lives,
+    errors: state.apiDataReducer.errors,
 }), {
     createLive,
     // getLives,

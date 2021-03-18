@@ -33,6 +33,7 @@ const Shop = ({
     editingData,
     editProduct,
     createProduct,
+    errors,
     closeDialog,
     editProducts,
 }) => {
@@ -41,7 +42,7 @@ const Shop = ({
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/products/${editingData.cover}` : '');
     const [file, setFile] = useState({});
     const [state, setState] = useState({
-        type: editingData && editingData?.type ? editingData.type : '',
+        type: editingData && editingData?.type ? editingData.type : 'Vinyl',
         link: editingData && editingData?.link ? editingData.link : '',
         name: editingData && editingData?.name ? editingData.name : '',
     });
@@ -65,15 +66,13 @@ const Shop = ({
             const isFile = file.name ? file : editingData.cover;
             formData.append('cover', isFile)
             formData.append('_id', editingData._id);
-            editProduct(formData).then(() => closeDialog());
+            editProduct(formData);
         } else {
             formData.append('cover', file)
-            createProduct(formData).then(() => closeDialog());
+            createProduct(formData);
 
         }
     }
-
-    console.log('state', state)
 
     return (
         <Grid container spacing={1} justify="center" >
@@ -109,6 +108,8 @@ const Shop = ({
                         label="Name"
                         value={state.name}
                         onChange={handleChange}
+                        error={errors != null && errors?.name?.message}
+                        helperText={errors?.name?.message ? errors.name.message : ''}
                         fullWidth
                     />
                 </Grid>
@@ -119,29 +120,33 @@ const Shop = ({
                             label="Link"
                             value={state.link}
                             onChange={handleChange}
+                            error={errors != null && errors?.link?.message}
+                            helperText={errors?.link?.message ? errors.link.message : ''}
                             fullWidth
                         />
                     </Grid>
                 </Grid>
             </Grid>
             
-            <Grid item xs={12}>
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                onClick={saveData}
-                disabled={Object.keys(file).length === 0 || state.name === '' || state.type === '' || state.link === ''}
-            >
-                {buttonValue}
-            </Button>
+            <Grid item xs={12} container>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    onClick={saveData}
+                    fullWidth
+                >
+                    {buttonValue}
+                </Button>
             </Grid>
         </Grid>
     )
 }
 
-export default connect(null, {
+export default connect(state => ({
+    errors: state.apiDataReducer.errors,
+}), {
     createProduct,
     editProduct,
     closeDialog,

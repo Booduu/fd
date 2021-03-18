@@ -68,6 +68,7 @@ export const createLive = (live) => {
         return apiFulldub.post('/live/livecreate', live)
             .then(response => {
                 dispatch(requestCreateLiveSuccess(response.data));
+                dispatch(closeDialog());
             })
             .catch(error => dispatch(requestCreateLiveFail(error)))
     }
@@ -141,10 +142,23 @@ export const editLive = (live) => {
     return dispatch => {
         dispatch(requestEditLive());
         return apiFulldub.patch(`/live/${live._id}`, live)
-            .then(response => dispatch(requestEditLiveSuccess(live)))
+            .then(response => {
+                dispatch(requestEditLiveSuccess(live));
+                // dispatch(closeDialog());
+            })
             .catch(error => dispatch(requestEditLiveFail(error)))
     }
 }
+
+
+export const INITAILIZE_ERROR = 'INITAILIZE_ERROR';
+
+export const initializeError = () => {
+    return {
+        type: INITAILIZE_ERROR,
+    }
+}
+
 
 
 

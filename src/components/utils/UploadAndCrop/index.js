@@ -10,25 +10,10 @@ const UploadAndCrop = React.memo(({
     onChange,
     setFile,
     imgState,
+    errors,
 }) => {
     const [objectUrl, setObjectUrl] = useState(null)
-    // const [base64, setBase64] = useState(null)
-   
-
-    // const onDropAccepted = useCallback(acceptedFiles => {
-    //     //for the crop resize
-    //     const url = URL.createObjectURL(acceptedFiles[0]);
-    //     setObjectUrl(url);
-
-    //     handleClickOpen();
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(acceptedFiles[0]);
-    //     reader.onloadend = () => {
-    //         onChange(reader.result);
-    //     };
-    //     setFile(acceptedFiles[0])
-    // }, [])
-
+ 
     const onDropAccepted = acceptedFiles => {
         //for the crop resize
         const url = URL.createObjectURL(acceptedFiles[0]);
@@ -70,15 +55,12 @@ const UploadAndCrop = React.memo(({
             <div {...getRootProps()}>
             <input {...getInputProps()} type="file" name="cover" />
             {
-                <div className={style.image_container}>
-                    {imgState && <img alt="album à uploader" className={style.image_preview} src={imgState}/> }
-                    {isDragActive && 
+                <div className={[style.image_container].join(' ')}>
+                    {imgState && <img alt="album à uploader" className={style.image_preview} src={imgState}/> }   
                         <div className={style.onDragMessage}>
-                            <div>
-                                Drop the files here ...
-                            </div>
+                            {!imgState && <div style={{ fontSize: '3rem' }}>+</div> }
+                            {/* isDragActive */}
                         </div>
-                    }
                 </div>   
             }
             
@@ -95,5 +77,7 @@ const UploadAndCrop = React.memo(({
      );
 });
  
-export default connect(null, {
+export default connect(state => ({
+    errors: state.apiDataReducer.errors,
+}), {
 })(UploadAndCrop);

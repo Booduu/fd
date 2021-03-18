@@ -1,4 +1,4 @@
-export { default as AdminLives } from './AdminLives';
+export { default as AdminLives } from './LiveManage/AdminLives';
 export { default as AdminDiscography } from './AdminDiscography';
 export { default as AdminShop } from './AdminShop';
 export { default as LiveManage } from './LiveManage';

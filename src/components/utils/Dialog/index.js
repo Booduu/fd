@@ -24,14 +24,14 @@ const Dialogs = React.memo(({
   };
   console.log('dialofg');
   return (
-    <div>
+    <div >
       <AddIcon fontSize="large" color="primary" onClick={handleClickOpen} />
         <Dialog 
           open={dialogIsOpen} 
           onClose={handleClose} 
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">{name}</DialogTitle>
           <DialogContent>
               {name === 'shows' &&  <AdminLives editingData={editingData} />}
               {name === 'disco' &&  <AdminDiscography editingData={editingData}/>}
