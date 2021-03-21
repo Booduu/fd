@@ -7,12 +7,14 @@ moment().format();
 
 const Shows = ({
     lives,
+    isMobile,
 }) => {
 
-    const livesSorted = lives.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-    }) 
-    console.log('dddd', livesSorted);
+    // const livesSorted = lives.sort((a, b) => {
+    //     return new Date(b.date) - new Date(a.date);
+    // }) 
+    // console.log('dddd', livesSorted);
+
 
     const myLives = useCallback(() => {
         return (
@@ -22,9 +24,11 @@ const Shows = ({
 
                     <span>{`${live.city} - ${live.place}`}</span>
 
-                    <span> La bass qui tue festival </span>
-
-                    <span className={style.ticket_link}> Ticket</span>
+                    <div>
+                        <span>{live.name}</span>
+                        <span className={style.ticket_link}><a href={live.ticketLink} target="_blanck" className={style.link}>Tickets</a></span>
+                    </div>
+                   
                </div>
             ))
         );
@@ -44,4 +48,5 @@ const Shows = ({
  
 export default connect(state => ({
     lives: state.apiDataReducer.lives,
+    isMobile: state.landingReducer.isMobile,
 }))(Shows);

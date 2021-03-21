@@ -14,40 +14,41 @@ const initialState = {
 
 const authentificationReducer = (state = initialState, action) => {
     switch(action.type) {
-        case actions.SIGN_UP_SUCCESS:
-            localStorage.setItem('jwtToken', action.result.token );
+        case actions.REQUEST_SIGNUP_SUCCESS:
+            localStorage.setItem('jwtToken', action.value.token );
             const newAuth = {
                 isLoggedIn: true,
                 user: {
-                     id: action.result._id,
-                    username: action.result.user.username,
-                    email: action.result.user.local.email,
-                    role: action.result.user.role,
+                     id: action.value._id,
+                    username: action.value.user.username,
+                    email: action.value.user.local.email,
+                    role: action.value.user.role,
                 }
             }
             return {
                 ...state,
                 auth: newAuth,
             }; 
-        case actions.SIGN_UP_ERROR:
-            console.log('SIGN_UP_ERROR');
+        case actions.REQUEST_SIGNUP_FAIL:
+            console.log('REQUEST_SIGNUP_FAIL');
             break;
          
-        case actions.SIGN_IN_SUCCESS:
-            localStorage.setItem('jwtToken', action.result.token );
+        case actions.REQUEST_SIGNIN_SUCCESS:
+            localStorage.setItem('jwtToken', action.value.token );
             const new0uth = {
                 isLoggedIn: true,
                 user: {
-                    id: action.result._id,
-                    username: action.result.user.username,
-                    email: action.result.user.local.email,
-                    role: action.result.user.role,
+                    id: action.value._id,
+                    username: action.value.user.username,
+                    email: action.value.user.local.email,
+                    role: action.value.user.role,
                 }
             }
             return {
                 ...state,
                 auth: new0uth,
             }; 
+
         case actions.LOGOUT:
             localStorage.removeItem('jwtToken');
             const removeAuth = {
@@ -76,6 +77,9 @@ const authentificationReducer = (state = initialState, action) => {
                 ...state,
                 auth: nAuth
             }
+        case actions.REQUEST_PROTECTED_ERROR:
+            return state
+        
         default: return state;
     }
 };

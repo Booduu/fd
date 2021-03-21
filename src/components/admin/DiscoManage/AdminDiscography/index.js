@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { DatePicker, UploadAndCrop } from '../../utils';
+import { DatePicker, UploadAndCrop } from '../../../utils';
 import { 
     Grid,
     TextField,
@@ -11,7 +11,7 @@ import {
     createAlbum,
     editAlbum,
     closeDialog,
-} from '../../../store/actions';
+} from '../../../../store/actions';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
@@ -37,13 +37,12 @@ const Discography = ({
     editingData,
     createAlbum,
     editAlbum,
-    closeDialog,
+    errors,
+    isLoading,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
-    const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/albums/${editingData.cover}` : null);
-    const [file, setFile] = useState({});
-
+    const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : null);
 
     const [state, setState] = useState({
         title: editingData != null ? editingData.title : '',
@@ -54,7 +53,7 @@ const Discography = ({
         downloadLink: editingData != null ? editingData.downloadLink : '',
         releaseDate: editingData != null ? editingData.releaseDate : new Date(),
     });
-    // const [wait, setWait] = useState(true);
+
     const [tracklist, setTracklist] = useState(editingData != null ? editingData.tracklist : []);
 
     const handleChange = (e) => {
@@ -63,37 +62,22 @@ const Discography = ({
                 ...state,
                 [name]: e.currentTarget.value,
             });
-            // if (name !== 'tracklist') {
-            //     setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
-            // }
     };
 
     const saveData = () => {
-        const dataToSend = { ...state };
-
-        const formData = new FormData();
-        formData.append('title', dataToSend.title);
-        formData.append('label', dataToSend.label);
-        formData.append('tracklist', tracklist);
-        formData.append('releaseDate', dataToSend.releaseDate);
-        formData.append('soundcloudLink', dataToSend.soundcloudLink);
-        formData.append('buyLink', dataToSend.buyLink);
-        formData.append('downloadLink', dataToSend.downloadLink);
+        const dataToSend = { 
+            ...state,
+            cover: imgState,
+         };
 
         if (editingData != null) {
-            const isFile = file.name ? file : editingData.cover;
-            console.log('isFile', isFile)
-            formData.append('cover', isFile);
-            formData.append('_id', editingData._id);
-
-            editAlbum(formData).then(() => closeDialog());
+            dataToSend._id = editingData._id;
+            editAlbum(dataToSend);
+        } 
+        if (editingData == null) {
+            createAlbum(dataToSend);
         } 
 
-        if (editingData == null) {
-            formData.append('cover', file);
-            createAlbum(formData).then(() => closeDialog());
-
-        }
     };
 
     const addTrack = () => {
@@ -107,7 +91,6 @@ const Discography = ({
             ...state,
             tracklist: '',
         });
-        // setWait(state.title === '' || state.label === '' || tracklist.length === 0 || imgState === '')
     }, [tracklist])
 
     const deleteTrack = (index) => {
@@ -123,8 +106,6 @@ const Discography = ({
                     <UploadAndCrop 
                         imgState={imgState} 
                         onChange={setImgState} 
-                        setFile={setFile}
-                        file={file}
                     />
                 </Grid> 
             </Grid>
@@ -135,6 +116,9 @@ const Discography = ({
                         label="Titre"
                         value={state.title}
                         onChange={handleChange}
+                        error={errors != null && errors?.title?.message}
+                        helperText={errors?.title?.message ? errors.title.message : ''}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -143,6 +127,9 @@ const Discography = ({
                         label="Label"
                         value={state.label}
                         onChange={handleChange}
+                        error={errors != null && errors?.label?.message}
+                        helperText={errors?.label?.message ? errors.label.message : ''}
+                        fullWidth
                     />
                 </Grid>
                 <Grid container item xs={12}>
@@ -157,6 +144,7 @@ const Discography = ({
                                     {state.tracklist !== '' && <AddIcon onClick={addTrack} />}
                                     </InputAdornment>,
                             }}
+                        fullWidth
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -178,6 +166,9 @@ const Discography = ({
                         label="Lien soundcloud"
                         value={state.soundcloudLink}
                         onChange={handleChange}
+                        error={errors != null && errors?.soundcloudLink?.message}
+                        helperText={errors?.soundcloudLink?.message ? errors.soundcloudLink.message : ''}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -186,6 +177,9 @@ const Discography = ({
                         label="buy link"
                         value={state.buyLink}
                         onChange={handleChange}
+                        error={errors != null && errors?.buyLink?.message}
+                        helperText={errors?.buyLink?.message ? errors.buyLink.message : ''}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -194,6 +188,9 @@ const Discography = ({
                         label="download link"
                         value={state.downloadLink}
                         onChange={handleChange}
+                        error={errors != null && errors?.downloadLink?.message}
+                        helperText={errors?.downloadLink?.message ? errors.downloadLink.message : ''}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -210,24 +207,29 @@ const Discography = ({
                 </Grid>
             </Grid>
             
-            <Grid item xs={12}>
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-                onClick={saveData}
-                // disabled={state.title === '' || state.releaseDate == null || state.label === '' || tracklist.length === 0 || (file.path == null || imgState === '')}
-
-            >
-                {buttonValue}
-            </Button>
+            <Grid item xs={12} container justify="flex-end">
+                <Grid item xs={6} >
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={classes.button}
+                        onClick={saveData}
+                        disabled={isLoading}
+                        fullWidth
+                    >
+                        {buttonValue}
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
      );
 }
  
-export default connect(null, {
+export default connect(state => ({
+    errors: state.apiDataReducer.errors,
+    isLoading: state.apiDataReducer.loader,
+}), {
     editAlbum,
     closeDialog,
     createAlbum,

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import style from './Discography.module.scss';
-// import pochette from '../../../assets/design/pochettes/Cover-Full-Dub-Rewind.jpg'
 import { wrapGrid } from 'animate-css-grid';
 import ReactPlayer from "react-player";
 import { Carousel } from '../../utils';
@@ -19,6 +18,7 @@ const Player = ({
 }) => {
   return (
     <ReactPlayer
+      volume={0}
       controls={false}
       url={url}
       width={width}
@@ -31,12 +31,11 @@ const Player = ({
 const Card = ({
   album,
 }) => {
-
+  console.log('CARD')
     const [expanded, setExpanded] = useState(false);
     const randomNumber = Math.floor(Math.random() * 5) + 1;
     return (
         <div
-          // className={`card card--${randomNumber} ${expanded ? "card--expanded" : ""}`}
           className={[`card card--${randomNumber} ${expanded ? "card--expanded" : ""}`, style.cardExpanded].join(' ')}
           onClick={() => {
             setExpanded(!expanded);
@@ -45,7 +44,7 @@ const Card = ({
             <div className={style.cardContainer}>
               <div className={[style.imageContainer, expanded && style.isExpanded].join(' ')}>
                 <img 
-                  src={`http://localhost:3030/uploads/albums/${album.cover}`}
+                  src={album.cover}
                   className={style.poster}
                   alt={`album ${album.title}`}
                 />
@@ -53,7 +52,7 @@ const Card = ({
               <div data-role={expanded} className={style.playerContainer}>
                 <div className={style.infoText}>
                   <h3>{album.title}</h3>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard fezufkezjf febzfilze zebflzknf</p>
+                  {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard fezufkezjf febzfilze zebflzknf</p> */}
                 </div>
                 <div className={style.buttonContainer}>
                     <a href={album.buyLink} target="_blank" rel="noopener noreferrer">BUY NOW</a>
@@ -106,28 +105,23 @@ const Discography = ({
   };
 
   const [albumToPlay, setAlbumToPlay] = useState(albums[0]);
-  console.log('albumToDisplay', albumToPlay)
-
   const handleAlbum = (album) => {
-    console.log('handleAlbum', album);
     setAlbumToPlay(album)
   };
 
   const iframe = document.querySelector('img');
-
-  console.log('iiii', iframe)
 
   return (
     <>
       <div className={style.container}> 
 
       {!isMobile ? (
-      <div className="p-4">
+      // <div className="p-4">
         <Grid 
           settings={state} 
           albums={albums}
         /> 
-      </div>
+      // </div>
       ) : (
         <div className={style.containerMobile}>
           <div className={style.player_container}>

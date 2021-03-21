@@ -33,6 +33,13 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  container: {
+    marginTop: '70px'
+  },
+  backdrop: {
+    backgroundColor: 'white',
+    color: 'white',
+  },
 }));
 
 const ShopManage = ({
@@ -45,22 +52,31 @@ const ShopManage = ({
 
     useEffect(() => {
       const newColumns = { ...albums[0]}
-      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink')));
+      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink' && f !== 'tracklist')));
     }, [albums]);
-    console.log('eeeee', albums)
+
     return ( 
         <>
-          <Dialogs 
-            name="disco" 
-            setOpenDialog={openDialog} 
-          />
-            <TableContainer component={Paper}>
+          
+            <TableContainer component={Paper} className={classes.container}>
+            <Dialogs 
+                name="disco" 
+                setOpenDialog={openDialog} 
+                BackdropProps={{
+                  classes: {
+                    root: classes.backdrop,
+                  }
+                }}
+                message="album"
+              />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
+                    <TableCell> 
+                    </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -73,14 +89,14 @@ const ShopManage = ({
                                 <TableCell align="left">{album.label} label</TableCell>
                                 <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>
                                 <TableCell align="left">
-                                <Avatar variant="square" className={classes.square} src={`http://localhost:3030/uploads/albums/${album.cover}`}/>
+                                <Avatar variant="square" className={classes.square} src={album.cover} />
                                 </TableCell>
 
                                 <TableCell align="left"> 
-                                <EditIcon onClick={() => openDialog("disco", album)} />
+                                <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("disco", album)} />
                                 </TableCell>
                                 <TableCell align="left"> 
-                                <DeleteForeverOutlinedIcon onClick={() => deleteAlbum(album)} />
+                                <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteAlbum(album)} />
                                 </TableCell>
                             </TableRow>
                         ))}

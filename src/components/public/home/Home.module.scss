@@ -10,20 +10,26 @@
     align-items: center;
     animation: smoothDisplay 2s linear;
     
-    .titles {
-
-        h1 {
-            text-align: center;
-            text-transform: uppercase;
-            // margin-bottom: -25px;
+    a {
+        &:hover {
+            cursor: pointer;
+            color: $color-hover;
             transition: .3s;
-            &:hover {
-                cursor: pointer;
-                color: $color-hover;
+        }
+        .titles {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            h1 {
+                text-align: center;
+                text-transform: uppercase;
                 transition: .3s;
+               
             }
         }
     }
+   
 }
   
 @keyframes smoothDisplay {
@@ -35,15 +41,23 @@
     }
 }
 
+@media (max-width: $break-large) {
+    .container {
+        justify-content: flex-end;
+    }
+}
+
 @media (max-width: $break-small) {
     .container {
-        .titles {
-           h1 {
-               font-size: 64px;
-           }
-           h3 {
-                font-size: 22px;
-           }
-        }
+        a {
+            .titles {
+                h1 {
+                    font-size: 44px;
+                }
+                h3 {
+                     font-size: 16px;
+                }
+             }
+        }  
     }
 }

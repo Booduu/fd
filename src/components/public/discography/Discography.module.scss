@@ -10,8 +10,7 @@
     align-items: flex-start;
     .flex_container {
         max-width: 1000px;
-        // display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
         .cardContainer {
             .imageContainer {
                 .poster {
@@ -132,6 +131,7 @@
        
     }
     .slide_container {
+        margin-top: 20px;
         width: 100%;
         flex: 2 1 auto;
         display: flex;
@@ -145,6 +145,11 @@
     border: unset;
 }
 
+@media (min-width: $break-xl) {
+    .container {
+        padding-top: 200px;
+    }
+}
 
 @media (max-width: $break-xl) {
     .container {

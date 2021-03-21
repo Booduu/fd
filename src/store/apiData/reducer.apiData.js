@@ -1,5 +1,5 @@
 import * as actions from './actions.apiData';
-import { closeDialog } from '../dialogs/actions.dialogs';
+
 const initialState = {
     lives: [],
     albums: [],
@@ -10,53 +10,41 @@ const initialState = {
 
 const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case actions.CREATE_ALBUM:
-        // case actions.DELETE_ALBUM:
-        // case actions.GET_ALBUMS:
-            // return {
-            //     ...state,
-            //     loader: true,
-            // }
+        case actions.REQUEST_CREATE_LIVE:
+        case actions.REQUEST_DELETE_LIVE:
+        case actions.REQUEST_EDIT_LIVE:
 
+        case actions.REQUEST_CREATE_ALBUM:
+        case actions.REQUEST_DELETE_ALBUM:
+        case actions.REQUEST_EDIT_ALBUM:
 
-        // case actions.CREATE_ALBUM_FAIL:
-        // case actions.DELETE_ALBUM_FAIL:
-        // case actions.EDIT_ALBUM_FAIL:
-        // // case actions.GET_ALBUMS_FAIL:
-        //     return {
-        //         ...state,
-        //         loader: false,
-        //     }
+        case actions.REQUEST_CREATE_PRODUCT:
+        case actions.REQUEST_DELETE_PRODUCT:
+        case actions.REQUEST_GET_PRODUCT:
 
+        case actions.REQUEST_GET_LIVES:
+        case actions.REQUEST_GET_PRODUCTS:
+        case actions.REQUEST_GET_ALBUMS:
 
-        /* ALBUMS */
-        // case actions.CREATE_ALBUM_SUCCESS:
-        //     const newAlbumList = [...state.albums].concat(action.result);
-        //     return {
-        //         ...state,
-        //         loader: false,
-        //         albums: newAlbumList
-        //     };   
-        // case actions.GET_ALBUMS_SUCCESS:
-            // const livesSorted = action.result.sort((a, b) => {
-            //     return new Date(b.releaseDate) - new Date(a.releaseDate);
-            // }) 
-            // return {
-            //     ...state,
-            //     loader: false,
-            //     albums:  [...livesSorted]
-            // };
-            // return state
-        // case actions.DELETE_ALBUM_SUCCESS:
-            // const albumsAfterDeleteOne = [...state.albums].filter(a => a._id !== action.album._id);
-            // return {
-            //     ...state,
-            //     loader: false,
-            //     albums: albumsAfterDeleteOne,
-            // };
-        
+            return {
+                ...state,
+                loader: true,
+            }
 
-        //  NEW  //
+        case actions.REQUEST_GET_LIVES_FAIL:
+        case actions.REQUEST_CREATE_LIVE_FAIL:
+        case actions.REQUEST_EDIT_LIVE_FAIL:
+        case actions.REQUEST_CREATE_PRODUCT_FAIL:
+        case actions.REQUEST_EDIT_PRODUCT_FAIL:
+        case actions.REQUEST_EDIT_ALBUM_FAIL:
+        case actions.REQUEST_CREATE_ALBUM_FAIL:
+
+            return {
+                ...state,
+                loader: false,
+                errors: { ...action.error.response.data.errors }
+            }
+            
         case actions.REQUEST_CREATE_ALBUM_SUCCESS:
             const newAlbumList = [...state.albums].concat(action.album);
             return {
@@ -67,10 +55,13 @@ const apiDataReducer = (state = initialState, action) => {
 
         case actions.REQUEST_CREATE_PRODUCT_SUCCESS:
             const newProductsList = [...state.products].concat(action.product);
+            const albumsSortedNew = newProductsList.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
             return {
                 ...state,
                 loader: false,
-                products: newProductsList,
+                products: albumsSortedNew,
             };
         
         
@@ -94,61 +85,25 @@ const apiDataReducer = (state = initialState, action) => {
             const newListLives = [...state.lives];
             const index = newListLives.findIndex(l => l._id === action.live._id);
             newListLives[index] = action.live;
+            const livesSort = newListLives.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            }) 
             return {
                 ...state,
                 loader: false,
-                lives: newListLives,
+                lives: livesSort,
             };
 
         case actions.REQUEST_GET_LIVES_SUCCESS:
             const livesList = [...action.lives];
+            const livesSortedNew = livesList.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            }) 
             return {
                 ...state,
                 loader: false,
-                lives: livesList,
+                lives: livesSortedNew,
             };
-
-        case actions.REQUEST_GET_LIVES:
-        case actions.REQUEST_CREATE_LIVE:
-        case actions.REQUEST_DELETE_LIVE:
-        case actions.REQUEST_EDIT_LIVE:
-        case actions.REQUEST_CREATE_ALBUM:
-        case actions.REQUEST_CREATE_PRODUCT:
-        case actions.REQUEST_DELETE_PRODUCT:
-        case actions.REQUEST_GET_PRODUCTS:
-        case actions.REQUEST_GET_PRODUCT:
-        case actions.REQUEST_DELETE_ALBUM:
-        case actions.REQUEST_GET_ALBUMS:
-        case actions.REQUEST_EDIT_ALBUM:
-
-
-
-            return {
-                ...state,
-                loader: true,
-            }
-
-        case actions.REQUEST_GET_LIVES_FAIL:
-        case actions.REQUEST_CREATE_LIVE_FAIL:
-        case actions.REQUEST_DELETE_LIVE_FAIL:
-        case actions.REQUEST_EDIT_LIVE_FAIL:
-        case actions.REQUEST_CREATE_ALBUM_FAIL:
-        case actions.REQUEST_CREATE_PRODUCT_FAIL:
-        case actions.REQUEST_DELETE_PRODUCT_FAIL:
-        case actions.REQUEST_EDIT_PRODUCT_FAIL:
-        case actions.REQUEST_GET_PRODUCTS_FAIL:
-        case actions.REQUEST_GET_PRODUCT_FAIL:
-        case actions.REQUEST_DELETE_ALBUM_FAIL:
-        case actions.REQUEST_GET_ALBUMS_FAIL:
-        case actions.REQUEST_EDIT_ALBUM_FAIL:
-
-
-
-            return {
-                ...state,
-                loader: false,
-                errors: { ...action.error.response.data.errors }
-            }
 
         case actions.REQUEST_GET_PRODUCT_SUCCESS:
             return state;
@@ -204,17 +159,27 @@ const apiDataReducer = (state = initialState, action) => {
             };  
             
         case actions.REQUEST_EDIT_ALBUM_SUCCESS:
-            console.log('REQUEST_EDIT_ALBUMS_SUCCESS')
             const myAlbums = [...state.albums];
             const indexAlbumModified = myAlbums.findIndex(a => a._id === action.album._id);
             myAlbums[indexAlbumModified] = action.album;
+            const albumsSorted = myAlbums.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
             return {
                 ...state,
                 loader: false,
-                albums:  [...myAlbums]
+                albums:  [...albumsSorted]
             };  
         default: return state;
     }
 }
 
 export default apiDataReducer;
+
+
+// case actions.REQUEST_DELETE_LIVE_FAIL:
+// case actions.REQUEST_DELETE_PRODUCT_FAIL:
+// case actions.REQUEST_GET_PRODUCTS_FAIL:
+// case actions.REQUEST_GET_PRODUCT_FAIL:
+// case actions.REQUEST_DELETE_ALBUM_FAIL:
+// case actions.REQUEST_GET_ALBUMS_FAIL:

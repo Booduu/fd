@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Cropper = ({
     objectUrl,
-    setFile,
-    // setBase64,
     open,
     handleClose,
     onChange,
@@ -51,12 +49,16 @@ const Cropper = ({
 
     const makeClientCrop = async (image, crop) => {
       if (image && crop.width && crop.height) {
-        const croppedImageUrl = await getCroppedImg(
+        // const croppedImageUrl = await getCroppedImg(
+        //   image,
+        //   crop,
+        //   'newFile.jpeg'
+        // );
+        await getCroppedImg(
           image,
           crop,
           'newFile.jpeg'
         );
-          setFile(croppedImageUrl);
       }
     }
 

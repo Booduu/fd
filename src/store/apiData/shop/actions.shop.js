@@ -27,10 +27,13 @@ export const requestCreateProductFail = (error) => {
 }
 
 export const createProduct = (product) => {
-    console.log('createProducts', product);
+    console.log('createProducts HERE', product);
     return dispatch => {
         dispatch(requestCreateProduct());
-        return apiFulldub.post('/product/productcreate', product)
+        return apiFulldub.post('/protected/product/productcreate', product, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => dispatch(requestCreateProductSuccess(response.data)))
             .catch(error => dispatch(requestCreateProductFail(error)))
     }
@@ -65,15 +68,19 @@ export const requestDeleteProductFail = (error) => {
 }
 
 export const deleteProduct = (product) => {
-    console.log('createProducts', product);
+    console.log('oooooo', localStorage.getItem('jwtToken'))
     return dispatch => {
-        console.log('OOOOO')
         dispatch(requestDeleteProduct());
-        return apiFulldub.delete(`/product/${product._id}`, { data: product })
+        return apiFulldub.delete(`/protected/product/${product._id}`, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            },
+            data: {
+                product
+            }
+        })
             .then(response => dispatch(requestDeleteProductSuccess(product)))
             .catch(error => dispatch(requestDeleteProductFail(error)))
-
-            //suceess sans success
     }
 }
 
@@ -105,14 +112,16 @@ export const requestEditProductFail = (error) => {
 }
 
 export const editProduct = (product) => {
+    console.log('RRRRRRR', product)
     return dispatch => {
         console.log('OOOOO')
         dispatch(requestEditProduct());
-        return apiFulldub.patch(`/product/${product._id}`, product)
+        return apiFulldub.patch(`/protected/product/${product._id}`, product, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => dispatch(requestEditProductSuccess(response.data)))
             .catch(error => dispatch(requestEditProductFail(error)))
-
-            //suceess sans success
     }
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UploadAndCrop } from '../../utils';
+import { UploadAndCrop } from '../../../utils';
 import { 
     Grid,
     TextField,
@@ -11,7 +11,7 @@ import {
     createProduct, 
     closeDialog,
     editProduct,
-} from '../../../store/actions';
+} from '../../../../store/actions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -34,13 +34,12 @@ const Shop = ({
     editProduct,
     createProduct,
     errors,
-    closeDialog,
-    editProducts,
+    isLoading,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
-    const [imgState, setImgState] = useState(editingData && editingData?.cover ? `http://localhost:3030/uploads/products/${editingData.cover}` : '');
-    const [file, setFile] = useState({});
+    const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : '');
+    // const [file, setFile] = useState({});
     const [state, setState] = useState({
         type: editingData && editingData?.type ? editingData.type : 'Vinyl',
         link: editingData && editingData?.link ? editingData.link : '',
@@ -55,24 +54,22 @@ const Shop = ({
             [name]: e.target.value,
         });
     }
-   
+
     const saveData = () => {
-        const formData = new FormData();
-        formData.append('type', state.type)
-        formData.append('name', state.name)
-        formData.append('link', state.link)
+        const dataToSend = { 
+            ...state,
+            cover: imgState,
+         };
 
         if (editingData != null) {
-            const isFile = file.name ? file : editingData.cover;
-            formData.append('cover', isFile)
-            formData.append('_id', editingData._id);
-            editProduct(formData);
-        } else {
-            formData.append('cover', file)
-            createProduct(formData);
+            dataToSend._id = editingData._id;
+            editProduct(dataToSend);
+        } 
+        if (editingData == null) {
+            createProduct(dataToSend);
+        } 
 
-        }
-    }
+    };
 
     return (
         <Grid container spacing={1} justify="center" >
@@ -81,8 +78,7 @@ const Shop = ({
                     <UploadAndCrop 
                         imgState={imgState} 
                         onChange={setImgState} 
-                        setFile={setFile}
-                        file={file}
+                        // setFile={setFile}
                     />
                 </Grid> 
             </Grid>
@@ -136,6 +132,7 @@ const Shop = ({
                     className={classes.button}
                     onClick={saveData}
                     fullWidth
+                    disabled={isLoading}
                 >
                     {buttonValue}
                 </Button>
@@ -146,6 +143,8 @@ const Shop = ({
 
 export default connect(state => ({
     errors: state.apiDataReducer.errors,
+    isLoading: state.apiDataReducer.loader,
+
 }), {
     createProduct,
     editProduct,

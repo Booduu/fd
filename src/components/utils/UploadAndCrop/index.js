@@ -8,7 +8,6 @@ import '../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
 
 const UploadAndCrop = React.memo(({
     onChange,
-    setFile,
     imgState,
     errors,
 }) => {
@@ -25,14 +24,13 @@ const UploadAndCrop = React.memo(({
         reader.onloadend = () => {
             onChange(reader.result);
         };
-        setFile(acceptedFiles[0])
     };
 
     const onDropRejected = rejectedFiles => {
       console.log('reject', rejectedFiles)
     };
 
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({
+    const { getRootProps, getInputProps, isDragActive} = useDropzone({
         onDropAccepted,
         onDropRejected,
         maxFiles: 1,
@@ -67,8 +65,6 @@ const UploadAndCrop = React.memo(({
         </div>
         <Cropper 
             objectUrl={objectUrl} 
-            // setBase64={setBase64}
-            setFile={setFile}
             open={open}
             handleClose={handleClose}
             onChange={onChange}

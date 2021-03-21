@@ -1,45 +1,5 @@
 import apiFulldub from '../../../conf/api.fulldub';
 
-// export const GET_ALBUMS = 'GET_ALBUMS';
-// export const GET_ALBUMS_SUCCESS = 'GET_ALBUMS_SUCCESS';
-// export const GET_ALBUMS_FAIL = 'GET_ALBUMS_FAIL';
-
-// export const DELETE_ALBUM = 'DELETE_ALBUM';
-// export const DELETE_ALBUM_SUCCESS = 'DELETE_ALBUM_SUCCESS';
-// export const DELETE_ALBUM_FAIL = 'DELETE_ALBUM_FAIL';
-
-// export const EDIT_ALBUM = 'EDIT_ALBUM';
-// export const EDIT_ALBUM_SUCCESS = 'EDIT_ALBUM_SUCCESS';
-// export const EDIT_ALBUM_FAIL = 'EDIT_ALBUM_FAIL';
-
-// export const deleteAlbum = (album) => {
-    // return {
-    //     types: [DELETE_ALBUM, DELETE_ALBUM_SUCCESS, DELETE_ALBUM_FAIL],
-    //     promise: client => client.del(`/album/${album._id}`, {
-    //         data: album,
-    //     }),
-    //     album,
-    // }
-// }
-
-// export const getAlbum = () => {
-//     return {
-//         types: [GET_ALBUMS, GET_ALBUMS_SUCCESS, GET_ALBUMS_FAIL],
-//         promise: client => client.get('/album/albumlist'),
-//     }
-// }
-
-// export const editAlbums = (album) => {
-//     return {
-//         types: [EDIT_ALBUM, EDIT_ALBUM_SUCCESS, EDIT_ALBUM_FAIL],
-//         promise: client => client.patch(`/album/${album._id}`, {
-//             data: album,
-//         }),
-//         album,
-//     }
-// } 
-
-
 export const REQUEST_CREATE_ALBUM = 'REQUEST_CREATE_ALBUM'; 
 export const REQUEST_CREATE_ALBUM_SUCCESS ='REQUEST_CREATE_ALBUM_SUCCESS'; 
 export const REQUEST_CREATE_ALBUM_FAIL = 'REQUEST_CREATE_ALBUM_FAIL'; 
@@ -67,9 +27,13 @@ export const requestCreateAlbumFail = (error) => {
 }
 
 export const createAlbum = (album) => {
+    console.log('createAlbum', album);
     return dispatch => {
         dispatch(requestCreateAlbum());
-        return apiFulldub.post('/album/albumcreate', album)
+        return apiFulldub.post('/protected/album/albumcreate', album, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => dispatch(requestCreateAlbumSuccess(response.data)))
             .catch(error => dispatch(requestCreateAlbumFail(error)))
     }
@@ -102,12 +66,19 @@ export const requestDeleteAlbumFail = (error) => {
 }
 
 export const deleteAlbum = (album) => {
-    console.log('createAlbums', album);
+    console.log('deleteAlbum', album);
     return dispatch => {
         dispatch(requestDeleteAlbum());
-        return apiFulldub.delete(`/album/${album._id}`, { data: album })
+        return apiFulldub.delete(`/protected/album/${album._id}`, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            },
+            data: {
+                album
+            }
+        })
             .then(response => dispatch(requestDeleteAlbumSuccess(album)))
-            // .catch(error => dispatch(requestDeleteAlbumFail(error)))
+            .catch(error => dispatch(requestDeleteAlbumFail(error)))
 
             //suceess sans success
     }
@@ -175,9 +146,11 @@ export const requestEditAlbumFail = (error) => {
 
 export const editAlbum = (album) => {
     return dispatch => {
-        console.log('OOOOO')
         dispatch(requestEditAlbum());
-        return apiFulldub.patch(`/album/${album._id}`, album)
+        return apiFulldub.patch(`/protected/album/${album._id}`, album, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => dispatch(requestEditAlbumSuccess(response.data)))
             .catch(error => dispatch(requestEditAlbumFail(error)))
 

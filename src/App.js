@@ -8,8 +8,6 @@ import {
 } from './components/utils';
 import { 
   tt, 
-  logout,
-  getVideo,
   getIsMobile,
   getAlbums, 
   getLives,
@@ -21,7 +19,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { LiveManage, ShopManage, DiscoManage, AdminDiscography, AdminShop, Signin, Signup } from './components/admin';
+import { LiveManage, ShopManage, DiscoManage, Signin, Signup } from './components/admin';
 import { 
   BookingContact, 
   Discography,
@@ -34,19 +32,15 @@ import { connect } from 'react-redux';
 
 const App = ({
   tt,
-  logout,
   getIsMobile,
-  isMobile,
   getAlbums,
   getLives,
   auth,
   getProducts,
 }) => {
   const [isHome, setIsHome] = useState(false)
-  // const [history, setHistory] = useState(window.location.pathname);
 
   useEffect(() => {
-    // setHistory(window.location.pathname);
     tt();
     getAlbums();
     getLives();
@@ -73,7 +67,7 @@ const App = ({
           getIsMobile(true);
       }
   }, [width]);
-console.log('isLoggedIn', auth.isLoggedIn)
+
   return (
     <div className={style.App}>
       <Logo />
@@ -92,13 +86,12 @@ console.log('isLoggedIn', auth.isLoggedIn)
               <Route path="/shop" component={Shop} />
               <Route path="/BookingContact" component={BookingContact} />
               <Route path="/admin/signin" component={Signin}/>
-              {/* <Route path="/admin/vue" render={() => auth.isLoggedIn ? <AdminVue /> : <Redirect to='/home' />} /> */}
              
              <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
              <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
              <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
-              {/* <Route path="/admin/signin" component={Signin}/>
-              <Route path="/admin/signup" component={Signup}/> */}
+              {/* <Route path="/admin/signin" component={Signin}/>*/}
+              {/* <Route path="/admin/signup" component={Signup}/>  */}
               <Redirect to='/home' />
           </Switch>
         </div>
@@ -109,12 +102,9 @@ console.log('isLoggedIn', auth.isLoggedIn)
 }
 
 export default connect(state => ({
-  isMobile: state.landingReducer.isMobile,
   auth: state.authentificationReducer.auth
 }), { 
   tt, 
-  logout,
-  getVideo,
   getIsMobile,
   getAlbums,
   getLives,

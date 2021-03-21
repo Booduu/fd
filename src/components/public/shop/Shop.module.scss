@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    // background-color: rgb(161, 129, 38);
 
     .flex_container {
         max-width: 1000px;
@@ -88,14 +87,6 @@
     }
 }
 
-// @media (max-width: $break-medium) {
-//     .container {
-//         .flex_container {
-//             grid-template-columns: 1fr 1fr ;
-//         }
-//     }
-// }
-
 @media (max-width: $break-medium) {
     .container {
         .flex_container {
@@ -104,10 +95,6 @@
             gap: 15px;
             .item_container {
                 width: 100%;
-                // margin-bottom: 20px;
-                img {
-
-                }
             } 
         }
     }

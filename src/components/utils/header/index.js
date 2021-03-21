@@ -51,6 +51,7 @@ const Header = ({
                                 <NavLink  
                                     key={index + link.name} 
                                     to={link.to}
+                                    activeClassName={style.active}
                                     onClick={() => toggleMenu(false)}
                                 >
                                     {link.name}

@@ -31,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  container: {
+    marginTop: '70px'
+  },
+  backdrop: {
+    backgroundColor: 'white',
+    color: 'white',
+  },
 }));
 
 const LiveManage = ({
@@ -49,11 +56,17 @@ const LiveManage = ({
     return ( 
         // <div>eez</div> 
         <>
-          <Dialogs 
-            name="shows" 
-            setOpenDialog={openDialog} 
-          />
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className={classes.container}>
+              <Dialogs 
+                name="shows" 
+                setOpenDialog={openDialog} 
+                BackdropProps={{
+                  classes: {
+                    root: classes.backdrop,
+                  }
+                }}
+                message="live"
+              />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -73,10 +86,10 @@ const LiveManage = ({
                                 <TableCell align="left">{live.name}</TableCell>
                                 <TableCell align="left">{live.ticketLink}</TableCell>
                                 <TableCell align="left">
-                                    <EditIcon onClick={() => openDialog("shows", live)} />
+                                    <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("shows", live)} />
                                 </TableCell>
                                 <TableCell align="left">
-                                    <DeleteForeverOutlinedIcon onClick={() => deleteLive(live)} /> 
+                                    <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteLive(live)} /> 
                                 </TableCell>
                             </TableRow>
                         ))}

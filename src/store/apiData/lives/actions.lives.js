@@ -65,7 +65,10 @@ export const requestCreateLiveFail = (error) => {
 export const createLive = (live) => {
     return dispatch => {
         dispatch(requestCreateLive());
-        return apiFulldub.post('/live/livecreate', live)
+        return apiFulldub.post('/protected/live/livecreate', live, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => {
                 dispatch(requestCreateLiveSuccess(response.data));
                 dispatch(closeDialog());
@@ -104,7 +107,10 @@ export const requestDeleteLiveFail = (error) => {
 export const deleteLive = (live) => {
     return dispatch => {
         dispatch(requestDeleteLive());
-        return apiFulldub.delete(`/live/livedelete/${live._id}`)
+        return apiFulldub.delete(`/protected/live/livedelete/${live._id}`, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => dispatch(requestDeleteLiveSuccess(live)))
             .catch(error => dispatch(requestDeleteLiveFail(error)))
     }
@@ -141,7 +147,10 @@ export const requestEditLiveFail = (error) => {
 export const editLive = (live) => {
     return dispatch => {
         dispatch(requestEditLive());
-        return apiFulldub.patch(`/live/${live._id}`, live)
+        return apiFulldub.patch(`/protected/live/${live._id}`, live, {
+            headers: {
+            'auth-token': `${localStorage.getItem('jwtToken')}`
+            }})
             .then(response => {
                 dispatch(requestEditLiveSuccess(live));
                 // dispatch(closeDialog());

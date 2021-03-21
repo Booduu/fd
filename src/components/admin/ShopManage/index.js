@@ -32,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  container: {
+    marginTop: '70px'
+  },
+  backdrop: {
+    backgroundColor: 'white',
+    color: 'white',
+  },
 }));
 
 const ShopManage = ({
@@ -50,11 +57,17 @@ const ShopManage = ({
     return ( 
         // <div>eez</div> 
         <>
-          <Dialogs 
-            name="shop" 
-            setOpenDialog={openDialog} 
-          />
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className={classes.container}>
+                <Dialogs 
+                  name="shop" 
+                  setOpenDialog={openDialog} 
+                  BackdropProps={{
+                    classes: {
+                      root: classes.backdrop,
+                    }
+                  }}
+                  message="product"
+                />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -73,14 +86,14 @@ const ShopManage = ({
                                 
                                 <TableCell align="left">{product.link}</TableCell>
                                 <TableCell align="left">
-                                <Avatar variant="square" className={classes.square} src={`http://localhost:3030/uploads/products/${product.cover}`}/>
+                                <Avatar variant="square" className={classes.square} src={product.cover} />
                                 </TableCell>
                                 
                                 <TableCell align="left"> 
-                                <EditIcon onClick={() => openDialog("shop", product)} />
+                                <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("shop", product)} />
                                 </TableCell>
                                 <TableCell align="left"> 
-                                <DeleteForeverOutlinedIcon onClick={() => deleteProduct(product)} />
+                                <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteProduct(product)} />
                                 </TableCell>
                             </TableRow>
                             ))}

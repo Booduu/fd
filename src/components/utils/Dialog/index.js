@@ -7,12 +7,14 @@ import { AdminLives, AdminDiscography, AdminShop } from '../../admin/index';
 import { connect } from 'react-redux';
 import { closeDialog } from '../../../store/actions';
 
+
 const Dialogs = React.memo(({
     name,
     setOpenDialog,
     closeDialog,
     dialogIsOpen,
     editingData,
+    message,
 }) => {
 
   const handleClickOpen = () => {
@@ -22,22 +24,28 @@ const Dialogs = React.memo(({
   const handleClose = () => {
     closeDialog();
   };
-  console.log('dialofg');
+
   return (
-    <div >
-      <AddIcon fontSize="large" color="primary" onClick={handleClickOpen} />
+    <div style={{ display: 'flex', alignItems: 'center'}}>
+      <AddIcon 
+        style={{ color: '#ff7675' }} 
+        fontSize="large" 
+        onClick={handleClickOpen} 
+      />
         <Dialog 
           open={dialogIsOpen} 
           onClose={handleClose} 
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">{name}</DialogTitle>
+          <DialogTitle id="form-dialog-title">{editingData ? 'Edit' : 'Add'}{' '}{message}</DialogTitle>
           <DialogContent>
               {name === 'shows' &&  <AdminLives editingData={editingData} />}
               {name === 'disco' &&  <AdminDiscography editingData={editingData}/>}
               {name === 'shop' &&  <AdminShop editingData={editingData}/>}
           </DialogContent>
         </Dialog>
+
+        <span  style={{ color: '#ff7675' }} >Add {message}</span>
     </div>
   );
 });

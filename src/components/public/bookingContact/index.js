@@ -10,7 +10,7 @@ import aftw_logo from '../../../assets/design/logo/logo_aftrwrk.svg';
 
 const BookingContact = () => {
     return ( 
-        <div className={style.container}>
+    <div className={style.container}>
         <div className={style.flex_container}>
             <div className={style.logos_container}>
                 <div className={[style.logo_container, style.aft_logo].join(' ')}>
@@ -38,69 +38,33 @@ const BookingContact = () => {
             </div>
             <div className={style.social_container}>
                 <div className={style.link}>
-                    <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
-                    <span>facebook</span>
+                    <a href="https://www.facebook.com/FullDubOfficiel/" target="blank">
+                        <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
+                        <span>facebook</span>
+                    </a>
                 </div>
                 <div className={style.link}>
+                <a href="https://www.instagram.com/full_dub_official/?hl=fr" target="blank">
                     <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
                     <span>instagram</span>
+                </a>
                 </div>
                 <div className={style.link}>
+                <a href="https://soundcloud.com/full-dub-1" target="blank">
                     <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
                     <span>soundcloud</span>
+                </a>
                 </div>
                 <div className={style.link}>
+                <a href="https://www.youtube.com/channel/UCxjFHEtVmTWse7IOPze0vew" target="blank">
                     <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
                     <span>youtube</span>
+                </a>
                 </div>
             </div>
         </div>
     </div>
-    //     <div className={style.container}>
-    //         <div className={style.flex_container}>
-    //             <div className={style.logos_container}>
-    //                 <div className={[style.logo_container, style.aft_logo].join(' ')}>
-    //                     <div className={style.img_container}>
-    //                         <img alt="afterwork contact" className={style.logo1} src={aftw_logo}/>
-    //                     </div>
-    //                     <div>
-    //                         <span>mathias dornin</span>
-    //                         <span>0033 608 673 980</span>
-    //                         <span>matt@aftrwrkprod.fr</span>
-    //                     </div> 
-    //                 </div>
-    //                 <div className={[style.logo_container, style.fd_logo].join(' ')}>
-    //                     <div className={style.img_container}>
-    //                         <img alt="fulldub contact" className={style.logo2} src={fd_logo}/>
-    //                     </div>
-    //                     <div>
-    //                         <span>FABIEN ROMAIN</span>
-    //                         <span>0033 678 109 383</span>
-    //                         <span>full.dub.mail@gmail.com</span>
-    //                     </div> 
-    //                 </div>
-    //             </div>
-    //             <div className={style.social_container}>
-    //                 <div className={style.link}>
-    //                     <img alt="lien facebook" src={fb} style={{ width: '30px' }}/>
-    //                     <span>facebook</span>
-    //                 </div>
-    //                 <div className={style.link}>
-    //                     <img  alt="lien instagram" src={lin} style={{ width: '30px' }}/>
-    //                     <span>instagram</span>
-    //                 </div>
-    //                 <div className={style.link}>
-    //                     <img  alt="lien soundcloud" src={sc} style={{ width: '30px' }}/>
-    //                     <span>soundcloud</span>
-    //                 </div>
-    //                 <div className={style.link}>
-    //                     <img  alt="lien youtube" src={yt} style={{ width: '30px' }}/>
-    //                     <span>youtube</span>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //  </div>
-     );
+  );
 }
  
 export default BookingContact;

@@ -20,22 +20,28 @@
         .dates_container {
             .date_line {
                 padding: 5px;
-                * > {
-                    color: white;
+                // * > {
+                //     color: white;
                     
+                // }
+                div {
+                    display: inline;
                 }
-                // span {
+                // span:not(:last-child) {
                 //     &:after {
-                //         content: "/";
+                //         content: " / ";
                 //     }
                 // }
 
-                
-    
-                .ticket_link {
-                    color: rgb(202, 129, 19);
-                    font-weight: 500;
+                div {
+                    .ticket_link {
+                        .link {
+                            color: rgb(202, 129, 19);
+                            font-weight: 500;
+                        }
+                    }
                 }
+                
             }
         }  
 
@@ -47,11 +53,28 @@
     }
 }
 
+@media (min-width: $break-small) {
+    .container {
+        .overlay {
+            .dates_container {
+                .date_line {
+                   
+                    span:not(:last-child) {
+                        &:after {
+                            content: " / ";
+                        }
+                    }
+                    
+                }
+            }  
+        }
+    }
+}
 @media (max-width: $break-small) {
     .container {
         .overlay {
            width: 80%;
-           padding: 20px;
+           padding: 15px;
 
            .dates_container {
                .date_line {
@@ -61,11 +84,17 @@
                    margin-bottom: 20px;
 
                   
-                    span:nth-child(3) {
-                            &:after {
-                                content: "-";
-                            }
+                   div {
+                    display: block;
+
+                    span:nth-child(1) {
+                        &:after {
+                            content: " - ";
                         }
+                    }
+                    
+                   }
+                   
                }
            }
         }
