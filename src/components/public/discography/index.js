@@ -3,12 +3,9 @@ import style from './Discography.module.scss';
 import { wrapGrid } from 'animate-css-grid';
 import ReactPlayer from "react-player";
 import { Carousel } from '../../utils';
-
-
-
 import './animeGrid.css';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 
 const Player = ({
   width,
@@ -26,6 +23,13 @@ const Player = ({
       className={ clas ? style.player : null }
     />  
   )
+}
+
+Player.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  url: PropTypes.string,
+  clas: PropTypes.string,
 }
 
 const Card = ({
@@ -71,6 +75,10 @@ const Card = ({
       );
 }
 
+Card.propTypes = {
+  album: PropTypes.object,
+}
+
 class Grid extends React.Component {
   componentDidMount() {
     // will automatically clean itself up when dom node is removed
@@ -94,6 +102,10 @@ class Grid extends React.Component {
   }
 }
 
+Grid.propTypes = {
+  albums: PropTypes.object,
+  settings: PropTypes.object,
+}
 
 const Discography = ({
   albums,
@@ -116,12 +128,10 @@ const Discography = ({
       <div className={style.container}> 
 
       {!isMobile ? (
-      // <div className="p-4">
         <Grid 
           settings={state} 
           albums={albums}
         /> 
-      // </div>
       ) : (
         <div className={style.containerMobile}>
           <div className={style.player_container}>
@@ -146,6 +156,12 @@ const Discography = ({
     </>
     
   );
+}
+
+
+Discography.propTypes = {
+  albums: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 }
 
 export default connect(state => ({

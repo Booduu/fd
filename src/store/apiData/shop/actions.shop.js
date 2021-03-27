@@ -96,7 +96,6 @@ export const requestEditProduct = () => {
 }
 
 export const requestEditProductSuccess = (product) => {
-    console.log('requestDeleteProductSuccess', product)
     return {
         type: REQUEST_EDIT_PRODUCT_SUCCESS,
         product
@@ -104,7 +103,6 @@ export const requestEditProductSuccess = (product) => {
 }
 
 export const requestEditProductFail = (error) => {
-    console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_EDIT_PRODUCT_FAIL,
         error
@@ -112,9 +110,7 @@ export const requestEditProductFail = (error) => {
 }
 
 export const editProduct = (product) => {
-    console.log('RRRRRRR', product)
     return dispatch => {
-        console.log('OOOOO')
         dispatch(requestEditProduct());
         return apiFulldub.patch(`/protected/product/${product._id}`, product, {
             headers: {

@@ -5,18 +5,13 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import PropTypes from 'prop-types';
 
 const DatePicker = ({
   label,
   onChange,
   value,
 }) => {
-    // const [selectedDate, setSelectedDate] = useState(new Date());
-  
-    // const handleDateChange = (date) => {
-    //   setSelectedDate(date);
-    // };
-
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
@@ -35,4 +30,9 @@ const DatePicker = ({
     );
   }
  
+DatePicker.propTypes = {
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  // value: PropTypes.func,
+}
 export default DatePicker;

@@ -18,6 +18,7 @@ import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined'
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import Dialogs from '../../utils/Dialog';
+import PropTypes from 'prop-types';
 
 moment().format();
 
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const LiveManage = ({
     lives,
     deleteLive,
@@ -54,7 +56,6 @@ const LiveManage = ({
     }, [lives]);
 
     return ( 
-        // <div>eez</div> 
         <>
             <TableContainer component={Paper} className={classes.container}>
               <Dialogs 
@@ -100,6 +101,11 @@ const LiveManage = ({
      );
 }
  
+LiveManage.propTypes = {
+  lives: PropTypes.array.isRequired,
+  deleteLive: PropTypes.func,
+  openDialog: PropTypes.func,
+}
 
 export default connect(state => ({
     lives: state.apiDataReducer.lives,

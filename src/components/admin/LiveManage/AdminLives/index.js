@@ -9,9 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { 
     createLive,
-    closeDialog,
     editLive,
 } from '../../../../store/actions';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
 const AdminLives = ({
     createLive,
     editingData,
-    closeDialog,
     editLive,
     errors,
+    isLoading,
 }) => {
     const classes = useStyles();
     const buttonValue = editingData != null ? "Edit" : "Save";
@@ -36,7 +37,6 @@ const AdminLives = ({
         name: editingData != null ? editingData.name : '',
         ticketLink: editingData != null ? editingData.ticketLink : '',
         wait: true,
-        // wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
     });
 
     const handleChange = (e) => {
@@ -47,13 +47,6 @@ const AdminLives = ({
             wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
         });
     };
-
-    // useEffect(() => {
-    //     setState({
-    //         ...state,
-    //         wait: state.city === '' || state.place === '' || state.name === '' || state.ticketLink === '',
-    //     });
-    // }, [state]);
 
     const saveData = () => {
         const dataToSend = { ...state };
@@ -143,14 +136,19 @@ const AdminLives = ({
         </Grid>
     );
 }
+
+AdminLives.propTypes = {
+    editingData: PropTypes.func,
+    createLive: PropTypes.func.isRequired,
+    editLive: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+}
  
 export default connect(state => ({
     lives: state.apiDataReducer.lives,
     errors: state.apiDataReducer.errors,
 }), {
     createLive,
-    // getLives,
-    // editLiveItem,
     editLive,
-    closeDialog,
 })(AdminLives);

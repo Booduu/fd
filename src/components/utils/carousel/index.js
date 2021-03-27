@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import style from './Carousel.module.scss';
+import PropTypes from 'prop-types';
 
 const Carousel = ({
   albums,
@@ -41,6 +42,12 @@ const Carousel = ({
       </div>
     )
 }
+
+Carousel.propTypes = {
+  albums: PropTypes.array.isRequired,
+  handleAlbum: PropTypes.func,
+}
+
 
 export default Carousel;
 

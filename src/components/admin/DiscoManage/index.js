@@ -20,6 +20,7 @@ import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined'
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import Dialogs from '../../utils/Dialog';
+import PropTypes from 'prop-types';
 
 moment().format();
 
@@ -57,8 +58,7 @@ const ShopManage = ({
 
     return ( 
         <>
-          
-            <TableContainer component={Paper} className={classes.container}>
+          <TableContainer component={Paper} className={classes.container}>
             <Dialogs 
                 name="disco" 
                 setOpenDialog={openDialog} 
@@ -68,45 +68,46 @@ const ShopManage = ({
                   }
                 }}
                 message="album"
-              />
-                <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
+            />
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                  <TableRow>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
-                    <TableCell> 
-                    </TableCell>
+                  <TableCell></TableCell>
+                  </TableRow>
+              </TableHead>
+              <TableBody>
+                {albums.map((album) => (
+                    <TableRow key={album._id}>
+                        <TableCell align="left">tracklist</TableCell>
+                        <TableCell align="left">{album.title}</TableCell>
+                        <TableCell align="left">{album.label} label</TableCell>
+                        <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>
+                        <TableCell align="left">
+                        <Avatar variant="square" className={classes.square} src={album.cover} />
+                        </TableCell>
+                        <TableCell align="left"> 
+                          <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("disco", album)} />
+                        </TableCell>
+                        <TableCell align="left"> 
+                          <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteAlbum(album)} />
+                        </TableCell>
                     </TableRow>
-                </TableHead>
-                <TableBody>
-                   
-                        {/* {showsTable("shows")} */}
-                        {albums.map((album) => (
-                            <TableRow key={album._id}>
-                                <TableCell align="left">tracklist</TableCell>
-                                <TableCell align="left">{album.title}</TableCell>
-                                <TableCell align="left">{album.label} label</TableCell>
-                                <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>
-                                <TableCell align="left">
-                                <Avatar variant="square" className={classes.square} src={album.cover} />
-                                </TableCell>
-
-                                <TableCell align="left"> 
-                                <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("disco", album)} />
-                                </TableCell>
-                                <TableCell align="left"> 
-                                <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteAlbum(album)} />
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                </TableBody>
+                ))}
+              </TableBody>
             </Table>
           </TableContainer>
         </>
      );
 }
  
+ShopManage.propTypes = {
+  albums: PropTypes.array.isRequired,
+  deleteAlbum: PropTypes.func,
+  openDialog: PropTypes.func,
+}
 
 export default connect(state => ({
     albums: state.apiDataReducer.albums,

@@ -7,6 +7,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PropTypes from 'prop-types';
+ 
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,11 +51,6 @@ const Cropper = ({
 
     const makeClientCrop = async (image, crop) => {
       if (image && crop.width && crop.height) {
-        // const croppedImageUrl = await getCroppedImg(
-        //   image,
-        //   crop,
-        //   'newFile.jpeg'
-        // );
         await getCroppedImg(
           image,
           crop,
@@ -82,10 +79,6 @@ const Cropper = ({
           crop.width,
           crop.height,
         );
-      
-        // As Base64 string
-        // const base64Image = canvas.toDataURL('image/jpeg');
-        // setBase64(base64Image)
        
         return new Promise((resolve, reject) => {
           canvas.toBlob(blob => {
@@ -129,6 +122,13 @@ const Cropper = ({
         </DialogActions>
       </Dialog>
     );
-
 }
+
+Cropper.propTypes = {
+  objectUrl: PropTypes.string,
+  open: PropTypes.bool,
+  handleClose: PropTypes.func,
+  onChange: PropTypes.func,
+}
+
 export default Cropper;

@@ -14,6 +14,7 @@ import {
 } from '../../../../store/actions';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 const Shop = ({
     editingData,
     editProduct,
@@ -37,9 +39,9 @@ const Shop = ({
     isLoading,
 }) => {
     const classes = useStyles();
+    
     const buttonValue = editingData != null ? "Edit" : "Save";
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : '');
-    // const [file, setFile] = useState({});
     const [state, setState] = useState({
         type: editingData && editingData?.type ? editingData.type : 'Vinyl',
         link: editingData && editingData?.link ? editingData.link : '',
@@ -139,6 +141,14 @@ const Shop = ({
             </Grid>
         </Grid>
     )
+}
+
+Shop.propTypes = {
+    editingData: PropTypes.func,
+    createProduct: PropTypes.func.isRequired,
+    editProduct: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
 }
 
 export default connect(state => ({

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import style from './Home.module.scss';
+import PropTypes from 'prop-types';
 
 const Home = ({
     setIsHome,
@@ -31,6 +32,11 @@ const Home = ({
      );
 }
  
+Home.propTypes = {
+    albums: PropTypes.array.isRequired,
+    setIsHome: PropTypes.func,
+}
+
 export default connect(state => ({
     albums: state.apiDataReducer.albums,
 }))(Home);

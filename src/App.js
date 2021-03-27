@@ -29,6 +29,7 @@ import {
   LandingPage,
 } from './components/public';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const App = ({
   tt,
@@ -96,9 +97,17 @@ const App = ({
           </Switch>
         </div>
       </Router>
-     
     </div>
   )
+}
+
+App.propTypes = {
+  auth: PropTypes.object.isRequired,
+  tt: PropTypes.func.isRequired,
+  getIsMobile: PropTypes.func.isRequired,
+  getAlbums: PropTypes.func.isRequired,
+  getLives: PropTypes.func.isRequired,
+  getProducts: PropTypes.func.isRequired,
 }
 
 export default connect(state => ({

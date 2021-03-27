@@ -6,6 +6,8 @@ import { logout, toggleMenu } from '../../../store/actions';
 import style from './Header.module.scss';
 
 import { menuListPublic, menuListAdmin } from '../../../Constants/menu-list';
+import PropTypes from 'prop-types';
+ 
 
 const Header = ({
     auth,
@@ -69,6 +71,14 @@ const Header = ({
             </div>
         </>
      );
+}
+
+Header.propTypes = {
+    auth: PropTypes.object.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    isMobile: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired,
+    isMobile: PropTypes.func.isRequired,
 }
  
 export default connect(state => ({

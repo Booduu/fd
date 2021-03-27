@@ -5,6 +5,8 @@ import style from './AdminDiscography.module.scss';
 import Cropper from './Cropper';
 // import ReactCrop from 'react-image-crop';
 import '../../../../node_modules/react-image-crop/lib/ReactCrop.scss';
+import PropTypes from 'prop-types';
+ 
 
 const UploadAndCrop = React.memo(({
     onChange,
@@ -72,6 +74,12 @@ const UploadAndCrop = React.memo(({
     </>
      );
 });
+
+UploadAndCrop.propTypes = {
+    albums: PropTypes.array.isRequired,
+    imgState: PropTypes.string,
+    errors: PropTypes.object.isRequired,
+}
  
 export default connect(state => ({
     errors: state.apiDataReducer.errors,

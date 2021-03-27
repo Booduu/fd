@@ -1,5 +1,6 @@
 import React from 'react';
 import  style from './Shop.module.scss';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Shop = ({
@@ -27,6 +28,11 @@ const Shop = ({
      );
 }
  
+
+Shop.propTypes = {
+    products: PropTypes.array.isRequired,
+}
+
 export default connect(state => ({
     products: state.apiDataReducer.products,
 }))(Shop);

@@ -18,6 +18,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         height: '30px',
     },
   }));
+
 
 const Discography = ({
     editingData,
@@ -224,6 +226,14 @@ const Discography = ({
             </Grid>
         </Grid>
      );
+}
+
+Discography.propTypes = {
+    editingData: PropTypes.func,
+    createAlbum: PropTypes.func.isRequired,
+    editAlbum: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
 }
  
 export default connect(state => ({

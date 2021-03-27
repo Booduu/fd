@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleMenu } from '../../../store/actions';
 import style from './Burger.module.scss';
+import PropTypes from 'prop-types';
 
 const Burger = ({
     toggleMenu,
@@ -23,6 +24,10 @@ const Burger = ({
     );
 }
  
+Burger.propTypes = {
+    isOpenMenu: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func,
+}
 export default connect(state => ({
     isOpenMenu: state.menuReducer.isOpen,
 }), {

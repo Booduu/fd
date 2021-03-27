@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import { connect } from 'react-redux';
 import style from './Shows.module.scss';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 moment().format();
 
@@ -44,6 +45,12 @@ const Shows = ({
             </div>
         </div>
      );
+}
+
+ 
+Shows.propTypes = {
+    lives: PropTypes.array.isRequired,
+    isMobile: PropTypes.bool.isRequired,
 }
  
 export default connect(state => ({

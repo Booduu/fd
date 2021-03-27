@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/actions';
+import PropTypes from 'prop-types';
 
 function Copyright() {
   return (
@@ -142,6 +143,10 @@ const Signup = ({
       </Box>
     </Container>
   );
+}
+
+Signup.propTypes = {
+  signUp: PropTypes.func.isRequired,
 }
 
 export default connect(null, { signUp })(Signup);

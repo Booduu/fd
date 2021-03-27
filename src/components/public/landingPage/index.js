@@ -2,8 +2,8 @@ import React from 'react';
 import style from './LandingPage.module.scss';
 import video from '../../../assets/video/background_video.mp4';
 import ReactPlayer from 'react-player'
+import PropTypes from 'prop-types';
 
-// Render a YouTube video player
 
 const LandingPage = ({
     isHome,
@@ -47,5 +47,8 @@ const LandingPage = ({
      );
 }
  
+LandingPage.propTypes = {
+    isHome: PropTypes.bool,
+  }
 export default LandingPage;
  

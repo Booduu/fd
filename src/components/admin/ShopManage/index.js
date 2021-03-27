@@ -19,6 +19,7 @@ import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined'
 import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import Dialogs from '../../utils/Dialog';
+import PropTypes from 'prop-types';
 
 moment().format();
 
@@ -60,13 +61,13 @@ const ShopManage = ({
             <TableContainer component={Paper} className={classes.container}>
                 <Dialogs 
                   name="shop" 
+                  message="product"
                   setOpenDialog={openDialog} 
                   BackdropProps={{
                     classes: {
                       root: classes.backdrop,
                     }
                   }}
-                  message="product"
                 />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -104,6 +105,11 @@ const ShopManage = ({
      );
 }
  
+ShopManage.propTypes = {
+  products: PropTypes.array.isRequired,
+  deleteProduct: PropTypes.func,
+  openDialog: PropTypes.func,
+}
 
 export default connect(state => ({
     products: state.apiDataReducer.products,

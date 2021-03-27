@@ -6,6 +6,9 @@ import AddIcon from '@material-ui/icons/Add';
 import { AdminLives, AdminDiscography, AdminShop } from '../../admin/index';
 import { connect } from 'react-redux';
 import { closeDialog } from '../../../store/actions';
+import PropTypes from 'prop-types';
+ 
+
 
 
 const Dialogs = React.memo(({
@@ -49,6 +52,16 @@ const Dialogs = React.memo(({
     </div>
   );
 });
+
+
+Dialogs.propTypes = {
+  name: PropTypes.string,
+  deleteAlbum: PropTypes.func,
+  closeDialog: PropTypes.func.isRequired,
+  dialogIsOpen: PropTypes.bool.isRequired,
+  editingData: PropTypes.object.isRequired,
+
+}
 
 export default connect(state => ({
   dialogIsOpen: state.dialogsReducer.dialogIsOpen,
