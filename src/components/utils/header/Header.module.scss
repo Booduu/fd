@@ -8,6 +8,7 @@
     top: 200px;
     width: 160px;
     z-index: 500;
+
     .menuPublic, .menuAdmin {
         @extend .flexMenuDisplay;
 
@@ -61,11 +62,9 @@
             justify-content: center;
 
             > * {
-                // a {
-                    text-align: end;
-                    margin-right: unset;
-                    padding: 3px 7px 3px 15px;
-                // } 
+                text-align: end;
+                margin-right: unset;
+                padding: 3px 7px 3px 15px;
             }
         }
     }

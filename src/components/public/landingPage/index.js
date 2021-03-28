@@ -28,12 +28,6 @@ const LandingPage = ({
                         },
                     }}
                 />
-                // <video className={style.video} autoPlay loop muted>
-                //     <source 
-                //         src="https://www.youtube.com/watch?v=CmlIn8dD8o4&ab_channel=PRODAFTRWRK"
-                //         type='video/youtube' 
-                //     />
-                // </video>
             ) : (
                 <video className={style.video} autoPlay loop muted> 
                     <source 

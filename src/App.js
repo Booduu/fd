@@ -73,7 +73,6 @@ const App = ({
     <div className={style.App}>
       <Logo />
       <Burger />
-      {/* background video || img : */}
       <LandingPage isHome={isHome}/>
       <Router>
         <div className={style.menu}>
@@ -86,13 +85,13 @@ const App = ({
               <Route path="/shows" component={Shows} />
               <Route path="/shop" component={Shop} />
               <Route path="/BookingContact" component={BookingContact} />
+
               <Route path="/admin/signin" component={Signin}/>
+              {/* <Route path="/admin/signup" component={Signup}/>  */}
              
              <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
              <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
              <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
-              {/* <Route path="/admin/signin" component={Signin}/>*/}
-              {/* <Route path="/admin/signup" component={Signup}/>  */}
               <Redirect to='/home' />
           </Switch>
         </div>

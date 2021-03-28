@@ -71,7 +71,6 @@ export const requestSignIn = () => {
 }
 
 export const requestSignInSuccess = (value) => {
-    console.log('requestSignInSuccess', value)
     return {
         type: REQUEST_SIGNIN_SUCCESS,
         value,
@@ -79,7 +78,6 @@ export const requestSignInSuccess = (value) => {
 }
 
 export const requestSignInFail = (error) => {
-    console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_SIGNIN_FAIL,
         error
@@ -87,7 +85,6 @@ export const requestSignInFail = (error) => {
 }
 
 export const signIn = (value) => {
-    console.log('valuevaluevalue', value);
     return dispatch => {
         dispatch(requestSignIn());
         return apiFulldub.post('/user/login', value)

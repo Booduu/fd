@@ -17,7 +17,7 @@ const Header = ({
     isMobile,
 }) => {
 
-    const [displayMenuBar, setDisplayMenuBar] = useState(isOpen ? 'translate(0%)' : 'translate(-100%)');
+    const [displayMenuBar, setDisplayMenuBar] = useState(isOpen ? 'translate(0%)' : 'translate(250%)');
 
     useEffect(() => {
         setDisplayMenuBar(isOpen ? 'translate(150%)' : '');
