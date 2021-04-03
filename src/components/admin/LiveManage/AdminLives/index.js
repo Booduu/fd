@@ -81,8 +81,8 @@ const AdminLives = ({
                     label="Ville"
                     value={state.city}
                     onChange={handleChange}
-                    error={errors != null && errors?.city?.message}
-                    helperText={errors?.city?.message ? errors.city.message : ''}
+                    error={errors != null && errors?.messages?.city}
+                    helperText={errors?.messages?.city ? errors.messages.city : ''}
                     fullWidth
                 />
             </Grid>
@@ -92,8 +92,8 @@ const AdminLives = ({
                     label="Salle / Lieux"
                     value={state.place}
                     onChange={handleChange}
-                    error={errors != null && errors?.place?.message}
-                    helperText={errors?.place?.message ? errors.place.message : ''}
+                    error={errors != null && errors?.messages?.place}
+                    helperText={errors?.messages?.place ?errors.messages.place : ''}
                     fullWidth
                 />
             </Grid>
@@ -103,8 +103,8 @@ const AdminLives = ({
                     label="Nom"
                     value={state.name}
                     onChange={handleChange}
-                    error={errors != null && errors?.name?.message}
-                    helperText={errors?.name?.message ? errors.name.message : ''}
+                    error={errors != null && errors?.messages?.name}
+                    helperText={errors?.messages?.name ? errors.messages.name : ''}
                     fullWidth
                 />
             </Grid>
@@ -114,8 +114,8 @@ const AdminLives = ({
                     label="ticket link"
                     value={state.ticketLink}
                     onChange={handleChange}
-                    error={errors != null && errors?.ticketLink?.message}
-                    helperText={errors?.ticketLink?.message ? errors.ticketLink.message : ''}
+                    error={errors != null && errors?.messages?.ticketLink}
+                    helperText={errors?.messages?.ticketLink ? errors.messages.ticketLink : ''}
                     fullWidth
                 />
             </Grid>
@@ -126,7 +126,6 @@ const AdminLives = ({
                     size="large"
                     className={classes.button}
                     onClick={saveData}
-                    // disabled={state.wait}
                     fullWidth
                 >
                     {buttonValue}

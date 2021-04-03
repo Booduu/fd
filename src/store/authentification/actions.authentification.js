@@ -1,8 +1,5 @@
 import apiFulldub from '../../conf/api.fulldub';
 
-// export const SIGN_UP = 'SIGN_UP';
-// export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-// export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
 
 export const LOGOUT = 'LOGOUT';
 
@@ -10,17 +7,7 @@ export const TEST = 'TEST';
 export const REQUEST_PROTECTED = 'REQUEST_PROTECTED';
 export const REQUEST_PROTECTED_SUCCESS = 'REQUEST_PROTECTED_SUCCESS'; 
 export const REQUEST_PROTECTED_ERROR = 'REQUEST_PROTECTED_ERROR'; 
-
-
-
-// export const signUp = (values) => {
-//     return {
-//         types: [SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_ERROR],
-//         promise: client => client.post('/user', {
-//             data: values
-//         })
-//     }
-// }   
+ 
 
 // SIGNUP
 export const REQUEST_SIGNUP = 'REQUEST_SIGNUP'; 
@@ -78,9 +65,11 @@ export const requestSignInSuccess = (value) => {
 }
 
 export const requestSignInFail = (error) => {
+    console.log('erooooo', error.data )
+
     return {
         type: REQUEST_SIGNIN_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -89,7 +78,7 @@ export const signIn = (value) => {
         dispatch(requestSignIn());
         return apiFulldub.post('/user/login', value)
             .then(response => dispatch(requestSignInSuccess(response.data)))
-            .catch(error => dispatch(requestSignInFail(error)))
+            .catch(error => dispatch(requestSignInFail(error.response)))
     }
 }
 
@@ -122,6 +111,22 @@ export const requestProtectedError = (error) => {
 }
 
 
+// export const tt = () => {
+//     return dispatch => {
+//         dispatch(requestProtected());
+//         return apiFulldub.get('/protected', {
+//             headers: {
+//             'auth-token': `${localStorage.getItem('jwtToken')}`
+//             }})
+//             .then( response => response.data)
+//             .then(data => {
+//                 const user = {...data}
+//                 dispatch(requestProtectedSuccess(user))
+//             },
+//             error => dispatch(requestProtectedError(error))
+//             )   
+//     }
+// }
 export const tt = () => {
     return dispatch => {
         dispatch(requestProtected());
@@ -129,12 +134,13 @@ export const tt = () => {
             headers: {
             'auth-token': `${localStorage.getItem('jwtToken')}`
             }})
-            .then( response => response.data)
+            .then(response => response.data)
             .then(data => {
                 const user = {...data}
                 dispatch(requestProtectedSuccess(user))
-            },
-            error => dispatch(requestProtectedError(error))
-            )   
+            })
+            .catch(error => dispatch(requestProtectedError(error)))    
     }
 }
+
+

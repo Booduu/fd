@@ -80,19 +80,18 @@ const App = ({
         </div>
         <div className={style.content}>
           <Switch>
-              <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
-              <Route path="/discography" component={Discography} />
-              <Route path="/shows" component={Shows} />
-              <Route path="/shop" component={Shop} />
-              <Route path="/BookingContact" component={BookingContact} />
+            <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
+            <Route path="/discography" component={Discography} />
+            <Route path="/shows" component={Shows} />
+            <Route path="/shop" component={Shop} />
+            <Route path="/BookingContact" component={BookingContact} />
 
-              <Route path="/admin/signin" component={Signin}/>
-              {/* <Route path="/admin/signup" component={Signup}/>  */}
+            <Route path="/admin/signin" component={Signin}/>
              
-             <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
-             <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
-             <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
-              <Redirect to='/home' />
+            <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
+            <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
+            <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
+            <Redirect to='/home' />
           </Switch>
         </div>
       </Router>
@@ -118,3 +117,6 @@ export default connect(state => ({
   getLives,
   getProducts,
  })(App);
+
+
+{/* <Route path="/admin/signup" component={Signup}/>  */}

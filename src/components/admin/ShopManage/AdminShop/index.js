@@ -106,8 +106,8 @@ const Shop = ({
                         label="Name"
                         value={state.name}
                         onChange={handleChange}
-                        error={errors != null && errors?.name?.message}
-                        helperText={errors?.name?.message ? errors.name.message : ''}
+                        error={errors != null && errors?.messages?.name}
+                        helperText={errors?.messages?.name ? errors.messages.name : ''}
                         fullWidth
                     />
                 </Grid>
@@ -118,8 +118,8 @@ const Shop = ({
                             label="Link"
                             value={state.link}
                             onChange={handleChange}
-                            error={errors != null && errors?.link?.message}
-                            helperText={errors?.link?.message ? errors.link.message : ''}
+                            error={errors != null && errors?.messages?.link}
+                            helperText={errors?.messages?.link ? errors.messages.link : ''}
                             fullWidth
                         />
                     </Grid>

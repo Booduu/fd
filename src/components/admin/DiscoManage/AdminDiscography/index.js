@@ -71,7 +71,7 @@ const Discography = ({
             ...state,
             cover: imgState,
          };
-
+         console.log('OKOKOK', dataToSend)
         if (editingData != null) {
             dataToSend._id = editingData._id;
             editAlbum(dataToSend);
@@ -118,8 +118,8 @@ const Discography = ({
                         label="Titre"
                         value={state.title}
                         onChange={handleChange}
-                        error={errors != null && errors?.title?.message}
-                        helperText={errors?.title?.message ? errors.title.message : ''}
+                        error={errors != null && errors?.messages?.title}
+                        helperText={errors?.messages?.title ? errors.messages.title : ''}
                         fullWidth
                     />
                 </Grid>
@@ -129,8 +129,8 @@ const Discography = ({
                         label="Label"
                         value={state.label}
                         onChange={handleChange}
-                        error={errors != null && errors?.label?.message}
-                        helperText={errors?.label?.message ? errors.label.message : ''}
+                        error={errors != null && errors?.messages?.label}
+                        helperText={errors?.messages?.label ? errors.messages.label : ''}
                         fullWidth
                     />
                 </Grid>
@@ -151,7 +151,7 @@ const Discography = ({
                     </Grid>
                     <Grid item xs={12}>
                         <List className={classes.root} subheader={<li />}>
-                            {tracklist.map((track, index) => (
+                            {tracklist[0] !== '' && tracklist.map((track, index) => (
                                 <ul className={classes.ul}>
                                     <ListItem key={`item-${track}-${index}`} classes={classes.listItem}>
                                         <DeleteForeverOutlinedIcon  onClick={() => deleteTrack(index)} />
@@ -168,8 +168,8 @@ const Discography = ({
                         label="Lien soundcloud"
                         value={state.soundcloudLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.soundcloudLink?.message}
-                        helperText={errors?.soundcloudLink?.message ? errors.soundcloudLink.message : ''}
+                        error={errors != null && errors?.messages?.soundcloudLink}
+                        helperText={errors?.messages?.soundcloudLink ? errors.messages.soundcloudLink : ''}
                         fullWidth
                     />
                 </Grid>
@@ -179,8 +179,8 @@ const Discography = ({
                         label="buy link"
                         value={state.buyLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.buyLink?.message}
-                        helperText={errors?.buyLink?.message ? errors.buyLink.message : ''}
+                        error={errors != null && errors?.messages?.buyLink}
+                        helperText={errors?.messages?.buyLink ? errors.messages.buyLink : ''}
                         fullWidth
                     />
                 </Grid>
@@ -190,8 +190,8 @@ const Discography = ({
                         label="download link"
                         value={state.downloadLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.downloadLink?.message}
-                        helperText={errors?.downloadLink?.message ? errors.downloadLink.message : ''}
+                        error={errors != null && errors?.messages?.downloadLink}
+                        helperText={errors?.messages?.downloadLink ? errors.messages.downloadLink : ''}
                         fullWidth
                     />
                 </Grid>

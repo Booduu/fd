@@ -44,8 +44,6 @@ const SignIn = ({
     });
 
     const handleSubmit = () => {
-      console.log('OOIOIOIO', state)
-
         signIn(state);
     };
 

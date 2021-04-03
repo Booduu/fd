@@ -22,7 +22,7 @@ export const requestCreateProductFail = (error) => {
     console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_CREATE_PRODUCT_FAIL,
-        error
+        error: { ...error.data }
     }
 }
 
@@ -35,7 +35,7 @@ export const createProduct = (product) => {
             'auth-token': `${localStorage.getItem('jwtToken')}`
             }})
             .then(response => dispatch(requestCreateProductSuccess(response.data)))
-            .catch(error => dispatch(requestCreateProductFail(error)))
+            .catch(error => dispatch(requestCreateProductFail(error.response)))
     }
 }
 
@@ -63,12 +63,11 @@ export const requestDeleteProductFail = (error) => {
     console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_DELETE_PRODUCT_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
 export const deleteProduct = (product) => {
-    console.log('oooooo', localStorage.getItem('jwtToken'))
     return dispatch => {
         dispatch(requestDeleteProduct());
         return apiFulldub.delete(`/protected/product/${product._id}`, {
@@ -80,7 +79,7 @@ export const deleteProduct = (product) => {
             }
         })
             .then(response => dispatch(requestDeleteProductSuccess(product)))
-            .catch(error => dispatch(requestDeleteProductFail(error)))
+            .catch(error => dispatch(requestDeleteProductFail(error.response)))
     }
 }
 
@@ -105,7 +104,7 @@ export const requestEditProductSuccess = (product) => {
 export const requestEditProductFail = (error) => {
     return {
         type: REQUEST_EDIT_PRODUCT_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -117,7 +116,7 @@ export const editProduct = (product) => {
             'auth-token': `${localStorage.getItem('jwtToken')}`
             }})
             .then(response => dispatch(requestEditProductSuccess(response.data)))
-            .catch(error => dispatch(requestEditProductFail(error)))
+            .catch(error => dispatch(requestEditProductFail(error.response)))
     }
 }
 
@@ -144,7 +143,7 @@ export const requestGetProductsFail = (error) => {
     console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_GET_PRODUCTS_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -154,7 +153,7 @@ export const getProducts = () => {
         dispatch(requestGetProducts());
         return apiFulldub.get('/product/productlist')
             .then(response => dispatch(requestGetProductsSuccess(response.data)))
-            .catch(error => dispatch(requestGetProductsFail(error)))
+            .catch(error => dispatch(requestGetProductsFail(error.reponse)))
     }
 }
 
@@ -180,7 +179,7 @@ export const requestGetProductFail = (error) => {
     console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_GET_PRODUCT_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -190,7 +189,7 @@ export const getProduct = (productId) => {
         dispatch(requestGetProduct());
         return apiFulldub.get(`/product/${productId}`)
             .then(response => dispatch(requestGetProductSuccess(response.data)))
-            .catch(error => dispatch(requestGetProductFail(error)))
+            .catch(error => dispatch(requestGetProductFail(error.response)))
     }
 }
 

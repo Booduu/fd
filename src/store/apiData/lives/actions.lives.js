@@ -20,10 +20,9 @@ export const requestGetLivesSuccess = (lives) => {
 }
 
 export const requestGetLivesFail = (error) => {
-    console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_GET_LIVES_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -32,7 +31,7 @@ export const getLives = (live) => {
         dispatch(requestGetLives());
         return apiFulldub.get('/live/livelist')
             .then(response => dispatch(requestGetLivesSuccess(response.data)))
-            .catch(error => dispatch(requestGetLivesFail(error)))
+            .catch(error => dispatch(requestGetLivesFail(error.response)))
     }
 }
 
@@ -47,7 +46,6 @@ export const requestCreateLive = () => {
 }
 
 export const requestCreateLiveSuccess = (date) => {
-    console.log('requestCreateLiveSuccess', date)
     return {
         type: REQUEST_CREATE_LIVE_SUCCESS,
         date
@@ -55,10 +53,9 @@ export const requestCreateLiveSuccess = (date) => {
 }
 
 export const requestCreateLiveFail = (error) => {
-    console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_CREATE_LIVE_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 
@@ -73,7 +70,7 @@ export const createLive = (live) => {
                 dispatch(requestCreateLiveSuccess(response.data));
                 dispatch(closeDialog());
             })
-            .catch(error => dispatch(requestCreateLiveFail(error)))
+            .catch(error => dispatch(requestCreateLiveFail(error.response)))
     }
 }
 
@@ -89,8 +86,6 @@ export const requestDeleteLive = () => {
 }
 
 export const requestDeleteLiveSuccess = (live) => {
-    console.log('requestDeleteLiveSuccess', live)
-
     return {
         type: REQUEST_DELETE_LIVE_SUCCESS,
         live,
@@ -98,10 +93,9 @@ export const requestDeleteLiveSuccess = (live) => {
 }
 
 export const requestDeleteLiveFail = (error) => {
-    console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_DELETE_LIVE_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 export const deleteLive = (live) => {
@@ -112,7 +106,7 @@ export const deleteLive = (live) => {
             'auth-token': `${localStorage.getItem('jwtToken')}`
             }})
             .then(response => dispatch(requestDeleteLiveSuccess(live)))
-            .catch(error => dispatch(requestDeleteLiveFail(error)))
+            .catch(error => dispatch(requestDeleteLiveFail(error.response)))
     }
 }
 
@@ -138,10 +132,9 @@ export const requestEditLiveSuccess = (live) => {
 }
 
 export const requestEditLiveFail = (error) => {
-    console.log('requestEditLiveFail', error)
     return {
         type: REQUEST_EDIT_LIVE_FAIL,
-        error
+        error: { ...error.data },
     }
 }
 export const editLive = (live) => {
@@ -153,9 +146,8 @@ export const editLive = (live) => {
             }})
             .then(response => {
                 dispatch(requestEditLiveSuccess(live));
-                // dispatch(closeDialog());
             })
-            .catch(error => dispatch(requestEditLiveFail(error)))
+            .catch(error => dispatch(requestEditLiveFail(error.response)))
     }
 }
 

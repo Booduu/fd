@@ -1,3 +1,20 @@
+
+export const menuListAdmin = [
+
+    {
+        to: '/admin/lives',
+        name: 'Manage-live',
+    },
+    {
+        to: '/admin/shop',
+        name: 'Manage-shop',
+    },
+    {
+        to: '/admin/disco',
+        name: 'Manage-disco',
+    },
+];
+
 export const menuListPublic = [
     {
         to: '/home',
@@ -19,20 +36,4 @@ export const menuListPublic = [
         to: '/bookingcontact',
         name: 'Booking-contact',
     }, 
-];
-
-export const menuListAdmin = [
-
-    {
-        to: '/admin/lives',
-        name: 'Manage-live',
-    },
-    {
-        to: '/admin/shop',
-        name: 'Manage-shop',
-    },
-    {
-        to: '/admin/disco',
-        name: 'Manage-disco',
-    },
 ];

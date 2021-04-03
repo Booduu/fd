@@ -10,6 +10,8 @@ const initialState = {
 
 const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        // COMMONS ACTIONS TYPES
         case actions.REQUEST_CREATE_LIVE:
         case actions.REQUEST_DELETE_LIVE:
         case actions.REQUEST_EDIT_LIVE:
@@ -39,20 +41,63 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.REQUEST_EDIT_ALBUM_FAIL:
         case actions.REQUEST_CREATE_ALBUM_FAIL:
 
+        case actions.REQUEST_DELETE_ALBUM_FAIL:
+        case actions.REQUEST_DELETE_PRODUCT_FAIL:
+        case actions.REQUEST_DELETE_LIVE_FAIL:
+
+            console.log('ction', action.error)
             return {
                 ...state,
                 loader: false,
-                errors: { ...action.error.response.data.errors }
+                errors: { ...action.error }
             }
             
+        // ALBUMS ACTOINS TYPES
         case actions.REQUEST_CREATE_ALBUM_SUCCESS:
             const newAlbumList = [...state.albums].concat(action.album);
+            const albumSorted = newAlbumList.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
             return {
                 ...state,
                 loader: false,
-                albums: newAlbumList,
+                albums: albumSorted,
             }; 
 
+        case actions.REQUEST_EDIT_ALBUM_SUCCESS:
+            const myAlbums = [...state.albums];
+            const indexAlbumModified = myAlbums.findIndex(a => a._id === action.album._id);
+            myAlbums[indexAlbumModified] = action.album;
+            const albumsSorted = myAlbums.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
+            return {
+                ...state,
+                loader: false,
+                albums:  [...albumsSorted]
+            }; 
+
+        case actions.REQUEST_DELETE_ALBUM_SUCCESS:
+            const albumsAfterDeleteOne = [...state.albums].filter(a => a._id !== action.album._id);
+            return {
+                ...state,
+                loader: false,
+                albums: albumsAfterDeleteOne,
+                errors: null,
+            };
+
+        case actions.REQUEST_GET_ALBUMS_SUCCESS:
+            const livesSorted = action.album.sort((a, b) => {
+                return new Date(b.releaseDate) - new Date(a.releaseDate);
+            }) 
+            return {
+                ...state,
+                loader: false,
+                albums:  [...livesSorted]
+            };  
+            
+     
+        // PRODUCTS ACTIONS TYPES
         case actions.REQUEST_CREATE_PRODUCT_SUCCESS:
             const newProductsList = [...state.products].concat(action.product);
             const albumsSortedNew = newProductsList.sort((a, b) => {
@@ -63,14 +108,46 @@ const apiDataReducer = (state = initialState, action) => {
                 loader: false,
                 products: albumsSortedNew,
             };
-        
-        
-        case actions.REQUEST_CREATE_LIVE_SUCCESS:
-            const upadtedLivesLists = [...state.lives];
+        case actions.REQUEST_DELETE_PRODUCT_SUCCESS:
+            const listAfterDeleteOneProducts = [ ...state.products ].filter(p => p._id !== action.product._id);
             return {
                 ...state,
                 loader: false,
-                lives: upadtedLivesLists.concat(action.date),
+                products: listAfterDeleteOneProducts,
+                errors: null,
+            }
+
+        case actions.REQUEST_EDIT_PRODUCT_SUCCESS:
+            const listProducts = [ ...state.products];
+            const indexProduct = listProducts.findIndex(p => p._id === action.product._id);
+            listProducts[indexProduct] = action.product
+            return {
+                ...state,
+                loader: false,
+                products: listProducts,
+            };
+        
+        case actions.REQUEST_GET_PRODUCT_SUCCESS:
+            return state;
+        
+    
+        case actions.REQUEST_GET_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                loader: false,
+                products: action.products,
+            };
+
+        // LIVES ACTIONS TYPES
+        case actions.REQUEST_CREATE_LIVE_SUCCESS:
+            const upadtedLivesLists = [...state.lives].concat(action.date);
+            const newSort = upadtedLivesLists.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            }) 
+            return {
+                ...state,
+                loader: false,
+                lives: newSort,
             }
 
         case actions.REQUEST_DELETE_LIVE_SUCCESS:
@@ -79,6 +156,7 @@ const apiDataReducer = (state = initialState, action) => {
                 ...state,
                 loader: false,
                 lives: livesAfterDeleteOnes,
+                errors: null,
             }
 
         case actions.REQUEST_EDIT_LIVE_SUCCESS: 
@@ -105,71 +183,14 @@ const apiDataReducer = (state = initialState, action) => {
                 lives: livesSortedNew,
             };
 
-        case actions.REQUEST_GET_PRODUCT_SUCCESS:
-            return state;
-    
-
-        case actions.REQUEST_GET_PRODUCTS_SUCCESS:
-            return {
-                ...state,
-                loader: false,
-                products: action.products,
-            };
-
-        case actions.REQUEST_DELETE_PRODUCT_SUCCESS:
-            const listAfterDeleteOneProducts = [ ...state.products ].filter(p => p._id !== action.product._id);
-            return {
-                ...state,
-                loader: false,
-                products: listAfterDeleteOneProducts,
-            }
-
-        case actions.REQUEST_EDIT_PRODUCT_SUCCESS:
-            const listProducts = [ ...state.products];
-            const indexProduct = listProducts.findIndex(p => p._id === action.product._id);
-            listProducts[indexProduct] = action.product
-            return {
-                ...state,
-                loader: false,
-                products: listProducts,
-            };
-
-        case actions.REQUEST_DELETE_ALBUM_SUCCESS:
-            const albumsAfterDeleteOne = [...state.albums].filter(a => a._id !== action.album._id);
-            return {
-                ...state,
-                loader: false,
-                albums: albumsAfterDeleteOne,
-            };
-
+        // ERRORS ACTIONS TYPES
         case actions.INITAILIZE_ERROR:
             return {
                 ...state,
                 errors: null,
             }
 
-        case actions.REQUEST_GET_ALBUMS_SUCCESS:
-            const livesSorted = action.album.sort((a, b) => {
-                return new Date(b.releaseDate) - new Date(a.releaseDate);
-            }) 
-            return {
-                ...state,
-                loader: false,
-                albums:  [...livesSorted]
-            };  
-            
-        case actions.REQUEST_EDIT_ALBUM_SUCCESS:
-            const myAlbums = [...state.albums];
-            const indexAlbumModified = myAlbums.findIndex(a => a._id === action.album._id);
-            myAlbums[indexAlbumModified] = action.album;
-            const albumsSorted = myAlbums.sort((a, b) => {
-                return new Date(b.releaseDate) - new Date(a.releaseDate);
-            }) 
-            return {
-                ...state,
-                loader: false,
-                albums:  [...albumsSorted]
-            };  
+        
         default: return state;
     }
 }

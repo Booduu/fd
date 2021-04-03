@@ -79,6 +79,10 @@ const authentificationReducer = (state = initialState, action) => {
             }
         case actions.REQUEST_PROTECTED_ERROR:
             return state
+
+            case actions.REQUEST_SIGNIN_FAIL:
+                console.log('REQUEST_SIGNIN_FAIL', action.error)
+            return state
         
         default: return state;
     }
