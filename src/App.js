@@ -42,6 +42,7 @@ const App = ({
   const [isHome, setIsHome] = useState(false)
 
   useEffect(() => {
+    console.log('TTTTTTTTT')
     tt();
     getAlbums();
     getLives();
@@ -80,6 +81,7 @@ const App = ({
         </div>
         <div className={style.content}>
           <Switch>
+
             <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
             <Route path="/discography" component={Discography} />
             <Route path="/shows" component={Shows} />

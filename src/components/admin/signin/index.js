@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'white',
+    padding: '20px',
+    borderRadius: '5px'
+  },
+  input: {
+    color: 'white',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -60,9 +65,9 @@ const SignIn = ({
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
           <TextField
+            color="primary"
             variant="outlined"
             margin="normal"
             required

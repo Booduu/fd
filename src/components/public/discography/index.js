@@ -22,6 +22,7 @@ const Player = ({
       height={height}
       className={ clas ? style.player : null }
     />  
+    // <div></div>
   )
 }
 
@@ -68,6 +69,7 @@ const Card = ({
                     height='240px'
                     url={album.soundcloudLink}
                   />
+
                 </div>
                 </div>
               </div>
@@ -103,7 +105,7 @@ class Grid extends React.Component {
 }
 
 Grid.propTypes = {
-  albums: PropTypes.object,
+  albums: PropTypes.array,
   settings: PropTypes.object,
 }
 
@@ -120,8 +122,6 @@ const Discography = ({
   const handleAlbum = (album) => {
     setAlbumToPlay(album)
   };
-
-  const iframe = document.querySelector('img');
 
   return (
     <>
@@ -160,7 +160,7 @@ const Discography = ({
 
 
 Discography.propTypes = {
-  albums: PropTypes.object.isRequired,
+  albums: PropTypes.array.isRequired,
   isMobile: PropTypes.bool.isRequired,
 }
 

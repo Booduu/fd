@@ -10,25 +10,25 @@ const Home = ({
 }) => {
     
     useEffect(() => {
+        console.log('oooooooooo')
+
         setIsHome(true);
         return () => {
             setIsHome(false);
         }
-    }, []);
+    });
 
     return ( 
-    
             <div className={style.container}>
                  {albums && albums[0]?.title && (
-                <a href={albums[0].downloadLink} target="_blank">
+                <a href={albums[0].downloadLink} target="_blank" rel="noreferrer">
                     <div className={style.titles}>
                         <h1>{albums[0].title}</h1>
                         <h3>NEW ALBUM AVAILABLE NOW</h3>
                     </div> 
                 </a>     
                 )}
-            </div>
-        
+            </div>    
      );
 }
  

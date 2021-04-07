@@ -2,7 +2,7 @@ import * as actions from './actions.dialogs';
 
 const initialState = {
     dialogIsOpen: false,
-    editingData: null,
+    editingData: { },
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -17,7 +17,7 @@ const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dialogIsOpen: false,
-                editingData: null,
+                editingData: { },
             }
         default: return state;
     }

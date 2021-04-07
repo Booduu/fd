@@ -7,7 +7,7 @@ import { AdminLives, AdminDiscography, AdminShop } from '../../admin/index';
 import { connect } from 'react-redux';
 import { closeDialog } from '../../../store/actions';
 import PropTypes from 'prop-types';
- 
+ import style from './Dialogs.module.scss';
 
 
 
@@ -31,9 +31,9 @@ const Dialogs = React.memo(({
   return (
     <div style={{ display: 'flex', alignItems: 'center'}}>
       <AddIcon 
-        style={{ color: '#ff7675' }} 
         fontSize="large" 
         onClick={handleClickOpen} 
+        className={[style.icon, style.AddIcon].join(' ')}
       />
         <Dialog 
           open={dialogIsOpen} 
@@ -48,7 +48,7 @@ const Dialogs = React.memo(({
           </DialogContent>
         </Dialog>
 
-        <span  style={{ color: '#ff7675' }} >Add {message}</span>
+        <span  style={{ color: '#ff7675' }}>Add {message}</span>
     </div>
   );
 });
@@ -59,9 +59,12 @@ Dialogs.propTypes = {
   deleteAlbum: PropTypes.func,
   closeDialog: PropTypes.func.isRequired,
   dialogIsOpen: PropTypes.bool.isRequired,
-  editingData: PropTypes.object.isRequired,
-
+  editingData: PropTypes.object,
 }
+
+Dialogs.defaultProps = {
+  editingData: { },
+};
 
 export default connect(state => ({
   dialogIsOpen: state.dialogsReducer.dialogIsOpen,

@@ -32,13 +32,42 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
+    '& > *': {
+      color: '#e6e6e6',
+    },
+  },
+  tableRow: {
+    '& > *': {
+      color: '#e6e6e6',
+    },
+    '&:hover': {
+      backgroundColor: '#0000008e',
+    }
   },
   container: {
-    marginTop: '70px'
+    marginTop: '70px',
+    backgroundColor: 'rgba(0, 0, 0, 0.637)',
   },
   backdrop: {
     backgroundColor: 'white',
     color: 'white',
+  },
+  icon: {
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
+  editIcon: {
+    color: '#0d6d45',
+    '&:hover': {
+      color: '#16b371',
+    },
+  },
+  deleteIcon: {
+    color: '#9c6161',
+    '&:hover': {
+      color: '#e09393',
+    },
   },
 }));
 
@@ -71,7 +100,7 @@ const ShopManage = ({
                 />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow className={classes.tableRow}>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
@@ -81,7 +110,7 @@ const ShopManage = ({
                    
                         {/* {showsTable("shows")} */}
                         {products.map((product) => (
-                            <TableRow key={product._id}>
+                            <TableRow key={product._id} className={classes.tableRow}>
                                 <TableCell align="left">{product.type}</TableCell>
                                 <TableCell align="left">{product.name}</TableCell>
                                 
@@ -90,11 +119,11 @@ const ShopManage = ({
                                 <Avatar variant="square" className={classes.square} src={product.cover} />
                                 </TableCell>
                                 
-                                <TableCell align="left"> 
-                                <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("shop", product)} />
+                                <TableCell align="left" className={[classes.icon, classes.editIcon].join(' ')}> 
+                                <EditIcon onClick={() => openDialog("shop", product)} />
                                 </TableCell>
-                                <TableCell align="left"> 
-                                <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteProduct(product)} />
+                                <TableCell align="left" className={[classes.icon, classes.deleteIcon].join(' ')}> 
+                                <DeleteForeverOutlinedIcon onClick={() => deleteProduct(product)} />
                                 </TableCell>
                             </TableRow>
                             ))}

@@ -21,6 +21,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import Dialogs from '../../utils/Dialog';
 import PropTypes from 'prop-types';
+import style from './style.scss';
 
 moment().format();
 
@@ -29,17 +30,48 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     '& > *': {
       margin: theme.spacing(1),
+      color: 'white',
     },
   },
   table: {
     minWidth: 650,
+    '& > *': {
+      color: '#e6e6e6',
+    },
+  },
+  tableRow: {
+    '& > *': {
+      color: '#e6e6e6',
+    },
+    '&:hover': {
+      backgroundColor: '#0000008e',
+    }
   },
   container: {
-    marginTop: '70px'
+    marginTop: '70px',
+    backgroundColor: 'rgba(0, 0, 0, 0.637)',
+    color: 'white',
   },
   backdrop: {
     backgroundColor: 'white',
     color: 'white',
+  },
+  icon: {
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
+  editIcon: {
+    color: '#0d6d45',
+    '&:hover': {
+      color: '#16b371',
+    },
+  },
+  deleteIcon: {
+    color: '#9c6161',
+    '&:hover': {
+      color: '#e09393',
+    },
   },
 }));
 
@@ -53,7 +85,7 @@ const ShopManage = ({
 
     useEffect(() => {
       const newColumns = { ...albums[0]}
-      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink' && f !== 'tracklist')));
+      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink')));
     }, [albums]);
 
     return ( 
@@ -71,7 +103,7 @@ const ShopManage = ({
             />
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
-                  <TableRow>
+                  <TableRow className={classes.tableRow}>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
@@ -80,19 +112,19 @@ const ShopManage = ({
               </TableHead>
               <TableBody>
                 {albums.map((album) => (
-                    <TableRow key={album._id}>
-                        <TableCell align="left">tracklist</TableCell>
+                    <TableRow key={album._id}  className={classes.tableRow}>
+                        {/* <TableCell align="left">tracklist</TableCell> */}
                         <TableCell align="left">{album.title}</TableCell>
                         <TableCell align="left">{album.label} label</TableCell>
                         <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>
                         <TableCell align="left">
                         <Avatar variant="square" className={classes.square} src={album.cover} />
                         </TableCell>
-                        <TableCell align="left"> 
-                          <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("disco", album)} />
+                        <TableCell align="left" className={[classes.icon, classes.editIcon].join(' ')}> 
+                          <EditIcon onClick={() => openDialog("disco", album)} />
                         </TableCell>
-                        <TableCell align="left"> 
-                          <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteAlbum(album)} />
+                        <TableCell align="left" className={[classes.icon, classes.deleteIcon].join(' ')}> 
+                          <DeleteForeverOutlinedIcon onClick={() => deleteAlbum(album)} />
                         </TableCell>
                     </TableRow>
                 ))}

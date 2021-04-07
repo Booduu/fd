@@ -98,16 +98,18 @@ const apiDataReducer = (state = initialState, action) => {
             
      
         // PRODUCTS ACTIONS TYPES
+
         case actions.REQUEST_CREATE_PRODUCT_SUCCESS:
             const newProductsList = [...state.products].concat(action.product);
-            const albumsSortedNew = newProductsList.sort((a, b) => {
-                return new Date(b.releaseDate) - new Date(a.releaseDate);
-            }) 
+            // const albumsSortedNew = newProductsList.sort((a, b) => {
+            //     return new Date(b.releaseDate) - new Date(a.releaseDate);
+            // }) 
             return {
                 ...state,
                 loader: false,
-                products: albumsSortedNew,
+                products: newProductsList,
             };
+
         case actions.REQUEST_DELETE_PRODUCT_SUCCESS:
             const listAfterDeleteOneProducts = [ ...state.products ].filter(p => p._id !== action.product._id);
             return {

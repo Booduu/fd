@@ -25,17 +25,16 @@ const AdminLives = ({
     editingData,
     editLive,
     errors,
-    isLoading,
 }) => {
     const classes = useStyles();
-    const buttonValue = editingData != null ? "Edit" : "Save";
+    const buttonValue = Object.keys(editingData).length > 0 ? "Edit" : "Save";
 
     const [state, setState] = useState({
-        date: editingData!= null ? editingData.date : new Date(),
-        city: editingData != null ? editingData.city : '',
-        place: editingData != null ? editingData.place : '',
-        name: editingData != null ? editingData.name : '',
-        ticketLink: editingData != null ? editingData.ticketLink : '',
+        date: editingData.date || new Date(),
+        city: editingData.city || '',
+        place: editingData.place || '',
+        name: editingData.name || '',
+        ticketLink: editingData.ticketLink || '',
         wait: true,
     });
 
@@ -51,7 +50,7 @@ const AdminLives = ({
     const saveData = () => {
         const dataToSend = { ...state };
         delete dataToSend.wait;
-        if (editingData != null) {
+        if (Object.keys(editingData).length > 0) {
             dataToSend._id = editingData._id;
             editLive(dataToSend);
 
@@ -79,9 +78,9 @@ const AdminLives = ({
                 <TextField
                     name="city"
                     label="Ville"
-                    value={state.city}
+                    value={state.city || ''}
                     onChange={handleChange}
-                    error={errors != null && errors?.messages?.city}
+                    error={errors != null && !!errors?.messages?.city}
                     helperText={errors?.messages?.city ? errors.messages.city : ''}
                     fullWidth
                 />
@@ -90,9 +89,9 @@ const AdminLives = ({
                 <TextField
                     name="place"
                     label="Salle / Lieux"
-                    value={state.place}
+                    value={state.place  || ''}
                     onChange={handleChange}
-                    error={errors != null && errors?.messages?.place}
+                    error={errors != null && !!errors?.messages?.place}
                     helperText={errors?.messages?.place ?errors.messages.place : ''}
                     fullWidth
                 />
@@ -101,9 +100,9 @@ const AdminLives = ({
                 <TextField
                     name="name"
                     label="Nom"
-                    value={state.name}
+                    value={state.name  || ''}
                     onChange={handleChange}
-                    error={errors != null && errors?.messages?.name}
+                    error={errors != null && !!errors?.messages?.name}
                     helperText={errors?.messages?.name ? errors.messages.name : ''}
                     fullWidth
                 />
@@ -112,9 +111,9 @@ const AdminLives = ({
                 <TextField
                     name="ticketLink"
                     label="ticket link"
-                    value={state.ticketLink}
+                    value={state.ticketLink  || ''}
                     onChange={handleChange}
-                    error={errors != null && errors?.messages?.ticketLink}
+                    error={errors != null && !!errors?.messages?.ticketLink}
                     helperText={errors?.messages?.ticketLink ? errors.messages.ticketLink : ''}
                     fullWidth
                 />
@@ -137,12 +136,13 @@ const AdminLives = ({
 }
 
 AdminLives.propTypes = {
-    editingData: PropTypes.func,
+    editingData: PropTypes.object,
     createLive: PropTypes.func.isRequired,
     editLive: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    errors: PropTypes.object,
 }
+
+
  
 export default connect(state => ({
     lives: state.apiDataReducer.lives,

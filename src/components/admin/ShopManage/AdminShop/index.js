@@ -40,7 +40,7 @@ const Shop = ({
 }) => {
     const classes = useStyles();
     
-    const buttonValue = editingData != null ? "Edit" : "Save";
+    const buttonValue = Object.keys(editingData).length > 0 ? "Edit" : "Save";
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : '');
     const [state, setState] = useState({
         type: editingData && editingData?.type ? editingData.type : 'Vinyl',
@@ -63,11 +63,11 @@ const Shop = ({
             cover: imgState,
          };
 
-        if (editingData != null) {
+        if (Object.keys(editingData).length > 0 ) {
             dataToSend._id = editingData._id;
             editProduct(dataToSend);
         } 
-        if (editingData == null) {
+        if (Object.keys(editingData).length === 0 ) {
             createProduct(dataToSend);
         } 
 
@@ -106,7 +106,7 @@ const Shop = ({
                         label="Name"
                         value={state.name}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.name}
+                        error={errors != null && !!errors?.messages?.name}
                         helperText={errors?.messages?.name ? errors.messages.name : ''}
                         fullWidth
                     />
@@ -118,7 +118,7 @@ const Shop = ({
                             label="Link"
                             value={state.link}
                             onChange={handleChange}
-                            error={errors != null && errors?.messages?.link}
+                            error={errors != null && !!errors?.messages?.link}
                             helperText={errors?.messages?.link ? errors.messages.link : ''}
                             fullWidth
                         />
@@ -144,17 +144,20 @@ const Shop = ({
 }
 
 Shop.propTypes = {
-    editingData: PropTypes.func,
+    editingData: PropTypes.object,
     createProduct: PropTypes.func.isRequired,
     editProduct: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired,
+    errors: PropTypes.object,
     isLoading: PropTypes.bool.isRequired,
+}
+
+Shop.defaultProps = {
+    errors: null,
 }
 
 export default connect(state => ({
     errors: state.apiDataReducer.errors,
     isLoading: state.apiDataReducer.loader,
-
 }), {
     createProduct,
     editProduct,

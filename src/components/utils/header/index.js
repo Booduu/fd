@@ -76,7 +76,6 @@ Header.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     isMobile: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
-    isMobile: PropTypes.func.isRequired,
 }
  
 export default connect(state => ({

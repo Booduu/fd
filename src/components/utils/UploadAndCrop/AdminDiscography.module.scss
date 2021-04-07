@@ -1,7 +1,7 @@
 
 
 .image_container {
-    width: 100%;
+    width: 200px;
     height: 200px;
     position: relative;
     .image_preview {
@@ -24,5 +24,9 @@
 .cropper {
     width: 600px;
     height: auto;
+}
+
+.alert {
+    border: 1px solid red;
 }
 

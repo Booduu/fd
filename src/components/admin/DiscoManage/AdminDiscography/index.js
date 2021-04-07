@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { DatePicker, UploadAndCrop } from '../../../utils';
 import { 
     Grid,
@@ -12,12 +12,12 @@ import {
     editAlbum,
     closeDialog,
 } from '../../../../store/actions';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AddIcon from '@material-ui/icons/Add';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import AddIcon from '@material-ui/icons/Add';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListSubheader from '@material-ui/core/ListSubheader';
+// import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,20 +43,20 @@ const Discography = ({
     isLoading,
 }) => {
     const classes = useStyles();
-    const buttonValue = editingData != null ? "Edit" : "Save";
+    const buttonValue = Object.keys(editingData).length > 0 ? "Edit" : "Save";
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : null);
 
     const [state, setState] = useState({
-        title: editingData != null ? editingData.title : '',
-        label: editingData != null ? editingData.label : '',
-        tracklist: '',
-        soundcloudLink: editingData != null ? editingData.soundcloudLink : '',
-        buyLink: editingData != null ? editingData.buyLink : '',
-        downloadLink: editingData != null ? editingData.downloadLink : '',
-        releaseDate: editingData != null ? editingData.releaseDate : new Date(),
+        title: editingData?.title || '',
+        label: editingData?.label || '',
+        // tracklist: editingData?.tracklist || '',
+        soundcloudLink: editingData?.soundcloudLink || '',
+        buyLink: editingData?.buyLink || '',
+        downloadLink: editingData?.downloadLink || '',
+        releaseDate: editingData?.releaseDate || new Date(),
     });
 
-    const [tracklist, setTracklist] = useState(editingData != null ? editingData.tracklist : []);
+    // const [tracklist, setTracklist] = useState(editingData != null ? editingData.tracklist : []);
 
     const handleChange = (e) => {
         const { name } =  e.currentTarget;
@@ -71,35 +71,35 @@ const Discography = ({
             ...state,
             cover: imgState,
          };
-         console.log('OKOKOK', dataToSend)
-        if (editingData != null) {
+
+        if (Object.keys(editingData).length > 0) {
             dataToSend._id = editingData._id;
             editAlbum(dataToSend);
         } 
-        if (editingData == null) {
+        if (Object.keys(editingData).length === 0) {
             createAlbum(dataToSend);
         } 
 
     };
 
-    const addTrack = () => {
-        const newList = [...tracklist];
-        newList.push(state.tracklist);
-        setTracklist(newList);
-    }
+    // const addTrack = () => {
+    //     const newList = [...tracklist];
+    //     newList.push(state.tracklist);
+    //     setTracklist(newList);
+    // }
 
-    useEffect(() => {
-        setState({
-            ...state,
-            tracklist: '',
-        });
-    }, [tracklist])
+    // useEffect(() => {
+    //     setState({
+    //         ...state,
+    //         tracklist: '',
+    //     });
+    // }, [tracklist])
 
-    const deleteTrack = (index) => {
-        const newTracklist = [ ...tracklist];
-        newTracklist.splice(index, 1);
-        setTracklist(newTracklist);
-    }
+    // const deleteTrack = (index) => {
+    //     const newTracklist = [ ...tracklist];
+    //     newTracklist.splice(index, 1);
+    //     setTracklist(newTracklist);
+    // }
 
     return ( 
         <Grid container spacing={1} justify="center" >
@@ -118,7 +118,7 @@ const Discography = ({
                         label="Titre"
                         value={state.title}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.title}
+                        error={errors != null && !!errors?.messages?.title}
                         helperText={errors?.messages?.title ? errors.messages.title : ''}
                         fullWidth
                     />
@@ -129,12 +129,12 @@ const Discography = ({
                         label="Label"
                         value={state.label}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.label}
+                        error={errors != null && !!errors?.messages?.label}
                         helperText={errors?.messages?.label ? errors.messages.label : ''}
                         fullWidth
                     />
                 </Grid>
-                <Grid container item xs={12}>
+                {/* <Grid container item xs={12}>
                     <Grid item xs={12}>
                         <TextField
                             name="tracklist"
@@ -148,10 +148,10 @@ const Discography = ({
                             }}
                         fullWidth
                         />
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Grid> */}
+                    {/* <Grid item xs={12}>
                         <List className={classes.root} subheader={<li />}>
-                            {tracklist[0] !== '' && tracklist.map((track, index) => (
+                            {tracklist.length > 0 && tracklist[0] !== '' && tracklist.map((track, index) => (
                                 <ul className={classes.ul}>
                                     <ListItem key={`item-${track}-${index}`} classes={classes.listItem}>
                                         <DeleteForeverOutlinedIcon  onClick={() => deleteTrack(index)} />
@@ -160,15 +160,15 @@ const Discography = ({
                                 </ul>
                             ))}
                         </List>
-                    </Grid>
-                </Grid>
+                    </Grid> 
+                </Grid> */}
                 <Grid item xs={12}>
                     <TextField
                         name="soundcloudLink"
                         label="Lien soundcloud"
                         value={state.soundcloudLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.soundcloudLink}
+                        error={errors != null && !!errors?.messages?.soundcloudLink}
                         helperText={errors?.messages?.soundcloudLink ? errors.messages.soundcloudLink : ''}
                         fullWidth
                     />
@@ -179,7 +179,7 @@ const Discography = ({
                         label="buy link"
                         value={state.buyLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.buyLink}
+                        error={errors != null && !!errors?.messages?.buyLink}
                         helperText={errors?.messages?.buyLink ? errors.messages.buyLink : ''}
                         fullWidth
                     />
@@ -190,7 +190,7 @@ const Discography = ({
                         label="download link"
                         value={state.downloadLink}
                         onChange={handleChange}
-                        error={errors != null && errors?.messages?.downloadLink}
+                        error={errors != null && !!errors?.messages?.downloadLink}
                         helperText={errors?.messages?.downloadLink ? errors.messages.downloadLink : ''}
                         fullWidth
                     />
@@ -229,11 +229,16 @@ const Discography = ({
 }
 
 Discography.propTypes = {
-    editingData: PropTypes.func,
+    editingData: PropTypes.object,
     createAlbum: PropTypes.func.isRequired,
     editAlbum: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired,
+    errors: PropTypes.object,
     isLoading: PropTypes.bool.isRequired,
+}
+
+Discography.defaultProps = {
+    error: null,
+    editingData: {},
 }
  
 export default connect(state => ({

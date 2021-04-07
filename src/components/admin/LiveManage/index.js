@@ -31,13 +31,42 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
+    '& > *': {
+      color: '#e6e6e6',
+    },
+  },
+  tableRow: {
+    '& > *': {
+      color: '#e6e6e6',
+    },
+    '&:hover': {
+      backgroundColor: '#0000008e',
+    }
   },
   container: {
-    marginTop: '70px'
+    marginTop: '70px',
+    backgroundColor: 'rgba(0, 0, 0, 0.637)',
   },
   backdrop: {
     backgroundColor: 'white',
     color: 'white',
+  },
+  icon: {
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
+  editIcon: {
+    color: '#0d6d45',
+    '&:hover': {
+      color: '#16b371',
+    },
+  },
+  deleteIcon: {
+    color: '#9c6161',
+    '&:hover': {
+      color: '#e09393',
+    },
   },
 }));
 
@@ -70,7 +99,7 @@ const LiveManage = ({
               />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow className={classes.tableRow}>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
@@ -80,17 +109,17 @@ const LiveManage = ({
                    
                         {/* {showsTable("shows")} */}
                         {lives.map((live) => (
-                            <TableRow key={live._id}>
+                            <TableRow key={live._id} className={classes.tableRow}>
                                 <TableCell align="left">{moment(live.date).format("DD-MM-YYYY")}</TableCell>
                                 <TableCell align="left">{live.city}</TableCell>
                                 <TableCell align="left">{live.place}</TableCell>
                                 <TableCell align="left">{live.name}</TableCell>
                                 <TableCell align="left">{live.ticketLink}</TableCell>
-                                <TableCell align="left">
-                                    <EditIcon style={{ color: '#00b894' }} onClick={() => openDialog("shows", live)} />
+                                <TableCell align="left" className={[classes.icon, classes.editIcon].join(' ')}>
+                                    <EditIcon onClick={() => openDialog("shows", live)} />
                                 </TableCell>
-                                <TableCell align="left">
-                                    <DeleteForeverOutlinedIcon style={{ color: '#ff7675' }} onClick={() => deleteLive(live)} /> 
+                                <TableCell align="left" className={[classes.icon, classes.deleteIcon].join(' ')}>
+                                    <DeleteForeverOutlinedIcon onClick={() => deleteLive(live)} /> 
                                 </TableCell>
                             </TableRow>
                         ))}

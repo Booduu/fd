@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {useDropzone} from 'react-dropzone'
 import { connect } from 'react-redux'
 import style from './AdminDiscography.module.scss';
@@ -14,7 +14,8 @@ const UploadAndCrop = React.memo(({
     errors,
 }) => {
     const [objectUrl, setObjectUrl] = useState(null)
- 
+    const [messageDragZone, setMessagesDropZone] =  useState(errors && errors.messages.cover ? 'Tu dois déposer une image !' : 'Ajoute un image');
+    console.log(errors)
     const onDropAccepted = acceptedFiles => {
         //for the crop resize
         const url = URL.createObjectURL(acceptedFiles[0]);
@@ -29,7 +30,7 @@ const UploadAndCrop = React.memo(({
     };
 
     const onDropRejected = rejectedFiles => {
-      console.log('reject', rejectedFiles)
+      setMessagesDropZone('Seuls les formats jpeg et png sont authorisés. Taille maximale de 6MO.')
     };
 
     const { getRootProps, getInputProps, isDragActive} = useDropzone({
@@ -40,6 +41,12 @@ const UploadAndCrop = React.memo(({
         accept: 'image/jpeg, image/png',
     })
 
+    useEffect(() => {
+        if (errors !== null && errors.messages && errors.messages.cover) {
+            setMessagesDropZone(errors.messages.cover)
+        }
+    }, [errors])
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -49,7 +56,6 @@ const UploadAndCrop = React.memo(({
     const handleClose = () => {
       setOpen(false);
     };
-
     return ( 
         <>
             <div {...getRootProps()}>
@@ -58,8 +64,7 @@ const UploadAndCrop = React.memo(({
                 <div className={[style.image_container].join(' ')}>
                     {imgState && <img alt="album à uploader" className={style.image_preview} src={imgState}/> }   
                         <div className={style.onDragMessage}>
-                            {!imgState && <div style={{ fontSize: '3rem' }}>+</div> }
-                            {/* isDragActive */}
+                            {!imgState && <div>{messageDragZone}</div> }
                         </div>
                 </div>   
             }
@@ -76,10 +81,14 @@ const UploadAndCrop = React.memo(({
 });
 
 UploadAndCrop.propTypes = {
-    albums: PropTypes.array.isRequired,
+    // albums: PropTypes.array.isRequired,
     imgState: PropTypes.string,
-    errors: PropTypes.object.isRequired,
+    errors: PropTypes.object,
 }
+UploadAndCrop.defaultProps = {
+    errors: null,
+}
+
  
 export default connect(state => ({
     errors: state.apiDataReducer.errors,

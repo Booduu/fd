@@ -27,6 +27,7 @@ const Carousel = ({
         <Slider {...settings}>
           {albums.map((album, index) => (
             <div 
+              key={album._id}
               index={album._id}
               onClick={() => handleAlbum(album)}
               className="item-slicky"
