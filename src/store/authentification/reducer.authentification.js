@@ -10,6 +10,7 @@ const initialState = {
             role: null,
         }
     },
+    errors: null,
 }
 
 const authentificationReducer = (state = initialState, action) => {
@@ -28,6 +29,7 @@ const authentificationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 auth: newAuth,
+                errors: null,
             }; 
         case actions.REQUEST_SIGNUP_FAIL:
             console.log('REQUEST_SIGNUP_FAIL');
@@ -82,7 +84,10 @@ const authentificationReducer = (state = initialState, action) => {
 
             case actions.REQUEST_SIGNIN_FAIL:
                 console.log('REQUEST_SIGNIN_FAIL', action.error)
-            return state
+            return {
+                ...state,
+                errors: { ...action.error }
+            }
         
         default: return state;
     }

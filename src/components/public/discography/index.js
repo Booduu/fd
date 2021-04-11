@@ -6,6 +6,7 @@ import { Carousel } from '../../utils';
 import './animeGrid.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 
 const Player = ({
   width,
@@ -22,7 +23,6 @@ const Player = ({
       height={height}
       className={ clas ? style.player : null }
     />  
-    // <div></div>
   )
 }
 
@@ -33,18 +33,21 @@ Player.propTypes = {
   clas: PropTypes.string,
 }
 
-const Card = ({
+const Card = React.memo(({
   album,
 }) => {
-  console.log('CARD')
     const [expanded, setExpanded] = useState(false);
     const randomNumber = Math.floor(Math.random() * 5) + 1;
     return (
-        <div
+        <motion.div
           className={[`card card--${randomNumber} ${expanded ? "card--expanded" : ""}`, style.cardExpanded].join(' ')}
           onClick={() => {
             setExpanded(!expanded);
           }}
+          initial={{ scaleY: 0 }} 
+          animate={{ scaleY: 1 }} 
+          exit={{ scaleY: 0 }}
+          transition={{ duration: .2 }}
         >
             <div className={style.cardContainer}>
               <div className={[style.imageContainer, expanded && style.isExpanded].join(' ')}>
@@ -57,7 +60,6 @@ const Card = ({
               <div data-role={expanded} className={style.playerContainer}>
                 <div className={style.infoText}>
                   <h3>{album.title}</h3>
-                  {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard fezufkezjf febzfilze zebflzknf</p> */}
                 </div>
                 <div className={style.buttonContainer}>
                     <a href={album.buyLink} target="_blank" rel="noopener noreferrer">BUY NOW</a>
@@ -73,9 +75,9 @@ const Card = ({
                 </div>
                 </div>
               </div>
-           </div>
+           </motion.div>
       );
-}
+});
 
 Card.propTypes = {
   album: PropTypes.object,
@@ -98,7 +100,9 @@ class Grid extends React.Component {
 
     return (
         <div className={[classes, style.flex_container, 'flex_container'].join(' ')} ref={el => (this.grid = el)}>
-            {this.props.albums.map(album => <Card key={album._id} album={album}/>)}
+            {this.props.albums.map((album, index) => (
+              <Card key={album._id} album={album}/>
+            ))}
         </div>
     );
   }
@@ -125,36 +129,41 @@ const Discography = ({
 
   return (
     <>
-      <div className={style.container}> 
-
-      {!isMobile ? (
-        <Grid 
-          settings={state} 
-          albums={albums}
-        /> 
-      ) : (
-        <div className={style.containerMobile}>
-          <div className={style.player_container}>
-              <div className={style.player_wrapper}>
-                <Player 
-                   width='100%'
-                   height= '60vh'
-                   clas={style.player}
-                   url={albumToPlay?.soundcloudLink ? albumToPlay.soundcloudLink : 'https://soundcloud.com/full-dub-1/sets/rewind'}
+      <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          className={style.container}
+      >
+        {/* <div className={style.container}>  */}
+          {!isMobile ? (
+            <Grid 
+              settings={state} 
+              albums={albums}
+            /> 
+          ) : (
+            <div className={style.containerMobile}>
+              <div className={style.player_container}>
+                  <div className={style.player_wrapper}>
+                    <Player 
+                      width='100%'
+                      height= '60vh'
+                      clas={style.player}
+                      url={albumToPlay?.soundcloudLink ? albumToPlay.soundcloudLink : 'https://soundcloud.com/full-dub-1/sets/rewind'}
+                    />
+                  </div>
+              </div>
+              <div className={style.slide_container}>
+                <Carousel 
+                  albums={albums}
+                  handleAlbum={handleAlbum}
                 />
               </div>
-          </div>
-          <div className={style.slide_container}>
-            <Carousel 
-              albums={albums}
-              handleAlbum={handleAlbum}
-            />
-          </div>
-        </div>
-      )}
-      </div>
+            </div>
+          )}
+        {/* </div> */}
+      </motion.div>
     </>
-    
   );
 }
 

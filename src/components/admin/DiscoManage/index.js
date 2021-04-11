@@ -21,7 +21,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import moment from 'moment';
 import Dialogs from '../../utils/Dialog';
 import PropTypes from 'prop-types';
-import style from './style.scss';
 
 moment().format();
 
@@ -39,9 +38,16 @@ const useStyles = makeStyles((theme) => ({
       color: '#e6e6e6',
     },
   },
+  tableRowTitle: {
+    '& > *': {
+      color: '#e6e6e6',
+      borderBottom: 'none',
+    },
+  },
   tableRow: {
     '& > *': {
       color: '#e6e6e6',
+      borderBottom: 'none',
     },
     '&:hover': {
       backgroundColor: '#0000008e',
@@ -103,7 +109,7 @@ const ShopManage = ({
             />
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
-                  <TableRow className={classes.tableRow}>
+                  <TableRow className={classes.tableRowTitle}>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}
@@ -115,10 +121,10 @@ const ShopManage = ({
                     <TableRow key={album._id}  className={classes.tableRow}>
                         {/* <TableCell align="left">tracklist</TableCell> */}
                         <TableCell align="left">{album.title}</TableCell>
-                        <TableCell align="left">{album.label} label</TableCell>
+                        <TableCell align="left">{album.label}</TableCell>
                         <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>
                         <TableCell align="left">
-                        <Avatar variant="square" className={classes.square} src={album.cover} />
+                          <Avatar variant="square" className={classes.square} src={album.cover} />
                         </TableCell>
                         <TableCell align="left" className={[classes.icon, classes.editIcon].join(' ')}> 
                           <EditIcon onClick={() => openDialog("disco", album)} />

@@ -35,9 +35,16 @@ const useStyles = makeStyles((theme) => ({
       color: '#e6e6e6',
     },
   },
+  tableRowTitle: {
+    '& > *': {
+      color: '#e6e6e6',
+      borderBottom: 'none',
+    },
+  },
   tableRow: {
     '& > *': {
       color: '#e6e6e6',
+      borderBottom: 'none',
     },
     '&:hover': {
       backgroundColor: '#0000008e',
@@ -99,7 +106,7 @@ const LiveManage = ({
               />
                 <Table className={classes.table} aria-label="simple table">
                 <TableHead>
-                    <TableRow className={classes.tableRow}>
+                    <TableRow className={classes.tableRowTitle}>
                     {myColumnsName.map(column => (
                         <TableCell key={column}>{column}</TableCell>
                     ))}

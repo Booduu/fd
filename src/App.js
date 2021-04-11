@@ -18,6 +18,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from "react-router-dom";
 import { LiveManage, ShopManage, DiscoManage, Signin, Signup } from './components/admin';
 import { 
@@ -30,6 +31,7 @@ import {
 } from './components/public';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { AnimatePresence } from 'framer-motion';
 
 const App = ({
   tt,
@@ -40,9 +42,9 @@ const App = ({
   getProducts,
 }) => {
   const [isHome, setIsHome] = useState(false)
-
+  const location = useLocation();
+  console.log('location', location)
   useEffect(() => {
-    console.log('TTTTTTTTT')
     tt();
     getAlbums();
     getLives();
@@ -52,8 +54,8 @@ const App = ({
   const [width, setWidth] = useState(window.innerWidth);
 
   const handleWindowSizeChange = () => {
-          setWidth(window.innerWidth);
-      }
+      setWidth(window.innerWidth);
+  }
 
   useEffect(() => {
       window.addEventListener('resize', handleWindowSizeChange);
@@ -70,19 +72,21 @@ const App = ({
       }
   }, [width]);
 
+
   return (
     <div className={style.App}>
       <Logo />
       <Burger />
-      <LandingPage isHome={isHome}/>
-      <Router>
+        <LandingPage isHome={isHome}/>
+      {/* <Router> */}
         <div className={style.menu}>
           <Header />
         </div>
         <div className={style.content}>
-          <Switch>
-
+      <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.key} >
             <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
+            
             <Route path="/discography" component={Discography} />
             <Route path="/shows" component={Shows} />
             <Route path="/shop" component={Shop} />
@@ -95,8 +99,10 @@ const App = ({
             <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
             <Redirect to='/home' />
           </Switch>
+      </AnimatePresence>
+
         </div>
-      </Router>
+      {/* </Router> */}
     </div>
   )
 }

@@ -8,16 +8,17 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     .overlay {
         padding: 60px;
-        min-height: 90vh;
+        min-height: 85vh;
         background-color: rgba(0, 0, 0, 0.733);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         .dates_container {
+            margin-bottom: 30px;
             .date_line {
                 padding: 5px;
               
@@ -28,8 +29,13 @@
                 div {
                     .ticket_link {
                         .link {
-                            color: rgb(202, 129, 19);
-                            font-weight: 500;
+                            color: $color-hover;
+                            font-weight: 500;  
+                            &:hover {
+                                cursor: pointer;
+                                color: rgb(241, 174, 73);
+                                transition: .3s;
+                            }
                         }
                     }
                 }  
@@ -38,8 +44,14 @@
 
         .load_more {
             text-align: center;
-            color: rgb(202, 129, 19);
+            color: $color-hover;
             font-weight: 500;
+            transition: .3s;
+            &:hover {
+                cursor: pointer;
+                color: rgb(241, 174, 73);
+                transition: .3s;
+            }
         }
     }
 }
@@ -65,9 +77,9 @@
         .overlay {
            width: 80%;
            padding: 15px;
-
+        
             .dates_container {
-
+                font-size: 12px;
                 .date_line {
                    display: flex;
                    flex-direction: column;

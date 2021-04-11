@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({ 
   signIn, 
   auth,
+  errors,
 }) => {
     const classes = useStyles();
     const [state, setState] = useState({
@@ -93,6 +94,8 @@ const SignIn = ({
             value={state.password}
             onChange={(event) => handleChange(event.target.value, 'password')}
           />
+          <div style={{ color: 'red', fontSize: '12px' }}>{errors?.message}</div>
+
           <Button
             type="submit"
             fullWidth
@@ -117,4 +120,5 @@ const SignIn = ({
 
 export default connect(state => ({
   auth: state.authentificationReducer.auth,
+  errors: state.authentificationReducer.errors,
 }), { signIn })(SignIn);

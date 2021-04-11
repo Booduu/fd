@@ -32,7 +32,6 @@ const LandingPage = ({
                 // />
                 // </div>
                
-
                 <iframe 
                     width="925" 
                     height="315" 

@@ -2,11 +2,10 @@ import React, { useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout, toggleMenu } from '../../../store/actions'; 
-
 import style from './Header.module.scss';
 import { menuListPublic, menuListAdmin } from '../../../Constants/menu-list';
 import PropTypes from 'prop-types';
- 
+import { useLocation } from 'react-router-dom';
 
 const Header = ({
     auth,
@@ -19,16 +18,14 @@ const Header = ({
     const [displayMenuBar, setDisplayMenuBar] = useState(isOpen ? 'translate(0%)' : 'translate(250%)');
 
     useEffect(() => {
-        setDisplayMenuBar(isOpen ? 'translate(150%)' : '');
+        setDisplayMenuBar(isOpen ? 'translate(123%)' : '');
     }, [isOpen]);
-
     return ( 
         <>
             <div 
                 className={[style.container, isOpen ? style.menuOpen : '' ].join('')}
                 style={{ transform: displayMenuBar, transition: isMobile ? '.5s' : 'none' }}
             >   
-
                 <div className={style.menuPublic}>
                         {menuListPublic.map((link, index) => (
                             <div key={link + index}>
