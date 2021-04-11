@@ -72,10 +72,19 @@
     }
 }
 
+
+@media (max-width: $break-medium) {
+    .container {
+        .overlay {
+            width: 80%;
+        }
+    }
+}
+
 @media (max-width: $break-small) {
     .container {
         .overlay {
-           width: 80%;
+           width: 90%;
            padding: 15px;
         
             .dates_container {

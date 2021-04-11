@@ -69,9 +69,10 @@ const Shows = ({
 
     return ( 
     <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
+        initial={{ scaleY: 0 }} 
+        animate={{ scaleY: 1 }} 
+        exit={{ scaleY: 0 }}
+        transition={{ duration: .4 }}
         className={style.container}
     > 
         {/* <div className={style.container}> */}

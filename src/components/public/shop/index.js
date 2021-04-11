@@ -9,9 +9,10 @@ const Shop = ({
 }) => {
     return ( 
     <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
+        // initial={{ scaleY: 0, scaleX: 0.6 }} 
+        // animate={{ scaleY: 1, scaleX: 1 }} 
+        // exit={{ scaleY: 0, scaleX: 0.6 }}
+        transition={{ duration: .4 }}
         className={style.container}
     > 
         {/* <div className={style.container}> */}
@@ -22,7 +23,7 @@ const Shop = ({
                             className={style.item_container}
                             initial={{ scaleX: 0 }} 
                             animate={{ scaleX: 1 }} 
-                            exit={{ scaleY: 0 }}
+                            exit={{ scaleX: 0 }}
                             transition={{ delay: `0.${index}` }}
                         >
                             <div className={style.img_container}>

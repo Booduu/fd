@@ -39,15 +39,11 @@ const Card = React.memo(({
     const [expanded, setExpanded] = useState(false);
     const randomNumber = Math.floor(Math.random() * 5) + 1;
     return (
-        <motion.div
+        <div
           className={[`card card--${randomNumber} ${expanded ? "card--expanded" : ""}`, style.cardExpanded].join(' ')}
           onClick={() => {
             setExpanded(!expanded);
           }}
-          initial={{ scaleY: 0 }} 
-          animate={{ scaleY: 1 }} 
-          exit={{ scaleY: 0 }}
-          transition={{ duration: .2 }}
         >
             <div className={style.cardContainer}>
               <div className={[style.imageContainer, expanded && style.isExpanded].join(' ')}>
@@ -75,7 +71,7 @@ const Card = React.memo(({
                 </div>
                 </div>
               </div>
-           </motion.div>
+           </div>
       );
 });
 
@@ -130,9 +126,10 @@ const Discography = ({
   return (
     <>
       <motion.div 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          exit={{ opacity: 0 }}
+          initial={{ scaleY: 0, scaleX: 0.6 }} 
+          animate={{ scaleY: 1, scaleX: 1 }} 
+          exit={{ scaleY: 0, scaleX: 0.6 }}
+          transition={{ duration: .4 }}
           className={style.container}
       >
         {/* <div className={style.container}>  */}
