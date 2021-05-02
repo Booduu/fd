@@ -70,7 +70,6 @@ const Shop = ({
         if (Object.keys(editingData).length === 0 ) {
             createProduct(dataToSend);
         } 
-
     };
 
     return (

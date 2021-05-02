@@ -1,31 +1,57 @@
-@import './assets/sass/breakpoints.scss';;
+@import './assets/sass/breakpoints.scss';
+@import './assets/sass/variables';
 
-.App {
+
+.GridContainerApp {
     display: grid;
     grid-template-columns: 160px 1fr 160px;
-    grid-template-rows: auto;
+    // grid-template-rows: auto;
+    // grid-template-rows: 70px calc(100vh - 110px);
+
     grid-template-areas: 
-      "menu content";
-}
-.menu {
-    grid-area: menu;
-    min-height: 100vh;
-}
-.content {
-    width: 100%;
-    height: inherit;
-    grid-area: content;
-    min-height: 100vh;
+      "top top top"
+      "menu content aside"
+      "bot bot bot";
+
+    .topBar {
+        grid-area: top;
+        height: 70px;
+    }
+
+    .menu {
+        grid-area: menu;
+        // min-height: 100vh;
+    }
+    .content {
+        width: 100%;
+        // height: inherit;
+        grid-area: content;
+        min-height: calc(100vh - 110px);
+    }
+    .footer {
+        background-color: rgba(0, 0, 0, 0.466);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 40px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
 }
 
+
+
+
 @media (max-width: $break-large) {
-    .App {
+    .GridContainerApp {
         grid-template-columns: 160px 1fr 0px  ;
     }
 }
 
 @media (max-width: $break-medium) {
-    .App {
+    .GridContainerApp {
         grid-template-columns: 0px 1fr 0px ;
     } 
 }

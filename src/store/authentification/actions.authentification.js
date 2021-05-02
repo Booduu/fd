@@ -65,8 +65,6 @@ export const requestSignInSuccess = (value) => {
 }
 
 export const requestSignInFail = (error) => {
-    console.log('erooooo', error.data )
-
     return {
         type: REQUEST_SIGNIN_FAIL,
         error: { ...error.data },
@@ -110,24 +108,7 @@ export const requestProtectedError = (error) => {
     }
 }
 
-
-// export const tt = () => {
-//     return dispatch => {
-//         dispatch(requestProtected());
-//         return apiFulldub.get('/protected', {
-//             headers: {
-//             'auth-token': `${localStorage.getItem('jwtToken')}`
-//             }})
-//             .then( response => response.data)
-//             .then(data => {
-//                 const user = {...data}
-//                 dispatch(requestProtectedSuccess(user))
-//             },
-//             error => dispatch(requestProtectedError(error))
-//             )   
-//     }
-// }
-export const tt = () => {
+export const verifyUser = () => {
     return dispatch => {
         dispatch(requestProtected());
         return apiFulldub.get('/protected', {

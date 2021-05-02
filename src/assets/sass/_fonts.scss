@@ -2,5 +2,11 @@
 // $font-family: 'Roboto', sans-serif;
 
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
-$font-family: 'Open Sans', sans-serif;
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+// $font-family: 'Open Sans', sans-serif;
+@font-face {
+    font-family: 'MyWebFont';
+    // src:  url('myfont.woff2') format('woff2'),
+    //       url('myfont.woff') format('woff');
+    src:  url('../font/fontawesome-webfont.ttf')  format('truetype'),
+  }

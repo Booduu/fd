@@ -6,6 +6,7 @@ import { Carousel } from '../../utils';
 import './animeGrid.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { SEO } from '../index';
 import { motion } from 'framer-motion';
 
 const Player = ({
@@ -16,7 +17,6 @@ const Player = ({
 }) => {
   return (
     <ReactPlayer
-      volume={0}
       controls={false}
       url={url}
       width={width}
@@ -45,6 +45,7 @@ const Card = React.memo(({
             setExpanded(!expanded);
           }}
         >
+          <SEO title="Discography" />
             <div className={style.cardContainer}>
               <div className={[style.imageContainer, expanded && style.isExpanded].join(' ')}>
                 <img 
@@ -130,9 +131,8 @@ const Discography = ({
           animate={{ scaleY: 1, scaleX: 1 }} 
           exit={{ scaleY: 0, scaleX: 0.6 }}
           transition={{ duration: .4 }}
-          className={style.container}
+          className={style.discoContainer}
       >
-        {/* <div className={style.container}>  */}
           {!isMobile ? (
             <Grid 
               settings={state} 
@@ -158,7 +158,6 @@ const Discography = ({
               </div>
             </div>
           )}
-        {/* </div> */}
       </motion.div>
     </>
   );

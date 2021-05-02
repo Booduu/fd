@@ -1,0 +1,41 @@
+@import '../../../assets/sass/breakpoints.scss';
+
+
+.container {
+   display: flex;
+   justify-content: center;
+
+   .mentions {
+       max-width: 1200px;
+
+       h3 {
+           margin-bottom: 60px;
+       }
+       .section {
+
+            margin-bottom: 50px;
+           h3 {
+               margin-bottom: 30px;
+               font-size: 20px;
+           }
+       }
+   }
+
+}
+
+@media (max-width: $break-large) {
+    .container {
+        .mentions {
+            padding-right: 30px;
+        }
+    }
+}
+
+@media (max-width: $break-medium) {
+    .container {
+        background-color: rgba(0, 0, 0, 0.589);
+        .mentions {
+            padding: 30px;
+        }
+    }
+}

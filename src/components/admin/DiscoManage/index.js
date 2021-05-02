@@ -119,7 +119,6 @@ const ShopManage = ({
               <TableBody>
                 {albums.map((album) => (
                     <TableRow key={album._id}  className={classes.tableRow}>
-                        {/* <TableCell align="left">tracklist</TableCell> */}
                         <TableCell align="left">{album.title}</TableCell>
                         <TableCell align="left">{album.label}</TableCell>
                         <TableCell align="left">{moment(album.releaseDate).format("DD-MM-YYYY")}</TableCell>

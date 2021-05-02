@@ -8,6 +8,14 @@
     z-index: 500;
 }
 
+@media (max-width: $break-xl) {
+    .logo {
+        left: 0;
+        width: 120px;
+        margin: 20px;
+    }
+}
+
 @media (max-width: $break-medium) {
     .logo {
         left: 0;

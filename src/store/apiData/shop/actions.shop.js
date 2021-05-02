@@ -11,7 +11,6 @@ export const requestCreateProduct = () => {
 }
 
 export const requestCreateProductSuccess = (product) => {
-    console.log('requestCreateLiveSuccess', product)
     return {
         type: REQUEST_CREATE_PRODUCT_SUCCESS,
         product
@@ -27,7 +26,6 @@ export const requestCreateProductFail = (error) => {
 }
 
 export const createProduct = (product) => {
-    console.log('createProducts HERE', product);
     return dispatch => {
         dispatch(requestCreateProduct());
         return apiFulldub.post('/protected/product/productcreate', product, {
@@ -132,7 +130,6 @@ export const requestGetProducts = () => {
 }
 
 export const requestGetProductsSuccess = (products) => {
-    console.log('requestDeleteProductSuccess', )
     return {
         type: REQUEST_GET_PRODUCTS_SUCCESS,
         products
@@ -140,7 +137,6 @@ export const requestGetProductsSuccess = (products) => {
 }
 
 export const requestGetProductsFail = (error) => {
-    console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_GET_PRODUCTS_FAIL,
         error: { ...error.data },
@@ -149,7 +145,6 @@ export const requestGetProductsFail = (error) => {
 
 export const getProducts = () => {
     return dispatch => {
-        console.log('OOOOO')
         dispatch(requestGetProducts());
         return apiFulldub.get('/product/productlist')
             .then(response => dispatch(requestGetProductsSuccess(response.data)))
@@ -168,7 +163,6 @@ export const requestGetProduct = () => {
 }
 
 export const requestGetProductSuccess = (product) => {
-    console.log('requestDeleteProductSuccess', )
     return {
         type: REQUEST_GET_PRODUCT_SUCCESS,
         product
@@ -176,7 +170,6 @@ export const requestGetProductSuccess = (product) => {
 }
 
 export const requestGetProductFail = (error) => {
-    console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_GET_PRODUCT_FAIL,
         error: { ...error.data },
@@ -185,7 +178,6 @@ export const requestGetProductFail = (error) => {
 
 export const getProduct = (productId) => {
     return dispatch => {
-        console.log('OOOOO')
         dispatch(requestGetProduct());
         return apiFulldub.get(`/product/${productId}`)
             .then(response => dispatch(requestGetProductSuccess(response.data)))

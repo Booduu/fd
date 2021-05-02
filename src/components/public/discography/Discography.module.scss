@@ -1,22 +1,23 @@
 @import "../../../assets/sass/breakpoints.scss";
 @import '../../../assets/sass/_variables.scss';
 
-.container {
-    padding-top: $padding-top-container;
+.discoContainer {
+    padding-top: 0px;
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 110px);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    // padding-bottom: $padding-bottom-containers;
     .flex_container {
         max-width: 1000px;
+        margin-bottom: 100px;
 
         .cardContainer {
             .imageContainer {
                 .poster {
                     background-color: rgba(0, 0, 0, 0.664);
                     width: 100%;
-                    // max-width: 400px;
                 }
             }
             
