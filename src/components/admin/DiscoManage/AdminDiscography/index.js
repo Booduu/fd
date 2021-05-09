@@ -49,14 +49,11 @@ const Discography = ({
     const [state, setState] = useState({
         title: editingData?.title || '',
         label: editingData?.label || '',
-        // tracklist: editingData?.tracklist || '',
         soundcloudLink: editingData?.soundcloudLink || '',
         buyLink: editingData?.buyLink || '',
         downloadLink: editingData?.downloadLink || '',
         releaseDate: editingData?.releaseDate || new Date(),
     });
-
-    // const [tracklist, setTracklist] = useState(editingData != null ? editingData.tracklist : []);
 
     const handleChange = (e) => {
         const { name } =  e.currentTarget;
@@ -82,25 +79,6 @@ const Discography = ({
 
     };
 
-    // const addTrack = () => {
-    //     const newList = [...tracklist];
-    //     newList.push(state.tracklist);
-    //     setTracklist(newList);
-    // }
-
-    // useEffect(() => {
-    //     setState({
-    //         ...state,
-    //         tracklist: '',
-    //     });
-    // }, [tracklist])
-
-    // const deleteTrack = (index) => {
-    //     const newTracklist = [ ...tracklist];
-    //     newTracklist.splice(index, 1);
-    //     setTracklist(newTracklist);
-    // }
-
     return ( 
         <Grid container spacing={1} justify="center" >
             <Grid container item xs={6} spacing={1}>
@@ -119,7 +97,7 @@ const Discography = ({
                         value={state.title}
                         onChange={handleChange}
                         error={errors != null && !!errors?.messages?.title}
-                        helperText={errors?.messages?.title ? errors.messages.title : ''}
+                        helperText={errors?.messages?.title ? errors.messages.title : 'Champs requis'}
                         fullWidth
                     />
                 </Grid>
@@ -130,7 +108,7 @@ const Discography = ({
                         value={state.label}
                         onChange={handleChange}
                         error={errors != null && !!errors?.messages?.label}
-                        helperText={errors?.messages?.label ? errors.messages.label : ''}
+                        helperText={errors?.messages?.label ? errors.messages.label : 'Champs requis'}
                         fullWidth
                     />
                 </Grid>
@@ -168,8 +146,8 @@ const Discography = ({
                         label="Lien soundcloud"
                         value={state.soundcloudLink}
                         onChange={handleChange}
-                        error={errors != null && !!errors?.messages?.soundcloudLink}
-                        helperText={errors?.messages?.soundcloudLink ? errors.messages.soundcloudLink : ''}
+                        // error={errors != null && !!errors?.messages?.soundcloudLink}
+                        // helperText={errors?.messages?.soundcloudLink ? errors.messages.soundcloudLink : ''}
                         fullWidth
                     />
                 </Grid>
@@ -179,8 +157,8 @@ const Discography = ({
                         label="buy link"
                         value={state.buyLink}
                         onChange={handleChange}
-                        error={errors != null && !!errors?.messages?.buyLink}
-                        helperText={errors?.messages?.buyLink ? errors.messages.buyLink : ''}
+                        // error={errors != null && !!errors?.messages?.buyLink}
+                        // helperText={errors?.messages?.buyLink ? errors.messages.buyLink : ''}
                         fullWidth
                     />
                 </Grid>
@@ -190,8 +168,8 @@ const Discography = ({
                         label="download link"
                         value={state.downloadLink}
                         onChange={handleChange}
-                        error={errors != null && !!errors?.messages?.downloadLink}
-                        helperText={errors?.messages?.downloadLink ? errors.messages.downloadLink : ''}
+                        // error={errors != null && !!errors?.messages?.downloadLink}
+                        // helperText={errors?.messages?.downloadLink ? errors.messages.downloadLink : ''}
                         fullWidth
                     />
                 </Grid>

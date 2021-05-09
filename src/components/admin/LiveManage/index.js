@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   container: {
-    marginTop: '70px',
+    marginBottom: '50px',
     backgroundColor: 'rgba(0, 0, 0, 0.637)',
   },
   backdrop: {

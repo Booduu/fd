@@ -8,6 +8,8 @@ export { default as Footer } from './footer';
 export { default as SEO } from './SEO';
 export { default as Mentions } from './Mentions';
 
+export { default as LazyRoutes } from './LazyRoutes';
+
 
 
 

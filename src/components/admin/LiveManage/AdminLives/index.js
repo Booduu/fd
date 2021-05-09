@@ -25,6 +25,7 @@ const AdminLives = ({
     editingData,
     editLive,
     errors,
+    isLoading,
 }) => {
     const classes = useStyles();
     const buttonValue = Object.keys(editingData).length > 0 ? "Edit" : "Save";
@@ -81,7 +82,7 @@ const AdminLives = ({
                     value={state.city || ''}
                     onChange={handleChange}
                     error={errors != null && !!errors?.messages?.city}
-                    helperText={errors?.messages?.city ? errors.messages.city : ''}
+                    helperText={errors?.messages?.city ? errors.messages.city : 'Champs requis'}
                     fullWidth
                 />
             </Grid>
@@ -92,7 +93,7 @@ const AdminLives = ({
                     value={state.place  || ''}
                     onChange={handleChange}
                     error={errors != null && !!errors?.messages?.place}
-                    helperText={errors?.messages?.place ?errors.messages.place : ''}
+                    helperText={errors?.messages?.place ?errors.messages.place : 'Champs requis'}
                     fullWidth
                 />
             </Grid>
@@ -103,7 +104,7 @@ const AdminLives = ({
                     value={state.name  || ''}
                     onChange={handleChange}
                     error={errors != null && !!errors?.messages?.name}
-                    helperText={errors?.messages?.name ? errors.messages.name : ''}
+                    helperText={errors?.messages?.name ? errors.messages.name : 'Champs requis'}
                     fullWidth
                 />
             </Grid>
@@ -113,8 +114,8 @@ const AdminLives = ({
                     label="ticket link"
                     value={state.ticketLink  || ''}
                     onChange={handleChange}
-                    error={errors != null && !!errors?.messages?.ticketLink}
-                    helperText={errors?.messages?.ticketLink ? errors.messages.ticketLink : ''}
+                    // error={errors != null && !!errors?.messages?.ticketLink}
+                    // helperText={errors?.messages?.ticketLink ? errors.messages.ticketLink : ''}
                     fullWidth
                 />
             </Grid>
@@ -125,6 +126,7 @@ const AdminLives = ({
                     size="large"
                     className={classes.button}
                     onClick={saveData}
+                    disabled={isLoading}
                     fullWidth
                 >
                     {buttonValue}
@@ -147,6 +149,7 @@ AdminLives.propTypes = {
 export default connect(state => ({
     lives: state.apiDataReducer.lives,
     errors: state.apiDataReducer.errors,
+    isLoading: state.apiDataReducer.loader,
 }), {
     createLive,
     editLive,

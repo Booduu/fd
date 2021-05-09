@@ -12,39 +12,40 @@ import {
   getAlbums, 
   getLives,
   getProducts,
+  initializeApp,
 } from './store/actions';
-import {
-  Switch,
-  Route,
-  Redirect,
-  useLocation,
-} from "react-router-dom";
+import { Loader } from './components/utils';
+// import {
+//   Switch,
+//   Route,
+//   Redirect,
+//   useLocation,
+// } from "react-router-dom";
 import { 
-  Signup
-} from './components/admin';
-import { 
-  Home,
   Footer,
-  Mentions,
 } from './components/public';
-import { connect } from 'react-redux';
+import { connect, batch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AnimatePresence } from 'framer-motion';
-import { styles } from '@material-ui/pickers/views/Calendar/Calendar';
+// import { AnimatePresence } from 'framer-motion';
+
+
+
 
 //LAZY LOAD PUBLIC COMPONENTS
 const LandingPage = lazy( async() => (await import ('./components/public/landingPage')));
-const Discography = lazy( async() => (await import ('./components/public/discography')));
-const Shows = lazy( async() => (await import ('./components/public/shows')));
-const Shop = lazy( async() => (await import ('./components/public/shop')));
-const BookingContact = lazy(() => import ('./components/public/bookingContact'));
+const LazyRoutes = lazy( async() => (await import ('./components/public/LazyRoutes')));
 
-//LAZY LOAD ADMIN COMPONENTS
-const LiveManage = lazy( async() => (await import ('./components/admin/LiveManage')));
-const ShopManage = lazy( async() => (await import ('./components/admin/ShopManage')));
-const DiscoManage = lazy( async() => (await import ('./components/admin/DiscoManage')));
-const Signin = lazy( async() => (await import ('./components/admin/signin')));
+// const Discography = lazy( async() => (await import ('./components/public/discography')));
+// const Shows = lazy( async() => (await import ('./components/public/shows')));
+// const Shop = lazy( async() => (await import ('./components/public/shop')));
+// const BookingContact = lazy(() => import ('./components/public/bookingContact'));
+
+// //LAZY LOAD ADMIN COMPONENTS
+// const LiveManage = lazy( async() => (await import ('./components/admin/LiveManage')));
+// const ShopManage = lazy( async() => (await import ('./components/admin/ShopManage')));
+// const DiscoManage = lazy( async() => (await import ('./components/admin/DiscoManage')));
+// const Signin = lazy( async() => (await import ('./components/admin/signin')));
 
 
 
@@ -55,15 +56,19 @@ const App = ({
   getLives,
   auth,
   getProducts,
+  initializeApp,
+  appLoading,
 }) => {
+  const [loading, isLoading] = useState(true);
   const [isHome, setIsHome] = useState(false)
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
-    verifyUser();
-    getAlbums();
-    getLives();
-    getProducts();
+    // verifyUser();
+    // getAlbums();
+    // getLives();
+    // getProducts();
+    initializeApp()
   }, []);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -87,6 +92,13 @@ const App = ({
       }
   }, [width]);
 
+  // useEffect(() => {
+  //   isLoading(false);
+  // }, []);
+  if (appLoading) {
+    return <Loader />
+  }
+
 
   return (
     <div className={style.App}>
@@ -94,14 +106,15 @@ const App = ({
         <div className={style.topBar}></div>
         <Logo />
         <Burger />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <LandingPage isHome={isHome}/>
           <div className={style.menu}>
             <Header />
           </div>
           <div className={style.content}>
-            <AnimatePresence exitBeforeEnter>
-                <Switch location={location} key={location.key} >
+          <LazyRoutes />
+            {/* <AnimatePresence exitBeforeEnter>
+                <Switch location={location} key={location.key} > 
                   <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
                   <Route path="/discography" component={Discography} />
                   <Route path="/shows" component={Shows} />
@@ -115,7 +128,7 @@ const App = ({
                   <Route path="/admin/disco" render={() => auth.isLoggedIn ? <DiscoManage /> : <Redirect to='/home' />} />
                   <Redirect to='/home' />
                 </Switch>
-            </AnimatePresence>
+            </AnimatePresence> */}
           </div>
         </Suspense>
       </div>
@@ -134,13 +147,15 @@ App.propTypes = {
 }
 
 export default connect(state => ({
-  auth: state.authentificationReducer.auth
+  auth: state.authentificationReducer.auth,
+  appLoading: state.apiDataReducer.appLoading,
 }), { 
   verifyUser, 
   getIsMobile,
   getAlbums,
   getLives,
   getProducts,
+  initializeApp,
  })(App);
 
 

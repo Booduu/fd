@@ -18,7 +18,6 @@ export const requestCreateProductSuccess = (product) => {
 }
 
 export const requestCreateProductFail = (error) => {
-    console.log('requestCreateLiveFail', error)
     return {
         type: REQUEST_CREATE_PRODUCT_FAIL,
         error: { ...error.data }

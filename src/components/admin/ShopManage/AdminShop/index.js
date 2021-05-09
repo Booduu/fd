@@ -106,7 +106,7 @@ const Shop = ({
                         value={state.name}
                         onChange={handleChange}
                         error={errors != null && !!errors?.messages?.name}
-                        helperText={errors?.messages?.name ? errors.messages.name : ''}
+                        helperText={errors?.messages?.name ? errors.messages.name : 'Champs requis'}
                         fullWidth
                     />
                 </Grid>
@@ -118,7 +118,7 @@ const Shop = ({
                             value={state.link}
                             onChange={handleChange}
                             error={errors != null && !!errors?.messages?.link}
-                            helperText={errors?.messages?.link ? errors.messages.link : ''}
+                            helperText={errors?.messages?.link ? errors.messages.link : 'Champs requis'}
                             fullWidth
                         />
                     </Grid>

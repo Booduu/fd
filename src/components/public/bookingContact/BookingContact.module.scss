@@ -2,9 +2,8 @@
 @import '../../../assets/sass/_variables.scss';
 
 .container {
-    // padding-top: $padding-top-container;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 110px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +15,6 @@
         grid-template-areas: "logo"
                              "social";
         grid-template-columns: 1fr;
-        // grid-template-rows: calc(100vh - 150px) 100px;
         grid-template-rows:  1fr 100px;
        
         .logos_container {
@@ -65,7 +63,7 @@
 
                     .logo1, .logo2 {
                         &:hover {
-                            filter: drop-shadow(16px 16px 20px $color-hover);
+                            filter: drop-shadow(2px 2px 2px $color-hover);
                             transition: .3s;
                         }
                     }
@@ -91,8 +89,6 @@
             align-items: center;
             .link {
                 flex: 1 1 0;
-                // display: flex;
-                // align-items: center;
                 transition: .3s;
 
                 a {
@@ -118,11 +114,10 @@
 
 @media (max-width: $break-medium) { 
     .container {
-        // align-items: flex-end;
         .flex_container {
             height: 100%;
             padding: 0px 30px 30px 30px;
-
+            grid-template-rows:  1fr 70px;
             .logos_container {
                 flex-direction: column;
 

@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 const Shop = ({
     products,
 }) => {
-    // window.open("https://www.w3schools.com");
     return ( 
     <motion.div 
         transition={{ duration: .4 }}
@@ -16,14 +15,16 @@ const Shop = ({
     > 
         <SEO title="Shop" />
         <div className={style.flex_container}>
-            {products.map((product, index) => (
+            {products.map((product, index) => {
+                return (
                 <motion.div 
                     key={product._id} 
                     className={style.item_container}
                     initial={{ scaleX: 0 }} 
                     animate={{ scaleX: 1 }} 
                     exit={{ scaleX: 0 }}
-                    transition={{ delay: `0.${index}` }}
+                    // transition={{ delay: `0.${index}` }}
+                    onClick={() => window.open(product.link)}
                 >
                     <div className={style.img_container}>
                         <img src={product.cover} alt={`product ${product.name}`}/>
@@ -34,10 +35,9 @@ const Shop = ({
                             <span className={style.product_type}>{product.type}</span>
                             <span className={style.product_name}>{product.name}</span>
                         </div>
-                        {/* <a className={style.link_buy} href={product.link} target="_bank">BUY NOW</a> */}
                     </div>
                 </motion.div>
-            ))}
+            )})}
         </div>
     </motion.div>
      );

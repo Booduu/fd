@@ -5,11 +5,19 @@ const initialState = {
     albums: [],
     products: [],
     loader: false,
+    appLoading: true,
     errors: null,
 };
 
 const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case actions.INITIALIZE_APP_DONE: 
+            console.log('INITIALIZE_APP_DONE')
+            return {
+                ...state,
+                appLoading: false,
+            }
 
         // COMMONS ACTIONS TYPES
         case actions.REQUEST_CREATE_LIVE:
@@ -23,7 +31,8 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.REQUEST_CREATE_PRODUCT:
         case actions.REQUEST_DELETE_PRODUCT:
         case actions.REQUEST_GET_PRODUCT:
-
+        case actions.REQUEST_EDIT_PRODUCT:
+            
         case actions.REQUEST_GET_LIVES:
         case actions.REQUEST_GET_PRODUCTS:
         case actions.REQUEST_GET_ALBUMS:
@@ -45,7 +54,6 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.REQUEST_DELETE_PRODUCT_FAIL:
         case actions.REQUEST_DELETE_LIVE_FAIL:
 
-            console.log('ction', action.error)
             return {
                 ...state,
                 loader: false,
@@ -181,7 +189,7 @@ const apiDataReducer = (state = initialState, action) => {
             }) 
             return {
                 ...state,
-                loader: false,
+                loade: false,
                 lives: livesSortedNew,
             };
 

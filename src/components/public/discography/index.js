@@ -59,16 +59,20 @@ const Card = React.memo(({
                   <h3>{album.title}</h3>
                 </div>
                 <div className={style.buttonContainer}>
-                    <a href={album.buyLink} target="_blank" rel="noopener noreferrer">BUY NOW</a>
-                    <a href={album.downloadLink} target="_blank" rel="noopener noreferrer">DOWNLOAD MP3</a>
+                  {album?.buyLink && <a href={album.buyLink} target="_blank" rel="noopener noreferrer">BUY NOW</a>}
+                  {album?.downloadLink &&  <a href={album.downloadLink} target="_blank" rel="noopener noreferrer">DOWNLOAD MP3</a>}
                 </div>
                 <div className={style.playerWrapper}>
+                  {album?.soundcloudLink ? 
+                  (
                   <Player 
                     width='350px'
                     height='240px'
-                    url={album.soundcloudLink}
+                    url={album?.soundcloudLink || ''}
                   />
-
+                  ) : (
+                    <div className={style.noPlayerMessage}>No player... Sorry !</div>
+                  )}
                 </div>
                 </div>
               </div>
@@ -142,12 +146,15 @@ const Discography = ({
             <div className={style.containerMobile}>
               <div className={style.player_container}>
                   <div className={style.player_wrapper}>
-                    <Player 
-                      width='100%'
-                      height= '60vh'
-                      clas={style.player}
-                      url={albumToPlay?.soundcloudLink ? albumToPlay.soundcloudLink : 'https://soundcloud.com/full-dub-1/sets/rewind'}
-                    />
+                    {albumToPlay?.soundcloudLink ? 
+                      (<Player 
+                        width='100%'
+                        height= '60vh'
+                        clas={style.player}
+                        url={albumToPlay?.soundcloudLink || ''}
+                      />) : (
+                        <div className={style.noPlayerMessage}>No player... Sorry !</div>
+                      )}
                   </div>
               </div>
               <div className={style.slide_container}>

@@ -18,8 +18,25 @@
         flex-direction: column;
         justify-content: space-between;
         .dates_container {
-            margin-bottom: 30px;
+            // margin-bottom: 30px;
             text-align: center;
+            color: rgb(228, 228, 228);
+            // margin-bottom: 90px;
+            .title {
+                h1 {
+                    font-size: 2.5rem;
+                    margin-bottom: 2rem;
+                }
+                h3 {
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .oldShows {
+                margin-top: 90px;
+            }
+
             .date_line {
                 padding: 5px;
               
@@ -48,6 +65,7 @@
             color: $color-hover;
             font-weight: 500;
             transition: .3s;
+            margin: 30px 0px;
             &:hover {
                 cursor: pointer;
                 color: rgb(241, 174, 73);

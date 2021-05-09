@@ -24,12 +24,6 @@
                 img {
                     width: 100%;
                     transition: .2s;
-
-                    // &:hover {
-                    //     overflow: hidden;
-                    //     transform: scale(1.07);
-                    //     transition: .2s;
-                    // }
                 }
 
                 .overlay {
@@ -61,8 +55,6 @@
                 }
             }
 
-        
-            
             .infos_pochette {
                 display: flex;
                 justify-content: space-between;
@@ -71,11 +63,12 @@
                 .infos {
                     width: 100%;
                     display: flex;
-                    // flex-direction: column;
                     justify-content: space-between;
                     font-size: $font-size-shop;
                     font-weight: 500;
+                    padding: 3px;
                 }
+
                 .link_buy {
                     text-decoration: none;
                     text-align: end;
@@ -90,9 +83,7 @@
                         background-color: $color-hover;
                         color: rgba(0, 0, 0, 0.671);
                         transition: .2s;
-
                     }
-
                 }
             }
         }
