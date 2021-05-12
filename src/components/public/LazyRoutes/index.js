@@ -1,8 +1,7 @@
-import React, { useState, lazy } from 'react';
+import React, { useState } from 'react';
 import {
     Home,
     Mentions,
-    LandingPage,
     Discography,
     Shows,
     Shop,
@@ -24,12 +23,6 @@ import {
 import { AnimatePresence } from 'framer-motion';
 import { connect } from 'react-redux';
 
-
-// const Discography = lazy( async() => (await import ('../discography')));
-// const Shows = lazy( async() => (await import ('../shows')));
-// const Shop = lazy( async() => (await import ('./components/public/shop')));
-// const BookingContact = lazy(() => import ('./components/public/bookingContact'));
-
 const LazyRoutes = ({
   auth,
 }) => {
@@ -45,7 +38,9 @@ const LazyRoutes = ({
           <Route path="/shop" component={Shop} />
           <Route path="/BookingContact" component={BookingContact} />
           <Route path="/Mentions" component={Mentions} />
-          <Route path="/admin/signin" component={Signin}/>
+          <Route path="/bud/dub" component={Signin}/>
+          
+          {/* <Route path="/admin/signup" component={Signup}/>  */}
           
           <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
           <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />

@@ -6,7 +6,7 @@ const Footer = () => {
     return (  
         <div className={styles.footer}>
           <NavLink to="/Mentions">Mentions Légales</NavLink>
-          <a href="">Dev. by Mathias Payen</a>
+          <a href="mailto:mathias.payen@gmail.com">Dev. by Mathias Payen</a>
         </div>
     );
 }
