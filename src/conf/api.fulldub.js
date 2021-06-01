@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 const apiFulldub = axios.create({
-    baseURL: 'https://5.196.14.214',
+    baseURL: 'https://localhost',
 })
 
 apiFulldub.interceptors.request.use( req => {
