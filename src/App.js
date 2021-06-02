@@ -34,7 +34,7 @@ const App = ({
   const [isHome, setIsHome] = useState(false)
 
   useEffect(() => {
-    initializeApp()
+    initializeApp();
   }, []);
 
   const [width, setWidth] = useState(window.innerWidth);

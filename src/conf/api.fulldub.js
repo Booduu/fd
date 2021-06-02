@@ -1,7 +1,8 @@
 import * as axios from 'axios';
 
 const apiFulldub = axios.create({
-    baseURL: 'https://boodu.fr',
+    // baseURL: 'https://boodu.fr',
+    baseUrl: `https://fulldub.fr`
 })
 
 apiFulldub.interceptors.request.use( req => {
