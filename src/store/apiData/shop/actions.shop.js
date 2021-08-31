@@ -49,7 +49,6 @@ export const requestDeleteProduct = () => {
 }
 
 export const requestDeleteProductSuccess = (product) => {
-    console.log('requestDeleteProductSuccess', product)
     return {
         type: REQUEST_DELETE_PRODUCT_SUCCESS,
         product
@@ -57,7 +56,6 @@ export const requestDeleteProductSuccess = (product) => {
 }
 
 export const requestDeleteProductFail = (error) => {
-    console.log('requestDeleteProductFail', error)
     return {
         type: REQUEST_DELETE_PRODUCT_FAIL,
         error: { ...error.data },

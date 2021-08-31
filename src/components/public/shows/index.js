@@ -21,80 +21,18 @@ const Shows = ({
         setLivesOfPassedYear(lives.filter(live => moment(live.date).format("YYYY") < moment().format("YYYY")));
     }, [lives]);
 
-    useEffect(() => {
-        console.log('livesOfCurrentYear', livesOfCurrentYear)
-    }, [livesOfCurrentYear])
-
-    useEffect(() => {
-        console.log('livesOfPassedYear', livesOfPassedYear)
-    }, [livesOfPassedYear])
-
     const isTicket = (ticket) => {
         if (ticket !== '') {
             return <span className={style.ticket_link}><a href={ticket} target="_blanck" className={style.link}>Tickets</a></span>;
         }
         return false;
     }
-    // const currentLives = useCallback(() => {
-    //     return (
-    //         livesOfCurrentYear.map((live, index) => {
-    //             console.log(live.name, live?.ticketLink)
-    //             if (index === 0) {
-    //                 return (
-    //                 <>
-    //                     <div className={style.title}>
-    //                         <h1>Tour Dates</h1>
-    //                         <h3>{moment(live.date).format("YYYY")}</h3>
-    //                     </div>
-    //                     <motion.div 
-    //                         key={live._id} 
-    //                         className={style.date_line}
-    //                         initial={{ scaleY: 0 }} 
-    //                         animate={{ scaleY: 1 }} 
-    //                         exit={{ scaleY: 0 }}
-    //                         transition={{ delay: `0.${index}` }}
-    //                     >
-    //                         <span>{moment(live.date).format("MMM D, YYYY")}</span>
-    //                         <span>{`${live.city} - ${live.place}`}</span>
-    //                         <div>
-    //                             <span>{live.name}</span>
-    //                             {isTicket(live.ticketLink)}
-    //                             {/* <span className={style.ticket_link}><a href={live.ticketLink} target="_blanck" className={style.link}>
-    //                                 Tickets</a>
-    //                             </span> */}
-    //                         </div>
-    //                     </motion.div>
-    //                 </>
-    //                 )
-    //             } else {
-    //                 return (
-    //                     <motion.div 
-    //                         key={live._id} 
-    //                         className={style.date_line}
-    //                         initial={{ scaleY: 0 }} 
-    //                         animate={{ scaleY: 1 }} 
-    //                         exit={{ scaleY: 0 }}
-    //                         transition={{ delay: `0.${index}` }}
-    //                     >
-    //                         <span>{moment(live.date).format("MMM D, YYYY")}</span>
-    //                         <span>{`${live.city} - ${live.place}`}</span>
-    //                         <div>
-    //                             <span>{live.name}</span>
-    //                             {isTicket(live.ticketLink)}
-    //                         </div>
-    //                     </motion.div>
-    //                 )
-    //             }       
-    //         })
-    //     );
-    // }, [livesOfCurrentYear]);
 
     const currentLives = useCallback(() => {
         const year = [];
         return (
             livesOfCurrentYear.map((live, index) => {
                 year.push(moment(live.date).format("YYYY"));
-                    console.log(year[index], year[index - 1])
                 if (year[index] !== year[index - 1]) {
                     
                     return (
@@ -147,7 +85,6 @@ const Shows = ({
         return (
             livesOfPassedYear.map((live, index) => {
                 year.push(moment(live.date).format("YYYY"));
-                    console.log(year[index], year[index - 1])
                 if (year[index] !== year[index - 1]) {
                     
                     return (

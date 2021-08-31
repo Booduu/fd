@@ -11,7 +11,6 @@ export const requestCreateAlbum = () => {
 }
 
 export const requestCreateAlbumSuccess = (album) => {
-    console.log('requestCreateLiveSuccess', album)
     return {
         type: REQUEST_CREATE_ALBUM_SUCCESS,
         album
@@ -19,7 +18,6 @@ export const requestCreateAlbumSuccess = (album) => {
 }
 
 export const requestCreateAlbumFail = (error) => {
-    console.log('requestCreateLiveFail', error.data)
     return {
         type: REQUEST_CREATE_ALBUM_FAIL,
         error: { ...error.data },
@@ -27,7 +25,6 @@ export const requestCreateAlbumFail = (error) => {
 }
 
 export const createAlbum = (album) => {
-    console.log('createAlbum', album);
     return dispatch => {
         dispatch(requestCreateAlbum());
         return apiFulldub.post('/protected/album/albumcreate', album, {
@@ -50,7 +47,6 @@ export const requestDeleteAlbum = () => {
 }
 
 export const requestDeleteAlbumSuccess = (album) => {
-    console.log('requestDeleteAlbumSuccess', album)
     return {
         type: REQUEST_DELETE_ALBUM_SUCCESS,
         album
@@ -58,7 +54,6 @@ export const requestDeleteAlbumSuccess = (album) => {
 }
 
 export const requestDeleteAlbumFail = (error) => {
-    console.log('requestDeleteAlbumFail', error)
     return {
         type: REQUEST_DELETE_ALBUM_FAIL,
         error: { ...error.data },
@@ -66,7 +61,6 @@ export const requestDeleteAlbumFail = (error) => {
 }
 
 export const deleteAlbum = (album) => {
-    console.log('deleteAlbum', album);
     return dispatch => {
         dispatch(requestDeleteAlbum());
         return apiFulldub.delete(`/protected/album/${album._id}`, {
@@ -93,7 +87,6 @@ export const requestGetAlbums = () => {
 }
 
 export const requestGetAlbumsSuccess = (album) => {
-    console.log('requestDeleteAlbumSuccess', )
     return {
         type: REQUEST_GET_ALBUMS_SUCCESS,
         album
@@ -101,7 +94,6 @@ export const requestGetAlbumsSuccess = (album) => {
 }
 
 export const requestGetAlbumsFail = (error) => {
-    console.log('requestDeleteAlbumFail', error)
     return {
         type: REQUEST_GET_ALBUMS_FAIL,
         error: { ...error.data },

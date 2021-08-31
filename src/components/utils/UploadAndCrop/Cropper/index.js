@@ -60,7 +60,6 @@ const Cropper = ({
     }
 
     const getCroppedImg = (image, crop, fileName = 'filename.jpeg') => {
-        console.log(image)
         const canvas = document.createElement('canvas');
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;

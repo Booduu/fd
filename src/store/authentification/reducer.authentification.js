@@ -32,7 +32,6 @@ const authentificationReducer = (state = initialState, action) => {
                 errors: null,
             }; 
         case actions.REQUEST_SIGNUP_FAIL:
-            console.log('REQUEST_SIGNUP_FAIL');
             break;
          
         case actions.REQUEST_SIGNIN_SUCCESS:
@@ -83,7 +82,6 @@ const authentificationReducer = (state = initialState, action) => {
             return state
 
             case actions.REQUEST_SIGNIN_FAIL:
-                console.log('REQUEST_SIGNIN_FAIL', action.error)
             return {
                 ...state,
                 errors: { ...action.error }

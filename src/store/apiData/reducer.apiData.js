@@ -13,7 +13,6 @@ const apiDataReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case actions.INITIALIZE_APP_DONE: 
-            console.log('INITIALIZE_APP_DONE')
             return {
                 ...state,
                 appLoading: false,

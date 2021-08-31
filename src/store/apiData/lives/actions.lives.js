@@ -123,8 +123,6 @@ export const requestEditLive = () => {
 }
 
 export const requestEditLiveSuccess = (live) => {
-    console.log('requestEditLiveSuccess', live)
-
     return {
         type: REQUEST_EDIT_LIVE_SUCCESS,
         live,

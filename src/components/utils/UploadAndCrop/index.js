@@ -15,7 +15,7 @@ const UploadAndCrop = React.memo(({
 }) => {
     const [objectUrl, setObjectUrl] = useState(null)
     const [messageDragZone, setMessagesDropZone] =  useState(errors && errors.messages.cover ? 'Tu dois déposer une image !' : 'Ajoute un image');
-    console.log(errors)
+
     const onDropAccepted = acceptedFiles => {
         //for the crop resize
         const url = URL.createObjectURL(acceptedFiles[0]);

@@ -58,7 +58,6 @@ const Signup = ({
     });
 
     const handleSubmit = () => {
-      console.log('send', state);
       signUp(state);
     };
 
