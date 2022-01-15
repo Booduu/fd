@@ -96,7 +96,7 @@ export const requestGetAlbumsSuccess = (album) => {
 export const requestGetAlbumsFail = (error) => {
     return {
         type: REQUEST_GET_ALBUMS_FAIL,
-        error: { ...error.data },
+        //error: { ...error.data },
     }
 }
 

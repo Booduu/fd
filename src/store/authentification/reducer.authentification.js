@@ -20,7 +20,7 @@ const authentificationReducer = (state = initialState, action) => {
             const newAuth = {
                 isLoggedIn: true,
                 user: {
-                     id: action.value._id,
+                    id: action.value._id,
                     username: action.value.user.username,
                     email: action.value.user.local.email,
                     role: action.value.user.role,

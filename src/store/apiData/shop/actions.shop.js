@@ -136,7 +136,7 @@ export const requestGetProductsSuccess = (products) => {
 export const requestGetProductsFail = (error) => {
     return {
         type: REQUEST_GET_PRODUCTS_FAIL,
-        error: { ...error.data },
+        // error: { ...error.data },
     }
 }
 

@@ -22,7 +22,7 @@ export const requestGetLivesSuccess = (lives) => {
 export const requestGetLivesFail = (error) => {
     return {
         type: REQUEST_GET_LIVES_FAIL,
-        error: { ...error.data },
+        //error: { ...error.data },
     }
 }
 
