@@ -20,7 +20,7 @@ const Home = ({
     return ( 
         <div className={style.container}>
             <SEO title="Home" />
-                {albums && albums[0]?.title && (
+                {albums && albums[0]?.title ? (
                     <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
@@ -33,6 +33,21 @@ const Home = ({
                             <h3>NEW ALBUM AVAILABLE NOW</h3>
                         </motion.div> 
                     </a>     
+                ) : (
+                    <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
+                        <motion.div 
+                            className={style.titles}
+                            initial={{ scaleY: 0 }} 
+                            animate={{ scaleY: 1 }} 
+                            exit={{ scaleY: 0 }}
+                            transition={{ duration: .8 }}
+                        >
+                            <h1>Full Dub</h1>
+                            <h3>NEW ALBUM AVAILABLE NOW</h3>
+                            <p>Site en maintenance !</p>
+
+                        </motion.div> 
+                    </a>      
                 )}
         </div>    
      );
