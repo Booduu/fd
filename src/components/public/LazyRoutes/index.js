@@ -41,7 +41,7 @@ const LazyRoutes = ({
           <Route path="/bud/dub" component={Signin}/>
           
           
-          <Route path="/admin/signup" component={Signup}/> 
+          {/* <Route path="/admin/signup" component={Signup}/>  */}
           
           <Route path="/admin/lives" render={() => auth.isLoggedIn ? <LiveManage /> : <Redirect to='/home' />} />
           <Route path="/admin/shop" render={() => auth.isLoggedIn ? <ShopManage /> : <Redirect to='/home' />} />
