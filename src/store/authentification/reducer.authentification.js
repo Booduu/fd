@@ -32,7 +32,9 @@ const authentificationReducer = (state = initialState, action) => {
                 errors: null,
             }; 
         case actions.REQUEST_SIGNUP_FAIL:
-            break;
+            return {
+                ...state,
+            }
          
         case actions.REQUEST_SIGNIN_SUCCESS:
             localStorage.setItem('jwtToken', action.value.token );

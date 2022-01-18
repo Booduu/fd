@@ -131,7 +131,7 @@ const Signup = ({
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <NavLink to="/signin" >
+              <NavLink to="/bud/dub" >
                 Already have an account? Sign in
               </NavLink>
             </Grid>

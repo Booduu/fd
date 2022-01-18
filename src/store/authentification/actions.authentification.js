@@ -27,19 +27,20 @@ export const requestSignUpSuccess = (value) => {
     }
 }
 
-export const requestSignUpFail = (error) => {
+export const requestSignUpFail = () => {
     return {
         type: REQUEST_SIGNUP_FAIL,
-        error
+
     }
 }
 
 export const signUp = (value) => {
+    console.log(value);
     return dispatch => {
         dispatch(requestSignUp());
         return apiFulldub.post('/user', value)
             .then(response => dispatch(requestSignUpSuccess(response.data)))
-            .catch(error => dispatch(requestSignUpFail(error)))
+            .catch(error => dispatch(requestSignUpFail()))
     }
 }
 
