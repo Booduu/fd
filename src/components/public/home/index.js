@@ -21,7 +21,7 @@ const Home = ({
         <div className={style.container}>
             <SEO title="Home" />
                 {albums && albums[0]?.title ? (
-                    <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
+                    <a href="https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU" target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
@@ -34,7 +34,7 @@ const Home = ({
                         </motion.div> 
                     </a>     
                 ) : (
-                    <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
+                    <a href="https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU" target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
