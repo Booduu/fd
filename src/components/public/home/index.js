@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { SEO } from '../index';
 import { motion } from 'framer-motion';
 
+const link = "https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU"
+
 const Home = ({
     setIsHome,
     albums,
@@ -21,7 +23,7 @@ const Home = ({
         <div className={style.container}>
             <SEO title="Home" />
                 {albums && albums[0]?.title ? (
-                    <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
+                    <a href={link} target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
@@ -34,7 +36,7 @@ const Home = ({
                         </motion.div> 
                     </a>     
                 ) : (
-                    <a href="https://fulldub.fanlink.to/exNt" target="_blank" rel="noreferrer">
+                    <a href={link} target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
