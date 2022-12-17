@@ -68,6 +68,7 @@ const App = ({
       <div className={style.GridContainerApp}>
         <div className={style.topBar}></div>
         <Logo />
+      
         <Burger />
         <Suspense fallback={<Loader />}>
           <LandingPage isHome={isHome}/>
