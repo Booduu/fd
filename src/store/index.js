@@ -22,8 +22,6 @@ import myMiddlewares from './middlewares/middlewares';
 
 const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-
 let middlewares = [
     thunkMiddleware,
     myMiddlewares,
