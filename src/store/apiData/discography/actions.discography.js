@@ -87,6 +87,8 @@ export const requestGetAlbums = () => {
 }
 
 export const requestGetAlbumsSuccess = (album) => {
+    console.log('skank getalbum', album);
+
     return {
         type: REQUEST_GET_ALBUMS_SUCCESS,
         album

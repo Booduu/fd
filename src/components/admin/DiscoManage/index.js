@@ -91,7 +91,7 @@ const ShopManage = ({
 
     useEffect(() => {
       const newColumns = { ...albums[0]}
-      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink')));
+      setMyColumnsName(Object.keys(newColumns).filter( f => (f !== '_id' && f !== '__v' && f !== 'soundcloudLink' && f !== 'buyLink' && f !== 'downloadLink' && f !== 'linkForLastAlbum')));
     }, [albums]);
 
     return ( 

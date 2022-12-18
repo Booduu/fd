@@ -45,13 +45,13 @@ const Discography = ({
     const classes = useStyles();
     const buttonValue = Object.keys(editingData).length > 0 ? "Edit" : "Save";
     const [imgState, setImgState] = useState(editingData && editingData?.cover ? editingData.cover : null);
-
     const [state, setState] = useState({
         title: editingData?.title || '',
         label: editingData?.label || '',
         soundcloudLink: editingData?.soundcloudLink || '',
         buyLink: editingData?.buyLink || '',
         downloadLink: editingData?.downloadLink || '',
+        linkForLastAlbum: editingData?.linkForLastAlbum || '',
         releaseDate: editingData?.releaseDate || new Date(),
     });
 
@@ -80,7 +80,7 @@ const Discography = ({
     };
 
     return ( 
-        <Grid container spacing={1} justify="center" >
+        <Grid container spacing={1} justifyContent="center" >
             <Grid container item xs={6} spacing={1}>
                 <Grid item xs={12}>
                     <UploadAndCrop 
@@ -174,6 +174,17 @@ const Discography = ({
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <TextField
+                        name="linkForLastAlbum"
+                        label="Link for last album click"
+                        value={state.linkForLastAlbum}
+                        onChange={handleChange}
+                        // error={errors != null && !!errors?.messages?.downloadLink}
+                        // helperText={errors?.messages?.downloadLink ? errors.messages.downloadLink : ''}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <DatePicker 
                         label="Release"
                         onChange={(data) => {
@@ -187,7 +198,7 @@ const Discography = ({
                 </Grid>
             </Grid>
             
-            <Grid item xs={12} container justify="flex-end">
+            <Grid item xs={12} container justifyContent="flex-end">
                 <Grid item xs={6} >
                     <Button
                         variant="contained"

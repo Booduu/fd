@@ -22,7 +22,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-//LAZY LOAD PUBLIC COMPONENTS
+// LAZY LOAD PUBLIC COMPONENTS
 const LandingPage = lazy( async() => (await import ('./components/public/landingPage')));
 const LazyRoutes = lazy( async() => (await import ('./components/public/LazyRoutes')));
 

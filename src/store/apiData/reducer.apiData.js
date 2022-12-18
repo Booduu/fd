@@ -35,7 +35,6 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.REQUEST_GET_LIVES:
         case actions.REQUEST_GET_PRODUCTS:
         case actions.REQUEST_GET_ALBUMS:
-
             return {
                 ...state,
                 loader: true,
@@ -59,7 +58,7 @@ const apiDataReducer = (state = initialState, action) => {
                 errors: { ...action.error }
             }
             
-        // ALBUMS ACTOINS TYPES
+        // ALBUMS ACTIONS TYPES
         case actions.REQUEST_CREATE_ALBUM_SUCCESS:
             const newAlbumList = [...state.albums].concat(action.album);
             const albumSorted = newAlbumList.sort((a, b) => {

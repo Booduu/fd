@@ -36,6 +36,8 @@ Player.propTypes = {
 const Card = React.memo(({
   album,
 }) => {
+  console.log('skank album', album);
+
     const [expanded, setExpanded] = useState(false);
     const randomNumber = Math.floor(Math.random() * 5) + 1;
     return (

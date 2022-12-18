@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { SEO } from '../index';
 import { motion } from 'framer-motion';
 
-const link = "https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU"
-
 const Home = ({
     setIsHome,
     albums,
 }) => {
+    
+    const customLink = albums && albums[0]?.linkForLastAlbum ? albums[0]?.linkForLastAlbum : "https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU";
     
     useEffect(() => {
         setIsHome(true);
@@ -18,12 +18,12 @@ const Home = ({
             setIsHome(false);
         }
     });
-
+    console.log('skank customLink', customLink);
     return ( 
         <div className={style.container}>
             <SEO title="Home" />
                 {albums && albums[0]?.title ? (
-                    <a href={link} target="_blank" rel="noreferrer">
+                    <a href={customLink} target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
@@ -36,7 +36,7 @@ const Home = ({
                         </motion.div> 
                     </a>     
                 ) : (
-                    <a href={link} target="_blank" rel="noreferrer">
+                    <a href={customLink} target="_blank" rel="noreferrer">
                         <motion.div 
                             className={style.titles}
                             initial={{ scaleY: 0 }} 
