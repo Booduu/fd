@@ -31,8 +31,6 @@ const App = ({
   initializeApp,
   appLoading,
 }) => {
-  const [isHome, setIsHome] = useState(false)
-
   useEffect(() => {
     initializeApp();
   }, []);
@@ -71,7 +69,7 @@ const App = ({
       
         <Burger />
         <Suspense fallback={<Loader />}>
-          <LandingPage isHome={isHome}/>
+          <LandingPage />
           <div className={style.menu}>
             <Header />
           </div>

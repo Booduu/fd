@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Home,
     Mentions,
@@ -8,7 +8,7 @@ import {
     BookingContact,
 } from '../index.js';
 import { 
-  Signup,
+  // Signup,
   Signin,
   LiveManage,
   ShopManage,
@@ -27,12 +27,11 @@ const LazyRoutes = ({
   auth,
 }) => {
   const location = useLocation();
-  const [isHome, setIsHome] = useState(false)
 
     return (  
     <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.key} > 
-          <Route path="/home" render={() => <Home setIsHome={setIsHome} />} />
+          <Route path="/home" render={() => <Home/>} />
           <Route path="/discography" component={Discography} />
           <Route path="/shows" component={Shows} />
           <Route path="/shop" component={Shop} />

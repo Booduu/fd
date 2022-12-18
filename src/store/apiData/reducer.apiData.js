@@ -51,7 +51,6 @@ const apiDataReducer = (state = initialState, action) => {
         case actions.REQUEST_DELETE_ALBUM_FAIL:
         case actions.REQUEST_DELETE_PRODUCT_FAIL:
         case actions.REQUEST_DELETE_LIVE_FAIL:
-
             return {
                 ...state,
                 loader: false,

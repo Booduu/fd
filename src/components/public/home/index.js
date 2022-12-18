@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import style from './Home.module.scss';
 import PropTypes from 'prop-types';
@@ -6,19 +6,17 @@ import { SEO } from '../index';
 import { motion } from 'framer-motion';
 
 const Home = ({
-    setIsHome,
     albums,
 }) => {
     
     const customLink = albums && albums[0]?.linkForLastAlbum ? albums[0]?.linkForLastAlbum : "https://flowercoast.ffm.to/forward?fbclid=IwAR1WvvIzEFQbDI4ltXg6iodMttyfktZIZ_fX_cjjciGn4NF6R-L0HJ2oTnU";
     
-    useEffect(() => {
-        setIsHome(true);
-        return () => {
-            setIsHome(false);
-        }
-    });
-    console.log('skank customLink', customLink);
+    // useEffect(() => {
+    //     setIsHome(true);
+    //     return () => {
+    //         setIsHome(false);
+    //     }
+    // });
     return ( 
         <div className={style.container}>
             <SEO title="Home" />

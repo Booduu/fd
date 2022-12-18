@@ -33,7 +33,11 @@ const UploadAndCrop = React.memo(({
       setMessagesDropZone('Seuls les formats jpeg et png sont authorisés. Taille maximale de 6MO.')
     };
 
-    const { getRootProps, getInputProps, isDragActive} = useDropzone({
+    const { 
+        getRootProps, 
+        getInputProps, 
+        // isDragActive
+    } = useDropzone({
         onDropAccepted,
         onDropRejected,
         maxFiles: 1,

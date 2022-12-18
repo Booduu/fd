@@ -1,6 +1,6 @@
 import { getProducts, getAlbums, getLives } from '../actions.apiData';
 import {  verifyUser } from '../../authentification/actions.authentification';
-import { batch } from "react-redux";
+// import { batch } from "react-redux";
 
 export const INITIALIZE_APP_DONE = 'INITIALIZE_APP_DONE'; 
 
