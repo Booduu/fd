@@ -11,7 +11,6 @@ moment().format();
 const Shows = ({
     lives,
 }) => {
-
     const [livesOfCurrentYear, setLivesOfCurrentYear] = useState([]);
     const [livesOfPassedYear, setLivesOfPassedYear] = useState([]);
     const [displayOldLives, setDisplayOldLives] = useState(false);

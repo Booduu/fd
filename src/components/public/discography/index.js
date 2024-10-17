@@ -98,7 +98,6 @@ class Grid extends React.Component {
     Object.keys(this.props.settings)
       .filter(k => this.props.settings[k])
       .forEach(k => (classes += " " + k));
-
     return (
         <div className={[classes, style.flex_container, 'flex_container'].join(' ')} ref={el => (this.grid = el)}>
             {this.props.albums.map((album, index) => (
